@@ -5,5 +5,5 @@ from django.http import HttpResponse
 def index(request):
     return HttpResponse('HELLO')
 
-def add_artwork(request):
-    return HttpResponse('Test')
+def add_artwork(request, id):
+    return HttpResponse('Test' + str(id))

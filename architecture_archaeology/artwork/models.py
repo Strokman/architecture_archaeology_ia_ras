@@ -1,5 +1,4 @@
 from django.db import models
-from core.timestamp_model import TimestampModel
 from core.description_model import DescriptionModel
 
 
@@ -7,9 +6,8 @@ from core.description_model import DescriptionModel
 class Artwork(DescriptionModel):
     code = models.CharField(max_length=100)
 
-    preservation_id = models.ForeignKey('artwork.Preservation', on_delete=models.CASCADE)
+    preservation_id = models.ForeignKey('helpers.Preservation', on_delete=models.CASCADE)
 
 
-class Preservation(DescriptionModel):
-    pass
+
 
