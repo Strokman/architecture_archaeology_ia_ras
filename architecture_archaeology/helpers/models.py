@@ -1,6 +1,8 @@
+
 from django.db import models
 from core.description_model import DescriptionModel
 from core.timestamp_model import TimestampModel
+from core.base_model import BaseModel
 
 
 # Create your models here.
@@ -15,11 +17,13 @@ class Colors(DescriptionModel):
         return f'{self.code}: {self.description}'
 
 
-class Comment(models.Model):
+class Comment(BaseModel):
     text = models.TextField()
 
-
-class Date(models.Model):
+    def __str__(self):
+        return self.text
+    
+class Date(BaseModel):
     year = models.IntegerField()
     year_min = models.IntegerField()
     year_max = models.IntegerField()
