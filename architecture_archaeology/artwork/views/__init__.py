@@ -1,0 +1,1 @@
+from artwork.views.index_view import IndexView

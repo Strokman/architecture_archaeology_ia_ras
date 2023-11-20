@@ -1,7 +1,5 @@
-
 from django.db import models
 from core.description_model import DescriptionModel
-from core.timestamp_model import TimestampModel
 from core.base_model import BaseModel
 
 
@@ -22,7 +20,8 @@ class Comment(BaseModel):
 
     def __str__(self):
         return self.text
-    
+
+
 class Date(BaseModel):
     year = models.IntegerField()
     year_min = models.IntegerField()
