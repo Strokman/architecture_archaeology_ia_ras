@@ -12,6 +12,4 @@ class BaseModel(models.Model):
         super().save()
 
     class Meta:
-
         abstract = True
-        

@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Preservation, Comment, Colors
+from .models import Preservation, Comment, Color
 # Register your models here.
 
 
 admin.site.register(Preservation)
-admin.site.register(Colors)
+admin.site.register(Color)
 admin.site.register(Comment)
