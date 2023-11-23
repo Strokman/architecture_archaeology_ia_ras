@@ -7,7 +7,6 @@ from django.core.handlers.wsgi import WSGIRequest as req
 from helpers.models import Preservation, Comment
 import architecture_archaeology.settings as settings
 from logging import getLogger
-import pprint
 
 
 logger = getLogger(f'{settings.PROJECT}.{__name__}')

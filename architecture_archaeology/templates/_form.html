@@ -1,0 +1,6 @@
+
+<form action='{{action}}' method='{{method}}' novalidate>
+    {% csrf_token %}
+    {{ form.as_div }}
+    <input type="submit" value="Submit">
+</form>
