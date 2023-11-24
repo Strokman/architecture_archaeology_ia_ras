@@ -5,4 +5,4 @@ from building.models import Building
 class SubmitBuildingForm(ModelForm):
     class Meta:
         model = Building
-        fields = ['name', 'long', 'lat']
+        fields = ['name', 'description', 'long', 'lat', 'region']

@@ -1,12 +1,12 @@
 from logging import getLogger
 from django.views.generic.base import TemplateView
-from django.shortcuts import get_object_or_404
+# from django.shortcuts import get_object_or_404
 from django.shortcuts import render, HttpResponseRedirect
 from django.core.handlers.wsgi import WSGIRequest as req
 from django.urls import reverse
 
 import architecture_archaeology.settings as settings
-from building.models import Building
+# from building.models import Building
 from building.forms import SubmitBuildingForm
 
 logger = getLogger(f'{settings.PROJECT}.{__name__}')
