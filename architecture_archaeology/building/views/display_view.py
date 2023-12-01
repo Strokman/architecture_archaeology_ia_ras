@@ -1,5 +1,5 @@
 from logging import getLogger
-from django.views.generic.base import TemplateView
+from django.views.generic import DetailView
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.core.handlers.wsgi import WSGIRequest as req
@@ -9,14 +9,15 @@ from building.models import Building
 logger = getLogger(f'{settings.PROJECT}.{__name__}')
 
 
-class Display(TemplateView):
+class Display(DetailView):
+    model = Building
     template_name = 'building/display.html'
 
     def get(self, request: req):
         # pprint.pprint(request.__dict__)
         logger.info('test')
-        building = 'TEST DATA'
-        # building = get_object_or_404(Building)
+        # building = 'TEST DATA'
+        building = get_object_or_404(Building)
         # p = Preservation(description='asdsaasd')
         # await p.asave()
         # c = Comment(text='text message')

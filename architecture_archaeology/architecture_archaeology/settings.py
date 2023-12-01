@@ -13,9 +13,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
+from django.utils import timezone
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+PROJECT = 'architecture_archaeology'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -84,7 +87,10 @@ DATABASES = {
         'HOST': '192.168.1.57',
         'USER': 'test',
         'PASSWORD': 'test',
-        'PORT': '55432'
+        'PORT': '55432',
+        "TEST": {
+            "NAME": f"{PROJECT}-testdb-{timezone.now()}",
+        },
     }
 }
 
@@ -119,8 +125,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-PROJECT = 'architecture_archaeology'
-
+GMAPS_API_KEY = 'AIzaSyDv88hb7YC6T0VfFMj6AprpmP4Vfut1GTs'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 

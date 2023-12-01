@@ -21,8 +21,7 @@ class Command(BaseCommand):
                 with open(f'{BASE_DIR}/pre_defined_data/regions.csv', 'r') as f:
                     row = DictReader(f, delimiter=',')
                     for column in row:
-                        region = Region(name=column['name_with_type'])
-                        region.country_id = country
+                        region = Region(name=column['name_with_type'], country=country)
                         regions.append(region)
                 Region.objects.bulk_create(regions)
                 print('Successfully created')
