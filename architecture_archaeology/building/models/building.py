@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.text import slugify
+from core.utils import slugify
 from core.timestamp_mixin import TimestampMixin
 from core.description_mixin import DescriptionMixin
 
@@ -11,14 +11,18 @@ class Building(DescriptionMixin, TimestampMixin):
     lat = models.DecimalField(verbose_name='Широта', max_digits=23, decimal_places=20)
     slug = models.SlugField(default='', null=False, db_index=True)
 
-    region = models.ForeignKey('helpers.Region', null=True, on_delete=models.SET_NULL)
+    region = models.ForeignKey('helpers.Region', null=False, on_delete=models.PROTECT, related_name='buildings')
+    # date = models.ForeignKey('helpers.Date', null=True, on_delete=models.SET_NULL)
+    # comment = models.ForeignKey('helpers.Comment', null=True, on_delete=models.SET_NULL, related_name='buildings')
+
+    file = models.ManyToManyField('helpers.File')
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.slug = slugify(self.name, allow_unicode=True)
         super(Building, self).save(*args, **kwargs)
 
     def get_url(self):
-        return slugify(self.name)
+        return self.slug
 
     def __str__(self):
         return f'{self.name}'

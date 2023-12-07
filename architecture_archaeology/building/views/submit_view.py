@@ -17,7 +17,6 @@ class Submit(TemplateView):
 
     def get(self, request: req):
         logger.info('test')
-        # building = get_object_or_404(Building)
         form = SubmitBuildingForm()
         context = {
             'title': 'Добавление постройки',
@@ -28,9 +27,12 @@ class Submit(TemplateView):
         return render(request, self.template_name, context)
 
     def post(self, request: req):
-        # pprint.pprint(request.__dict__)
         logger.info('test')
         form = SubmitBuildingForm(request.POST)
+        context = {'form': form}
         if form.is_valid():
             form.save()
-        return HttpResponseRedirect(reverse('building:submit'))
+            return HttpResponseRedirect(reverse('building:submit'))
+        else:
+            return render(request, self.template_name, context)
+        

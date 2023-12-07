@@ -7,4 +7,4 @@ class Date(BaseModel):
     year_min = models.IntegerField()
     year_max = models.IntegerField()
 
-    building = models.ForeignKey('building.Building', null=True, on_delete=models.CASCADE)
+    # building = models.ForeignKey('building.Building', null=True, on_delete=models.CASCADE)
