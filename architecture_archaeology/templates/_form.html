@@ -1,4 +1,4 @@
-<form action='{{action}}' method='{{method}}' novalidate>
+<form action='{{action}}' method='{{method}}' {% if render_kw %} {% for k, v in addition.items %} {{k}}="{{v}}" {% endfor %} {% endif %} novalidate>
     {% csrf_token %}
     {{ form.as_div }}
     <input type="submit" value="Submit">

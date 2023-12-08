@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>{{title}}</h2>
-{% include "_form.html" %}
+<form action='{{action}}' method='{{method}}' {% if render_kw %} {% for k, v in render_kw.items %} {{k}}="{{v}}" {% endfor %} {% endif %} novalidate>
+    {% csrf_token %}
+    {{ form_1.as_div }}
+    {{ form_2.as_div }}
+    <input type="submit" value="Submit">
+</form>
 {% endblock content %}

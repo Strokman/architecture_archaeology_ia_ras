@@ -203,7 +203,7 @@ LOGGING = {
     },
 }
 
-#Yandex cloud S3 config params
+# Yandex cloud S3 config params
 
 OBJECT_STORAGE_URL = environ.get('OBJECT_STORAGE_URL')
 

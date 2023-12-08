@@ -1,9 +1,5 @@
-from django.forms import ModelForm
-from building.models import Building
+from django import forms
 
 
-class SubmitBuildingForm(ModelForm):
-    class Meta:
-        model = Building
-        fields = "__all__"
-        # fields = ''
+class SubmitBuildingForm(forms.Form):
+    ...
