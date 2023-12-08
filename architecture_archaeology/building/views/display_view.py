@@ -1,8 +1,6 @@
 from logging import getLogger
+from typing import Any
 from django.views.generic import DetailView
-from django.shortcuts import get_object_or_404
-from django.shortcuts import render
-from django.core.handlers.wsgi import WSGIRequest as req
 import architecture_archaeology.settings as settings
 from building.models import Building
 
@@ -13,13 +11,13 @@ class Display(DetailView):
     model = Building
     template_name = 'building/display.html'
 
-    def get(self, request: req):
-        # pprint.pprint(request.__dict__)
-        logger.info('test')
-        # building = 'TEST DATA'
-        building = get_object_or_404(Building)
-        # p = Preservation(description='asdsaasd')
-        # await p.asave()
-        # c = Comment(text='text message')
-        # await c.asave()
-        return render(request, self.template_name, {'building': building})
+    def get_object(self, queryset=None):
+        rv = super().get_object(queryset)
+        self.object_name = rv.name
+        return rv
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        logger.info(f'Display view of {self.object_name} accessed')
+        context['title'] = f'Постройка {self.object_name}'
+        return context

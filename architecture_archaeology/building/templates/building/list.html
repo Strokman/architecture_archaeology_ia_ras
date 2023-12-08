@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 {% for building in buildings %}
-<li> {{ building }}</li>
+<a href="{% url 'building:display' slug=building.slug %}"> {{building}}</a><br>
 {% endfor %}
 {% endblock content %}

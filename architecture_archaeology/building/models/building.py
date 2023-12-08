@@ -15,7 +15,7 @@ class Building(DescriptionMixin, TimestampMixin):
     # date = models.ForeignKey('helpers.Date', null=True, on_delete=models.SET_NULL)
     # comment = models.ForeignKey('helpers.Comment', null=True, on_delete=models.SET_NULL, related_name='buildings')
 
-    file = models.ManyToManyField('helpers.File')
+    file = models.ManyToManyField('file.File', related_name='buildings')
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name, allow_unicode=True)

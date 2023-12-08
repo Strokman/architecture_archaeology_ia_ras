@@ -13,10 +13,16 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
+from dotenv import load_dotenv
 from django.utils import timezone
+from os import path, environ
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+load_dotenv(path.join(BASE_DIR.parent.absolute(), '.env'))
 
 PROJECT = 'architecture_archaeology'
 
@@ -24,7 +30,7 @@ PROJECT = 'architecture_archaeology'
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-sc71&id6su4bpzoe+a29#v@(y+5c7)y74!qxjiz1zxm1@j@*!f'
+SECRET_KEY = environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +44,7 @@ INSTALLED_APPS = [
     'building.apps.BuildingConfig',
     'index.apps.IndexConfig',
     'artwork.apps.ArtworkConfig',
+    'file.apps.FileConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -195,3 +202,13 @@ LOGGING = {
         },
     },
 }
+
+#Yandex cloud S3 config params
+
+OBJECT_STORAGE_URL = environ.get('OBJECT_STORAGE_URL')
+
+BUCKET = environ.get('BUCKET')
+
+AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
+
+AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
