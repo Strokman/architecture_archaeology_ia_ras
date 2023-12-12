@@ -15,4 +15,5 @@ class File(TimestampMixin):
     original_name = models.CharField(max_length=255)
     file_type = models.CharField(max_length=100, choices=CHOICES)
     # file_type = models.ForeignKey('helpers.FileType', on_delete=models.CASCADE)
-    # bulding = models.ForeignKey('building.Building', on_delete=models.CASCADE)
+    bulding = models.ForeignKey('building.Building', null=True, on_delete=models.CASCADE)
+    site = models.ForeignKey('arch_site.ArchaeologicalSite', null=True, on_delete=models.CASCADE)

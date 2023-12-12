@@ -1,27 +1,22 @@
 from django.db import models
-from core.utils import slugify
+# from core.utils import slugify
 from django.urls import reverse_lazy
-from core.timestamp_mixin import TimestampMixin
-from core.description_mixin import DescriptionMixin
+from core import TimestampMixin
+from core import DescriptionMixin
+from core import SlugMixin
 
 
-class ArchaeologicalSite(DescriptionMixin, TimestampMixin):
+class ArchaeologicalSite(DescriptionMixin, TimestampMixin, SlugMixin):
 
     name = models.CharField(verbose_name='Название', max_length=255)
     long = models.DecimalField(verbose_name='Долгота', max_digits=23, decimal_places=20)
     lat = models.DecimalField(verbose_name='Широта', max_digits=23, decimal_places=20)
-    slug = models.SlugField(default='', null=False, db_index=True)
     year_min = models.IntegerField(null=False)
     year_max = models.IntegerField(null=False)
+    comment = models.TextField(null=True)
 
     region = models.ForeignKey('helpers.Region', null=False, on_delete=models.PROTECT, related_name='sites')
-    # comment = models.ForeignKey('helpers.Comment', null=True, on_delete=models.SET_NULL, related_name='sites')
-
     # file = models.ManyToManyField('file.File', related_name='sites')
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(ArchaeologicalSite, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse_lazy("arch_site", kwargs={"pk": self.pk})

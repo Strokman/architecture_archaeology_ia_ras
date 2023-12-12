@@ -1,3 +1,3 @@
-from .submit_view import Submit
-from .display_view import Display
-from .list_view import ListBuildingView
+from .submit_view import BuildingSubmitView
+from .display_view import BuildingDetailView
+from .list_view import BuildingListView

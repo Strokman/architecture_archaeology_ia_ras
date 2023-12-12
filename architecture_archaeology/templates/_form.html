@@ -1,5 +1,5 @@
 <form action='{{action}}' method='{{method}}' {% if render_kw %} {% for k, v in render_kw.items %} {{k}}="{{v}}" {% endfor %} {% endif %} novalidate>
     {% csrf_token %}
     {{ form.as_div }}
-    <input type="submit" value="Submit">
+    <input type="submit" value="{% if value %} {{value}} {% else %}Submit{% endif %}">
 </form>

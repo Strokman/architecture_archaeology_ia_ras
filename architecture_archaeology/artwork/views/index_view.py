@@ -4,7 +4,7 @@ from django.template import loader
 from django.views.generic.base import TemplateView
 
 from django.core.handlers.wsgi import WSGIRequest as req
-from helpers.models import Preservation, Comment
+from helpers.models import Preservation
 import architecture_archaeology.settings as settings
 from logging import getLogger
 

@@ -7,9 +7,9 @@ from building.models import Building
 logger = getLogger(f'{settings.PROJECT}.{__name__}')
 
 
-class Display(DetailView):
+class BuildingDetailView(DetailView):
     model = Building
-    template_name = 'building/display.html'
+    template_name = 'building/detail.html'
 
     def get_object(self, queryset=None):
         rv = super().get_object(queryset)

@@ -14,7 +14,7 @@ from file.forms.upload_form import UploadFileForm
 logger = getLogger(f'{settings.PROJECT}.{__name__}')
 
 
-class Submit(TemplateView):
+class BuildingSubmitView(TemplateView):
     template_name = 'building/submit.html'
 
     def get(self, request: req):

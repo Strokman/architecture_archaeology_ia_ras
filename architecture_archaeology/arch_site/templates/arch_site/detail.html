@@ -2,4 +2,5 @@
 {% block content %}
 <h1>DISPLAY VIEW</h1>
 {{ archaeologicalsite }}
+<a href="{% url 'arch_site:update' archaeologicalsite.slug %}">TEST LINK</a>
 {% endblock content %}
