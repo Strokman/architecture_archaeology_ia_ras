@@ -1,52 +1,41 @@
-from logging import getLogger
 from typing import Any
-from django.views.generic.base import TemplateView
-# from django.shortcuts import get_object_or_404
-from django.shortcuts import render, HttpResponseRedirect
-from django.core.handlers.wsgi import WSGIRequest as req
-from django.urls import reverse
-
-import architecture_archaeology.settings as settings
-# from building.models import Building
+from django.http import HttpResponse
+from django.views.generic import FormView
 from building.forms import SubmitBuildingForm
-from file.forms.upload_form import UploadFileForm
+from building.models import Building
+from file.models import File
+# from file.services.file_to_s3 import upload_file_to_s3
+from django.urls import reverse_lazy
+from uuid import uuid1
+# Create your views here.
 
-logger = getLogger(f'{settings.PROJECT}.{__name__}')
 
-
-class BuildingSubmitView(TemplateView):
+class SubmitBuildingView(FormView):
     template_name = 'building/submit.html'
+    form_class = SubmitBuildingForm
+    success_url = reverse_lazy('index')
 
-    def get(self, request: req):
-        logger.info('test')
-        form_1 = SubmitBuildingForm()
-        form_2 = UploadFileForm()
-        context = self.get_context_data()
-        context['form_1'] = form_1
-        context['form_2'] = form_2
-        return render(request, self.template_name, context)
+    def form_valid(self, form: Any) -> HttpResponse:
+        building_data = {k: v for k, v in form.cleaned_data.items() if hasattr(Building, k)}
+        print(building_data)
+        # new_bld = Building(**building_data)
+        # uploaded_files = form.cleaned_data['foto']
+        # for file in uploaded_files:
+        #     extension = file.name.rsplit('.', 1)[1]
+        #     filename = uuid1()
+        #     file_type = 'foto'
+        #     original_name = file.name
+        #     new_file = File(filename=filename, extension=extension, original_name=original_name, file_type=file_type)
+        #     # upload_file_to_s3(file, f'{new_site.slug}/{filename}.{extension}')
+        #     new_site.save()
+        #     new_file.save()
+        #     new_site.file_set.add(new_file)
+            
+        return super().form_valid(form)
 
-    def post(self, request: req):
-        logger.info('test')
-        form_1 = SubmitBuildingForm(request.POST)
-        form_2 = UploadFileForm(request.POST)
-        context = self.get_context_data()
-        context['form_1'] = form_1
-        context['form_2'] = form_2
-        print(request.FILES)
-        if form_2.is_valid():
-            print('LOLKA')
-        if form_1.is_valid() and form_2.is_valid():
-            print(form_2.cleaned_data)
-            return HttpResponseRedirect(reverse('building:submit'))
-        else:
-            return render(request, self.template_name, context)
-        
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Добавление постройки'
-        context['action'] = reverse('building:submit')
-        context['method'] = 'post'
+        context['method'] = 'POST'
+        context['action'] = reverse_lazy('building:submit')
         context['render_kw'] = {'enctype': 'multipart/form-data'}
         return context
-        

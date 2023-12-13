@@ -1,5 +1,7 @@
 from django import forms
 from helpers.models import Region
+from django.core import validators
+from core.custom_forms import MultipleFileField
 
 
 class SubmitArchaeologicalSiteForm(forms.Form):
@@ -11,4 +13,4 @@ class SubmitArchaeologicalSiteForm(forms.Form):
     year_min = forms.IntegerField(label='от')
     year_max = forms.IntegerField(label='до')
     comment = forms.CharField(widget=forms.Textarea)
-    # foto = forms.FileField(label='Фотография')
+    foto = MultipleFileField(5, validators=[validators.FileExtensionValidator(['pdf', 'tif', 'tiff', 'jpg', 'jpeg'])], label='фотография')

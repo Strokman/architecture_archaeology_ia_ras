@@ -134,6 +134,8 @@ LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'Europe/Moscow'
 
+# DATA_UPLOAD_MAX_NUMBER_FILES = 2
+
 USE_I18N = True
 
 USE_TZ = True

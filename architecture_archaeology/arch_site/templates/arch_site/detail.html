@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>DISPLAY VIEW</h1>
-{{ archaeologicalsite }}
-<a href="{% url 'arch_site:update' archaeologicalsite.slug %}">TEST LINK</a>
+{{ archaeologicalsite.name }}<br>
+{{ archaeologicalsite.region.country }}<br>
+{{ archaeologicalsite.region }}<br>
+{{ archaeologicalsite.description }}<br>
+<a href="{% url 'arch_site:update' archaeologicalsite.slug %}">Редактировать</a>
 {% endblock content %}
