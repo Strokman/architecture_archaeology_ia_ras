@@ -9,9 +9,9 @@ class Building(DescriptionMixin, TimestampMixin, SlugMixin):
     name = models.CharField(verbose_name='Название', max_length=255)
     long = models.DecimalField(verbose_name='Долгота', max_digits=23, decimal_places=20)
     lat = models.DecimalField(verbose_name='Широта', max_digits=23, decimal_places=20)
-    year_min = models.IntegerField(null=False)
-    year_max = models.IntegerField(null=False)
-    comment = models.TextField(null=True)
+    year_min = models.IntegerField(null=False, verbose_name='От')
+    year_max = models.IntegerField(null=False, verbose_name='До')
+    comment = models.TextField(null=True, blank=True)
 
     site = models.ForeignKey('arch_site.ArchaeologicalSite', on_delete=models.RESTRICT)
 

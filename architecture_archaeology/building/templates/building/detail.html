@@ -2,4 +2,6 @@
 {% block content %}
 <h1>DISPLAY VIEW</h1>
 {{ building }}
+
+<a href="{% url 'building:update' building.slug %}">Редактировать</a>
 {% endblock content %}

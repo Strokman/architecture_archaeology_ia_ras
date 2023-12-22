@@ -1,8 +1,14 @@
 from django import forms
+from django.core import validators
 
-from arch_site.models import ArchaeologicalSite
-from core.custom_forms import FileMixinForm, ArchaeologicalObjectFormMixin
+from building.models import Building
+from core.custom_forms import MultipleFileField
 
 
-class SubmitBuildingForm(ArchaeologicalObjectFormMixin, FileMixinForm):
-    site = forms.ModelChoiceField(label='Памятник', queryset=ArchaeologicalSite.objects.all())
+class SubmitBuildingForm(forms.ModelForm):
+    foto = MultipleFileField(5, validators=[validators.FileExtensionValidator(['png', 'jpg', 'jpeg'])], label='Фотография')
+
+    class Meta:
+
+        model = Building
+        fields = ['name', 'description', 'site', 'long', 'lat', 'year_min', 'year_max', 'comment']

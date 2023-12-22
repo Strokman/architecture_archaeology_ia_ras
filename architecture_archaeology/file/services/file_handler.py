@@ -60,7 +60,7 @@ class FileHandler:
 
     @property
     def cloud_key(self):
-        return f'{self.parent_obj._meta.db_table}/{self.parent_obj.id}{self.filename}'
+        return f'{self.parent_obj._meta.db_table}/{self.parent_obj.id}/{self.filename}'
 
     def to_orm(self):
         instance = File(filename=self.filename,
