@@ -1,10 +1,26 @@
 from .client import create_s3_client
 import architecture_archaeology.settings as settings
+from file.services import FileHandler
 
 
-def upload_file_to_s3(file, filename):
-    client = create_s3_client()
-    client.put_object(Body=file.read(),
-                      Bucket=settings.BUCKET,
-                      Key=f'{filename}')
-    return True
+class S3FileHandler:
+
+    def __init__(self, file: FileHandler):
+        self.client = create_s3_client()
+        self.file = file    
+
+    def upload_file_to_s3(self):
+        self.client.put_object(Body=self.file.file.read(),
+                        Bucket=settings.BUCKET,
+                        Key=self.file.cloud_key)
+        return True
+
+    def get_file_from_s3(self):
+        get_object_response = self.client.get_object(Bucket=settings.BUCKET,
+                                                    Key=self.file.cloud_key)
+        return get_object_response['Body']
+
+    def delete_file_from_s3(self):
+        self.client.delete_object(Bucket=settings.BUCKET,
+                                Key=self.file.cloud_key)
+        return True

@@ -1,5 +1,5 @@
-# from core.description_mixin import DescriptionMixin
+from django.db import models
 
 
-# class FileType(DescriptionMixin):
-#     pass
+class FileType(models.Model):
+    name = models.CharField(max_length=255)
