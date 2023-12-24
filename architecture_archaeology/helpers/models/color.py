@@ -6,4 +6,4 @@ class Color(DescriptionMixin):
     code = models.CharField(max_length=7, verbose_name='16-ный код')
 
     def __str__(self):
-        return f'{self.code}: {self.description}'
+        return f'{self.description}'

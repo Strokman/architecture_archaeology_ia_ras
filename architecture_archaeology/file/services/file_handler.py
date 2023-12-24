@@ -59,7 +59,7 @@ class FileHandler:
         return original_filename + self.extension
 
     @property
-    def cloud_key(self):
+    def object_storage_key(self):
         return f'{self.parent_obj._meta.db_table}/{self.parent_obj.id}/{self.filename}'
 
     def to_orm(self):
@@ -67,6 +67,6 @@ class FileHandler:
                         extension=self.extension,
                         original_name=self.original_filename,
                         type=self.file_type,
-                        object_storage_key=self.cloud_key
+                        object_storage_key=self.object_storage_key
                         )
         return instance

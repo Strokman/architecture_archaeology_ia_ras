@@ -22,9 +22,9 @@ admin.site.index_title = "Административная панель"
 
 urlpatterns = [
     path("", include("index.urls")),
-    path("artworks/", include("artwork.urls")),
-    path("arch-sites/", include("arch_site.urls")),
-    path("buildings/", include("building.urls")),
+    path("artwork/", include("artwork.urls")),
+    path("arch-site/", include("arch_site.urls")),
+    path("building/", include("building.urls")),
     path("file/", include("file.urls")),
     path('admin/', admin.site.urls),
     path("__debug__/", include("debug_toolbar.urls")),

@@ -1,8 +1,8 @@
 from django.urls import path
 
-from file.views import UploadFileView
+from file import views
 
 app_name = 'file'
 urlpatterns = [
-    path("upload/", UploadFileView.as_view(), name="upload")
+    path("get/<str:filename>", views.get_file, name="get")
 ]

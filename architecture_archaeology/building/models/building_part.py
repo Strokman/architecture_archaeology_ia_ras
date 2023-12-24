@@ -7,6 +7,9 @@ class BuildingPart(models.Model):
     name = models.CharField(verbose_name='Название', max_length=255)
 
     # building = models.ForeignKey('building.Building', on_delete=models.CASCADE)
+        
+    def __str__(self):
+        return f'{self.name}'
 
     class Meta:
 

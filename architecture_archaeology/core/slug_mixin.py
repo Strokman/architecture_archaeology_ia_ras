@@ -8,7 +8,7 @@ class SlugMixin(BaseModel):
     slug = models.SlugField(null=False, db_index=True)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name, allow_unicode=True)
+        self.slug = slugify(self.name if hasattr(self, 'name') else self.description, allow_unicode=True)
         super().save(*args, **kwargs)
 
     class Meta:

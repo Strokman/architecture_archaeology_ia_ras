@@ -10,7 +10,7 @@
 {{ archaeologicalsite.region }}<br>
 {{ archaeologicalsite.description }}<br>
 {% for file in archaeologicalsite.file_set.all %}
-<img src="{% settings_value 'OBJECT_STORAGE_URL' %}/{% settings_value 'BUCKET' %}/{{file.object_storage_key}}" alt="{{file.original_filename}}" width="200" height="100"> <br>
+<img src="{% url 'file:get' file.filename %}" alt="{{file.original_filename}}" width="200" height="100"> <br>
 {% endfor %}
 <a href="{% url 'arch_site:update' archaeologicalsite.slug %}">Редактировать</a>
 {% endblock content %}
