@@ -1,1 +1,1 @@
-from .submit_form import SubmitArtworkForm
+from .submit_indoorartwork_form import SubmitIndoorArtworkForm

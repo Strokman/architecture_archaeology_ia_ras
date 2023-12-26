@@ -1,11 +1,14 @@
 from django.urls import path
 
-from artwork.views import IndexView, SubmitArtworkView, ListArtworkView, DisplayArtworkView
+from artwork.views import (SubmitIndoorArtworkView,
+                           ListIndoorArtworkView,
+                           DetailIndoorArtworkView,
+                           SubmitFrescoeView)
 
 app_name = 'artwork'
 urlpatterns = [
-    path("", IndexView.as_view(), name="index"),
-    path("submit/", SubmitArtworkView.as_view(), name="submit"),
-    path("list/", ListArtworkView.as_view(), name="list"),
-    path("detail/<int:pk>", DisplayArtworkView.as_view(), name="detail"),
+    path("submit/indoor/", SubmitIndoorArtworkView.as_view(), name="submit-indoor"),
+    path("list/indoor/", ListIndoorArtworkView.as_view(), name="list-indoor"),
+    path("detail/indoor/<slug:slug>", DetailIndoorArtworkView.as_view(), name="detail-indoor"),
+    path("submit/frescoe/", SubmitFrescoeView.as_view(), name="submit-frescoe")
 ]

@@ -1,3 +1,3 @@
 from .multiple_file_input import MultipleFileField
-from .file_mixin import FileMixinForm
+from .file_mixin import MultipleFileFormMixin, FileFormMixin
 from .archaeological_obj import ArchaeologicalObjectFormMixin

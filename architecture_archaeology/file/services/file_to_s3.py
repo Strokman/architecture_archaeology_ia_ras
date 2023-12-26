@@ -13,7 +13,7 @@ class S3FileHandler:
     def upload_file_to_s3(self):
         self.client.put_object(Body=self.file.file.read(),
                         Bucket=settings.BUCKET,
-                        Key=self.file.cloud_key)
+                        Key=self.file.object_storage_key)
         return True
 
     def get_file_from_s3(self):

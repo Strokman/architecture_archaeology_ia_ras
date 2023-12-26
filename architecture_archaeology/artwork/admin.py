@@ -1,6 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Artwork
+from .models import IndoorArtwork
 
-admin.site.register(Artwork)
+admin.site.register(IndoorArtwork)

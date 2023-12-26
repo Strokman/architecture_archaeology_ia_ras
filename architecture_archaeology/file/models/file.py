@@ -20,7 +20,9 @@ class File(TimestampMixin):
     site = models.ForeignKey('arch_site.ArchaeologicalSite', null=True, on_delete=models.CASCADE)
     bulding = models.ForeignKey('building.Building', null=True, on_delete=models.CASCADE)
     bulding_part = models.ForeignKey('building.BuildingPart', null=True, on_delete=models.CASCADE)
-    artwork = models.ForeignKey('artwork.Artwork', null=True, on_delete=models.CASCADE)
+    indoor_artwork = models.ForeignKey('artwork.IndoorArtwork', null=True, on_delete=models.CASCADE)
+    lotok = models.ForeignKey('artwork.Lotok', null=True, on_delete=models.CASCADE)
+    frescoe = models.ForeignKey('artwork.Frescoe', null=True, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.filename

@@ -1,10 +1,10 @@
 from typing import Any
 from django.views.generic import DetailView
-from artwork.models import Artwork
+from artwork.models import IndoorArtwork
 
 
-class DisplayArtworkView(DetailView):
-    model = Artwork
+class DetailIndoorArtworkView(DetailView):
+    model = IndoorArtwork
     template_name = 'artwork/detail.html'
 
     def get_object(self, queryset=None):

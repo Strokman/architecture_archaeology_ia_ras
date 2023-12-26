@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 
 
 class SubmitBuildingView(FormView):
-    template_name = 'building/submit.html'
+    template_name = 'submit.html'
     form_class = SubmitBuildingForm
     success_url = reverse_lazy('index')
 

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 {% for artwork in artworks %}
-<a href="{% url 'artwork:detail' pk=artwork.id %}"> {{artwork}}</a><br>
+<a href="{% url 'artwork:detail-indoor' slug=artwork.slug %}"> {{artwork}}</a><br>
 {% endfor %}
 {% endblock content %}
