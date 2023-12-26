@@ -12,7 +12,7 @@ from file.services import S3FileHandler
 
 
 class SubmitSiteView(FormView):
-    template_name = 'arch_site/submit.html'
+    template_name = 'submit.html'
     form_class = SubmitArchaeologicalSiteForm
     success_url = reverse_lazy('index')
 
@@ -46,6 +46,7 @@ class SubmitSiteView(FormView):
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['method'] = 'POST'
+        context['title'] = 'Добавление памятника'
         context['action'] = reverse_lazy('arch_site:submit')
         context['render_kw'] = {'enctype': 'multipart/form-data'}
         return context

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse_lazy
 from core.description_mixin import DescriptionMixin
 from core.timestamp_mixin import TimestampMixin
 from core.slug_mixin import SlugMixin
@@ -19,6 +20,12 @@ class ArtworkBase(DescriptionMixin, TimestampMixin, SlugMixin):
     building_part = models.ForeignKey('building.BuildingPart', verbose_name='Элемент постройки', on_delete=models.PROTECT)
     color = models.ManyToManyField('helpers.Color', verbose_name='Цвета')
     preservation = models.ForeignKey('helpers.Preservation', verbose_name='Сохранность', on_delete=models.PROTECT)
+
+
+    def get_absolute_url(self):
+        if hasattr(self, 'slug'):
+            return reverse_lazy(f"{self._meta.app_label}:detail-{self.__class__.__name__.lower()}", kwargs={"slug": self.slug})
+        return reverse_lazy(f"{self._meta.app_label}:detail-{self.__class__.__name__.lower()}", kwargs={"pk": self.pk})
 
     class Meta:
         abstract = True

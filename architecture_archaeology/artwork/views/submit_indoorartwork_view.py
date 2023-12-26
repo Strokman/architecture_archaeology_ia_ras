@@ -13,9 +13,6 @@ class SubmitIndoorArtworkView(CreateView):
     success_url = '/'
 
     def form_valid(self, form):
-        # artwork_data = {k: v for k, v in form.cleaned_data.items() if hasattr(IndoorArtwork, k)}
-        # artwork = IndoorArtwork(**artwork_data)
-        # artwork.save()
         artwork = form.save()
         foto = form.cleaned_data['foto']
         processed_foto = FileHandler(foto,
@@ -28,11 +25,11 @@ class SubmitIndoorArtworkView(CreateView):
         foto_instance.save()
         artwork.file_set.add(foto_instance)
         return super().form_valid(form)
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Добавление изображения'
+        context['title'] = 'Добавление фрески'
         context['method'] = 'POST'
-        context['action'] = reverse_lazy('artwork:submit-indoor')
+        context['action'] = reverse_lazy('artwork:submit-indoorartwork')
         context['render_kw'] = {'enctype': 'multipart/form-data'}
         return context

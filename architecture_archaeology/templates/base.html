@@ -33,8 +33,10 @@
                     </a>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                         <li>
-                            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <a href="{% url 'arch_site:list' %}" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Памятники</span> </a>
+
+                                {% comment %}
                                 <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                                     <li class="w-100">
                                         <a href="{% url 'arch_site:submit' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Submit</span></a>
@@ -43,6 +45,7 @@
                                         <a href="{% url 'arch_site:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">List</span></a>
                                     </li>
                                 </ul>
+                                {% endcomment %}
                         </li>
 
 
@@ -58,21 +61,34 @@
                                     </li>
                                 </ul>
                         </li>
-
+                        
                         <li>
                             <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                                 <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Изображения</span> </a>
                                 <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                                     <li class="w-100">
-                                        <a href="{% url 'artwork:submit-indoor' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Submit</span></a>
+                                        <a href="{% url 'artwork:list-indoor' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Изображения в постройке</span></a>
                                     </li>
+                                    
                                     <li>
-                                        <a href="{% url 'artwork:list-indoor' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">List</span></a>
+                                        <a href="{% url 'artwork:submit-frescoe' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Фрески</span></a>
                                     </li>
+                                    {% comment %}
+                                    <li>
+                                        <a href="{% url 'artwork:list-lotok' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Лотки</span></a>
+                                    </li>
+                                    {% endcomment %}
                                 </ul>
                         </li>
-
+                        
                     </ul>
+
+
+
+
+
+
+
                     <!-- <hr>
                     <div class="dropdown pb-4">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">

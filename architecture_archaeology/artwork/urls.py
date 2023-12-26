@@ -7,8 +7,8 @@ from artwork.views import (SubmitIndoorArtworkView,
 
 app_name = 'artwork'
 urlpatterns = [
-    path("submit/indoor/", SubmitIndoorArtworkView.as_view(), name="submit-indoor"),
+    path("submit/indoor/", SubmitIndoorArtworkView.as_view(), name="submit-indoorartwork"),
     path("list/indoor/", ListIndoorArtworkView.as_view(), name="list-indoor"),
-    path("detail/indoor/<slug:slug>", DetailIndoorArtworkView.as_view(), name="detail-indoor"),
+    path("detail/indoor/<slug:slug>", DetailIndoorArtworkView.as_view(), name="detail-indoorartwork"),
     path("submit/frescoe/", SubmitFrescoeView.as_view(), name="submit-frescoe")
 ]

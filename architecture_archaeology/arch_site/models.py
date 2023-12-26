@@ -1,6 +1,5 @@
 from django.db import models
-# from core.utils import slugify
-from django.urls import reverse_lazy
+
 from core import TimestampMixin
 from core import DescriptionMixin
 from core import SlugMixin
@@ -16,13 +15,6 @@ class ArchaeologicalSite(DescriptionMixin, TimestampMixin, SlugMixin):
     comment = models.TextField(verbose_name='Примечание', null=True)
 
     region = models.ForeignKey('helpers.Region', verbose_name='Административная принадлежность', null=False, on_delete=models.PROTECT, related_name='sites')
-    # file = models.ManyToManyField('file.File', related_name='sites')
-
-    def get_absolute_url(self):
-        return reverse_lazy("arch_site", kwargs={"pk": self.pk})
-
-    def get_url(self):
-        return self.slug
 
     def __str__(self):
         return f'{self.name}'

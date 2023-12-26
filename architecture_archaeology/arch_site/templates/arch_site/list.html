@@ -1,6 +1,0 @@
-{% extends "base.html" %}
-{% block content %}
-{% for site in sites %}
-<a href="{% url 'arch_site:display' slug=site.slug %}"> {{site}}</a><br>
-{% endfor %}
-{% endblock content %}
