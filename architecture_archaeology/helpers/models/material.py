@@ -1,4 +1,4 @@
-from core.description_mixin import DescriptionMixin
+from core.models import DescriptionMixin
 
 
 class Material(DescriptionMixin):

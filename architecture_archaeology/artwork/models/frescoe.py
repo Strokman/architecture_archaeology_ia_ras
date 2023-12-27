@@ -1,9 +1,9 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from core.description_mixin import DescriptionMixin
-from core.timestamp_mixin import TimestampMixin
-from core.slug_mixin import SlugMixin
-from core.models import ArtworkBase
+from core.models import DescriptionMixin
+from core.models import TimestampMixin
+from core.models import SlugMixin
+from artwork.models.artwork_base import ArtworkBase
 
 
 # Create your models here.

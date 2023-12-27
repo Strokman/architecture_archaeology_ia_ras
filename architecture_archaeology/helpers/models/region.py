@@ -1,5 +1,5 @@
 from django.db import models
-from core.base_model import BaseModel
+from core.models import BaseModel
 
 
 class Region(BaseModel):

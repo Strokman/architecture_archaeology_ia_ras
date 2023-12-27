@@ -1,5 +1,5 @@
 from django.db import models
-from core.description_mixin import DescriptionMixin
+from core.models import DescriptionMixin
 
 
 class Color(DescriptionMixin):

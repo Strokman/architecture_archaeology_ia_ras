@@ -8,6 +8,10 @@
     {% block styles %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
     {% endblock styles %}
     <title>
         {% if title %}
@@ -24,63 +28,44 @@
     {% endblock head %}
   </head>
   <body>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <img src="{% static 'images/main-logo.svg' %}" alt="Bootstrap" width="60" height="48">
+          </a>
+          <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <span class="fs-5 d-none d-sm-inline text-dark">Архитектурная археология</span>
+        </a>
+      </nav>
+
     <div class="container-fluid">
         <div class="row flex-nowrap">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-secondary">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                        <span class="fs-5 d-none d-sm-inline">Menu</span>
-                    </a>
+
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                        <li>
-                            <a href="{% url 'arch_site:list' %}" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Памятники</span> </a>
-
-                                {% comment %}
-                                <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-                                    <li class="w-100">
-                                        <a href="{% url 'arch_site:submit' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Submit</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'arch_site:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">List</span></a>
-                                    </li>
-                                </ul>
-                                {% endcomment %}
-                        </li>
 
 
-                        <li>
-                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Постройки</span> </a>
-                                <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-                                    <li class="w-100">
-                                        <a href="{% url 'building:submit' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Submit</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="{% url 'building:list' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">List</span></a>
-                                    </li>
-                                </ul>
-                        </li>
+
+
+                        <div class="button-group">
                         
-                        <li>
-                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Изображения</span> </a>
-                                <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-                                    <li class="w-100">
-                                        <a href="{% url 'artwork:list-indoor' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Изображения в постройке</span></a>
-                                    </li>
-                                    
-                                    <li>
-                                        <a href="{% url 'artwork:submit-frescoe' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Фрески</span></a>
-                                    </li>
-                                    {% comment %}
-                                    <li>
-                                        <a href="{% url 'artwork:list-lotok' %}" class="nav-link px-0"> <span class="d-none d-sm-inline">Лотки</span></a>
-                                    </li>
-                                    {% endcomment %}
-                                </ul>
-                        </li>
-                        
+                        <a href="{% url 'arch_site:list' %}" class="btn btn-dark btn-lg d-block">Памятники</a>
+
+                        <a href="{% url 'building:list' %}" class="btn btn-dark btn-lg d-block">Постройки</a>
+
+                        <div class="dropdown">
+                            <button class="btn btn-dark dropdown-toggle btn-lg" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Изображения
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'artwork:list-indoor' %}">Изображения в постройке</a></li>
+                                <li><a class="dropdown-item" href="{% url 'artwork:list-frescoe' %}">Фрески</a></li>
+                                <li><a class="dropdown-item" href="#">Лотки</a></li>
+                              </ul>
+                          </div>
+                        </div>
+
                     </ul>
 
 

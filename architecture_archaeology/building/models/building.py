@@ -1,7 +1,7 @@
 from django.db import models
-from core import SlugMixin
-from core import TimestampMixin
-from core import DescriptionMixin
+from core.models import SlugMixin
+from core.models import TimestampMixin
+from core.models import DescriptionMixin
 
 
 class Building(DescriptionMixin, TimestampMixin, SlugMixin):

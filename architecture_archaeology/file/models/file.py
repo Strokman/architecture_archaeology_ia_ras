@@ -1,5 +1,5 @@
 from django.db import models
-from core.timestamp_mixin import TimestampMixin
+from core.models import TimestampMixin
 
 
 # CHOICES = [

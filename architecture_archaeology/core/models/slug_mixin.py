@@ -1,6 +1,6 @@
 from core.utils import slugify
 from django.db import models
-from core.base_model import BaseModel
+from core.models.base_model import BaseModel
 
 
 class SlugMixin(BaseModel):

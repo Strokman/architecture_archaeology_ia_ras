@@ -104,7 +104,7 @@ DATABASES = {
         'PORT': '55432',
         'ATOMIC_REQUESTS': True,
         "TEST": {
-            "NAME": f"{PROJECT}-testdb-{timezone.now()}",
+            "NAME": f"aa-testdb-{timezone.now()}",
         },
     }
 }
@@ -150,6 +150,10 @@ GMAPS_API_KEY = 'AIzaSyDv88hb7YC6T0VfFMj6AprpmP4Vfut1GTs'
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

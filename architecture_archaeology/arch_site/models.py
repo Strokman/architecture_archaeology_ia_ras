@@ -1,8 +1,8 @@
 from django.db import models
 
-from core import TimestampMixin
-from core import DescriptionMixin
-from core import SlugMixin
+from core.models import TimestampMixin
+from core.models import DescriptionMixin
+from core.models import SlugMixin
 
 
 class ArchaeologicalSite(DescriptionMixin, TimestampMixin, SlugMixin):

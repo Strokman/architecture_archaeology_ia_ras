@@ -1,9 +1,16 @@
-from core.description_mixin import DescriptionMixin
-from core.timestamp_mixin import TimestampMixin
-from core.slug_mixin import SlugMixin
-from core.models import ArtworkBase
+from core.models import DescriptionMixin
+from core.models import TimestampMixin
+from core.models import SlugMixin
+from artwork.models.artwork_base import ArtworkBase
 
 
 # Create your models here.
 class IndoorArtwork(ArtworkBase, DescriptionMixin, TimestampMixin, SlugMixin):
-    pass
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+
+        verbose_name = 'Изображение в постройке'
+        verbose_name_plural = 'Изображения в постройке'

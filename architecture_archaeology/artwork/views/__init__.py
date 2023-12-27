@@ -2,3 +2,5 @@ from .submit_indoorartwork_view import SubmitIndoorArtworkView
 from .list_indoorartwork_view import ListIndoorArtworkView
 from .detail_indoorartwork_view import DetailIndoorArtworkView
 from .submit_frescoe_view import SubmitFrescoeView
+from .list_frescoes_view import ListFrescoeView
+from .detail_frescoe_view import DetailFrescoeView
