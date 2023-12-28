@@ -1,5 +1,6 @@
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 from file.services import FileHandler
 from file.services import S3FileHandler
 from django.apps import apps
@@ -8,33 +9,34 @@ from django.apps import apps
 class CreateViewMixin(CreateView):
 
     def form_valid(self, form):
-        obj = super().form_valid(form)
-        if 'foto' in form.cleaned_data and form.cleaned_data['foto']:
+        super().form_valid(form)
+        form_fotos = form.cleaned_data.get('foto')
+        if form_fotos:
             fotos = []
-            if len(form.cleaned_data['foto']) == 1:
+            if isinstance(form_fotos, list):
+                fotos = form_fotos
+            else:
                 fotos.append(form.cleaned_data['foto'])
-            elif len(form.cleaned_data['foto']) > 1:
-                fotos = form.cleaned_data['foto']
             for foto in fotos:
                 processed_foto = FileHandler(foto,
-                                             obj,
+                                             self.object,
                                              'фотография')
                 foto_instance = processed_foto.to_orm()
                 uploader = S3FileHandler(processed_foto)
                 uploader.upload_file_to_s3()
                 foto_instance.save()
-                obj.file_set.add(foto_instance)
-        if 'plan' in form.cleaned_data and form.cleaned_data['plan']:
-            plan_file = form.cleaned_data['plan']
+                self.object.file_set.add(foto_instance)
+        plan_file = form.cleaned_data.get('plan')
+        if plan_file:
             plan = FileHandler(plan_file,
-                               obj,
+                               self.object,
                                'план')
             plan_instance = plan.to_orm()
             uploader = S3FileHandler(plan)
             uploader.upload_file_to_s3()
             plan_instance.save()
-            obj.file_set.add(plan_instance)
-        return obj
+            self.object.file_set.add(plan_instance)
+        return HttpResponseRedirect(self.get_success_url())
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
