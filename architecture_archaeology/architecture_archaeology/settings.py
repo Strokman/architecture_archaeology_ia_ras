@@ -102,7 +102,7 @@ DATABASES = {
         'USER': 'test',
         'PASSWORD': 'test',
         'PORT': '55432',
-        # 'ATOMIC_REQUESTS': True,
+        'ATOMIC_REQUESTS': True,
         "TEST": {
             "NAME": "aa-testdb",
         },
