@@ -11,13 +11,20 @@ class BuildingModelTest(TransactionTestCase):
     fixtures = ['countries.json', 'regions.json', 'arch_sites.json']
     buildings = {}
 
-    buildings_names = ['Церковь Спаса на Нередице', 'Церковь Покрова не Нерли', 'Георгиевский собор Юрьева монастыря', 'Церковь Спаса на Нередице']
+    buildings_names = ['Церковь Спаса на Нередице',
+                       'Церковь Покрова не Нерли',
+                       'Георгиевский собор Юрьева монастыря',
+                       'Церковь Спаса на Нередице']
 
     def setUp(self) -> None:
         self.site = ArchaeologicalSite.objects.last()
         self.description = 'test description'
         for name in self.buildings_names:
-            building = Building.objects.create(name=name, description=self.description, long='45.55', lat=55.45, site=self.site)
+            building = Building.objects.create(name=name,
+                                               description=self.description,
+                                               long='45.55',
+                                               lat=55.45,
+                                               site=self.site)
             self.buildings[name] = building
 
     def test_building_creation(self):
@@ -33,7 +40,12 @@ class BuildingModelTest(TransactionTestCase):
         buildings = []
         slug = 'test-string'
         for name in self.buildings_names:
-            buildings.append(Building(name=name, description=self.description, long=45, lat=56, slug=slug, site=self.site))
+            buildings.append(Building(name=name,
+                             description=self.description,
+                             long=45,
+                             lat=56,
+                             slug=slug,
+                             site=self.site))
         with self.assertRaises(IntegrityError):
             Building.objects.bulk_create(buildings)
 

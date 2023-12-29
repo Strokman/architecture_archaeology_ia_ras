@@ -6,6 +6,8 @@ import os
 # from dataclasses import dataclass
 from file.models import File, FileType
 
+from django.db import models
+
 
 # @dataclass
 # class FileDTO:
@@ -37,14 +39,24 @@ class FileHandler:
             raise ValueError('File Object is not supported')
 
     @property
+    def parent_obj(self):
+        return self._parent_obj
+
+    @parent_obj.setter
+    def parent_obj(self, parent_obj):
+        if not isinstance(parent_obj, models.Model):
+            raise ValueError('Parent object should be of type Django Model')
+        self._parent_obj = parent_obj
+
+    @property
     def file_type(self):
         return self.__file_type
-    
+
     @file_type.setter
     def file_type(self, file_type):
         try:
             self.__file_type = FileType.objects.get(name=file_type)
-        except:
+        except FileType.DoesNotExist:
             raise ValueError('No such file type')
 
     @property
@@ -54,7 +66,8 @@ class FileHandler:
 
     @property
     def original_filename(self):
-        original_filename = os.path.splitext(self.file.name)[0].replace('/', '-').replace('.', '-')
+        original_filename = os.path.splitext(
+            self.file.name)[0].replace('/','-').replace('.', '-')
         return original_filename + self.extension
 
     @property

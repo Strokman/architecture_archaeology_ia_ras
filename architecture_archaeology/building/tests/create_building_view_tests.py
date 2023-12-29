@@ -9,27 +9,21 @@ from io import BytesIO
 from building.models import Building
 from building.forms import SubmitBuildingForm
 
+from core.tests import BaseTestCreateView
 
-class CreateBuildingViewTest(TransactionTestCase):
-    client = Client()
+
+class CreateBuildingViewTest(BaseTestCreateView):
+    model = Building
     fixtures = ['countries.json',
                 'regions.json',
                 'arch_sites.json',
-                'filetypes.json']
-
+                'filetypes.json'
+                ]
+    form = SubmitBuildingForm
+    
     def setUp(self):
-        self.files = self.files_factory(6)
-        file = BytesIO()
-        image = Image.new('RGBA', size=(50, 50), color=(155, 0, 0))
-        image.save(file, 'png')
-        file.name = 'test.png'
-        file.seek(0)
-        self.incorrect_image = file
-        # SimpleUploadedFile(
-        #     'random-incorrect-name.jpg', b'contetn', 'image/jpeg'
-        # )
-        self.form = SubmitBuildingForm
-        self.building = {
+        self.files = self.image_files_factory(6)
+        self.payload = {
                 'name': 'Церковь Покрова не Нерли',
                 'long': 55.9,
                 'lat': 60.88,
@@ -38,35 +32,11 @@ class CreateBuildingViewTest(TransactionTestCase):
                 }
         self.url = reverse('building:submit')
 
-    def files_factory(self, amount):
-        files = []
-        extensions = ['jpeg', 'tiff']
-        for i in range(amount):
-            im = Image.new(mode='RGB', size=(200, 200)) # create a new image using PIL
-            im_io = BytesIO() # a BytesIO object for saving image
-            im.save(im_io, f'{extensions[i % 2].upper()}') # save the image to im_io
-            im_io.seek(0) # seek to the beginning
-            files.append(InMemoryUploadedFile(
-            im_io, None, f'random-name.{extensions[i % 2]}', f'image/{extensions[i % 2]}', len(im_io.getvalue()), None
-        ))
-        return files
-
-    def test_url(self):
-        resp = self.client.get(self.url)
-        self.assertEqual(resp.status_code, 200)
-        self.assertIn('Добавление', resp.context['title'])
-
-    def test_form_valid(self):
-        form = self.form(data=self.building)
-        self.assertTrue(form.is_valid())
-        form = self.form(data={'name': 'test-name'})
-        self.assertFalse(form.is_valid())
-
     def test_building_created(self):
-        response = self.client.post(self.url, data=self.building, follow=True)
+        response = self.client.post(self.url, data=self.payload, follow=True)
         self.assertRedirects(response, '/')
         self.assertEqual(Building.objects.count(), 1)
-        self.assertEqual(Building.objects.last().name, self.building['name'])
+        self.assertEqual(Building.objects.last().name, self.payload['name'])
 
         payload = {
             'name': 123,
@@ -102,12 +72,12 @@ class CreateBuildingViewTest(TransactionTestCase):
     def test_file(self):
         counter = 0
         for file in self.files:
-            self.building['foto'] = file
-            response = self.client.post(self.url, data=self.building, follow=True)
-            if self.building['foto'].name.endswith('.jpeg'):
+            self.payload['foto'] = file
+            response = self.client.post(self.url, data=self.payload, follow=True)
+            if self.payload['foto'].name.endswith('.jpeg'):
                 counter += 1
                 self.assertRedirects(response, '/')
                 self.assertEqual(Building.objects.count(), counter)
-                self.assertEqual(Building.objects.last().name, self.building['name'])
+                self.assertEqual(Building.objects.last().name, self.payload['name'])
             else:
                 self.assertEqual(Building.objects.count(), counter)
