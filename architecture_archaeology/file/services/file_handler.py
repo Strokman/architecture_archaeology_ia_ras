@@ -1,4 +1,5 @@
-from django.core.files.uploadedfile import TemporaryUploadedFile, InMemoryUploadedFile
+from django.core.files.uploadedfile import (TemporaryUploadedFile,
+                                            InMemoryUploadedFile)
 
 from uuid import uuid4
 import os
@@ -42,8 +43,6 @@ class FileHandler:
     @file_type.setter
     def file_type(self, file_type):
         try:
-            print('lel')
-            print(file_type)
             self.__file_type = FileType.objects.get(name=file_type)
         except:
             raise ValueError('No such file type')

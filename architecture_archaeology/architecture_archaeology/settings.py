@@ -14,7 +14,6 @@ from pathlib import Path
 import os
 
 from dotenv import load_dotenv
-from django.utils import timezone
 from os import path, environ
 
 
@@ -81,9 +80,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            'libraries':{ 'settings_value': 'helpers.templatetags.settings_value',
-
-            }
+            'libraries': {'settings_value': 'helpers.templatetags.settings_value'}
         },
     },
 ]
@@ -98,7 +95,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'aa_db',
-        'HOST': '192.168.1.57',
+        'HOST': '158.160.98.190',
         'USER': 'test',
         'PASSWORD': 'test',
         'PORT': '55432',

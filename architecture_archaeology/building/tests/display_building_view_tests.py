@@ -20,7 +20,7 @@ class DisplayBuildingViewTest(TestCase):
         resp = self.client.get(reverse('building:display', kwargs={'slug': self.building.slug}))
         self.assertEqual(resp.status_code, 200)
 
-    def test_context(self):
+    def test_display_context(self):
         resp = self.client.get(reverse('building:display', kwargs={'slug': self.building.slug}))
         self.assertIn(self.building.name, resp.context['title'])
 

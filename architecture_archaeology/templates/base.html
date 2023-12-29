@@ -101,15 +101,7 @@
 </ul>
 {% endif %}
                 {% block content %}{% endblock content %}
-                {% block footer %}
-                <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-50 link-underline-opacity-75-hover" href="https://archaeolog.ru/ru/scientific-departments/laboratoriya-arkhitekturnoy-arkheologii">
-                Лаборатория архитектурной археологии
-                </a>
-                <br>
-                <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-50 link-underline-opacity-75-hover" href="https://archaeolog.ru/">
-                Институт археологии РАН
-                </a>
-                {% endblock %}
+
             </div>
 
         </div>
@@ -118,6 +110,17 @@
     <div>
 
     </div>
+    {% block footer %}
+    <div class="text-center">
+    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-50 link-underline-opacity-75-hover" href="https://archaeolog.ru/ru/scientific-departments/laboratoriya-arkhitekturnoy-arkheologii">
+    Лаборатория архитектурной археологии
+    </a>
+    <br>
+    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-50 link-underline-opacity-75-hover" href="https://archaeolog.ru/">
+    Институт археологии РАН
+    </a>
+</div>
+    {% endblock %}
     {% block scripts %}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
