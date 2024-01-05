@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'index.apps.IndexConfig',
     'artwork.apps.ArtworkConfig',
     'file.apps.FileConfig',
+    'measurement.apps.MeasurementConfig',
     "debug_toolbar",
     'django.contrib.admin',
     'django.contrib.auth',

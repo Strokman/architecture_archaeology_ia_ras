@@ -27,6 +27,7 @@ urlpatterns = [
     path("building/", include("building.urls")),
     path("file/", include("file.urls")),
     path("artefact/", include("artefact.urls")),
+    path("measurement/", include("measurement.urls")),
     path('admin/', admin.site.urls),
     path("__debug__/", include("debug_toolbar.urls")),
 ]

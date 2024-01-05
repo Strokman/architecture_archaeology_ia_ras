@@ -24,6 +24,7 @@ class File(TimestampMixin):
     lotok = models.ForeignKey('artwork.Lotok', null=True, on_delete=models.CASCADE)
     frescoe = models.ForeignKey('artwork.Frescoe', null=True, on_delete=models.CASCADE)
     artefact = models.ForeignKey('artefact.Artefact', null=True, on_delete=models.CASCADE)
+    rfa = models.ForeignKey('measurement.RFA', null=True, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.filename
