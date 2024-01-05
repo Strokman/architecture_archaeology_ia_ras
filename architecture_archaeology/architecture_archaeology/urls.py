@@ -26,6 +26,7 @@ urlpatterns = [
     path("arch-site/", include("arch_site.urls")),
     path("building/", include("building.urls")),
     path("file/", include("file.urls")),
+    path("artefact/", include("artefact.urls")),
     path('admin/', admin.site.urls),
     path("__debug__/", include("debug_toolbar.urls")),
 ]

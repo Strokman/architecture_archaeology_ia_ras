@@ -40,6 +40,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver']
 
 INSTALLED_APPS = [
     'arch_site.apps.ArchSiteConfig',
+    'artefact.apps.ArtefactConfig',
     'helpers.apps.HelpersConfig',
     'building.apps.BuildingConfig',
     'index.apps.IndexConfig',
