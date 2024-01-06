@@ -1,6 +1,5 @@
 from django import forms
 from django.core import validators
-from core.custom_forms import MultipleFileField
 from arch_site.models import ArchaeologicalSite
 from core.custom_forms import MultipleFileFormMixin
 

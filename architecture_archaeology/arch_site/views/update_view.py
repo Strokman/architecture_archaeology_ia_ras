@@ -7,7 +7,7 @@ from file.services import FileHandler
 from file.services import S3FileHandler
 
 
-class UpdateSiteView(UpdateView):
+class UpdateSiteView(UpdateView, ):
     model = ArchaeologicalSite
     form_class = SubmitArchaeologicalSiteForm
     template_name = 'update.html'
