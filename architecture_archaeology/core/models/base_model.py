@@ -13,9 +13,11 @@ class BaseModel(models.Model):
         super().save()
 
     def get_absolute_url(self):
+        app = self._meta.app_label
+        model_name = self.__class__.__name__.lower()
         if hasattr(self, 'slug'):
-            return reverse_lazy(f"{self._meta.app_label}:detail", kwargs={"slug": self.slug})
-        return reverse_lazy(f"{self._meta.app_label}:detail", kwargs={"pk": self.pk})
+            return reverse_lazy(f"{self._meta.app_label}:detail{"-" + model_name if app in ['artwork', 'measurement'] else ""}", kwargs={"slug": self.slug})
+        return reverse_lazy(f"{self._meta.app_label}:detail{"-" + model_name if app in ['artwork', 'measurement'] else ""}", kwargs={"pk": self.pk})
 
     class Meta:
         abstract = True

@@ -2,10 +2,11 @@ from django.db import models
 from core.models import DescriptionMixin
 from core.models import TimestampMixin
 from core.models import SlugMixin
+from artwork.models.artwork_base import ArtworkBase
 
 
 # Create your models here.
-class Lotok(DescriptionMixin, TimestampMixin, SlugMixin):
+class Lotok(ArtworkBase, DescriptionMixin, TimestampMixin, SlugMixin):
     size = models.CharField(max_length=255)
     amount = models.IntegerField(null=True)
     museum_code = models.CharField(max_length=255)

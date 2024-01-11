@@ -1,3 +1,23 @@
 from .submit_rfa_view import SubmitRFAView
-from .submit_microscopy_view import SubmitMicroscopyView
+from .submit_scanning_microscopy_view import SubmitMicroscopyView
 from .submit_gc_ms_view import SubmitGCMSView
+from .submit_infrared_raman_view import SubmitInfraredRamanView
+from .submit_roentgen_view import SubmitRoentgenView
+
+from .update_gc_ms_view import UpdateGCMSView
+from .update_infrared_raman_view import UpdateInfraredRamanView
+from .update_rfa_view import UpdateRFAView
+from .update_roentgen_view import UpdateRoentgenView
+from .update_scanning_microscopy_view import UpdateScanningMicroscopyView
+
+from .list_infrared_raman_view import ListInfraredRamanView
+from .list_scanning_microscopy_view import ListScanningMicroscopyView
+from .list_gc_ms_view import ListGCMSView
+from .list_rfa_view import ListRFAView
+from .list_roentgen_view import ListRoentgenView
+
+from .detail_gc_ms_view import DetailGCMSView
+from .detail_infrared_raman_view import DetailInfraredRamanView
+from .detail_rfa_view import DetailRFAView
+from .detail_roentgen_view import DetailRoentgenView
+from .detail_scanning_microscopy_view import DetailScanningMiscroscopyView

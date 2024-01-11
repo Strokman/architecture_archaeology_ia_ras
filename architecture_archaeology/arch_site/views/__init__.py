@@ -1,4 +1,4 @@
 from .submit_view import SubmitSiteView
 from .list_view import ListSiteView
-from .display_view import DisplaySiteView
+from .detail_view import DetailSiteView
 from .update_view import UpdateSiteView

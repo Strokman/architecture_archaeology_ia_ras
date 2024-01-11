@@ -3,6 +3,7 @@ from django.db import models
 from core.models.base_model import BaseModel
 from uuid import uuid1
 
+
 class SlugMixin(BaseModel):
 
     slug = models.SlugField(max_length=500, unique=True, null=False, db_index=True)

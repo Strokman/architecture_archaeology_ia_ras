@@ -3,14 +3,14 @@
 
 {% load settings_value %}
 
-<h1>DISPLAY VIEW</h1>
+<h1>{{ object.name }}</h1>
 
-{{ archaeologicalsite.name }}<br>
-{{ archaeologicalsite.region.country }}<br>
-{{ archaeologicalsite.region }}<br>
-{{ archaeologicalsite.description }}<br>
-{% for file in archaeologicalsite.file_set.all %}
+<br>
+{{ object.region.country }}<br>
+{{ object.region }}<br>
+{{ object.description }}<br>
+{% for file in object.file_set.all %}
 <img src="{% url 'file:get' file.filename %}" alt="{{file.original_filename}}" width="200" height="100"> <br>
 {% endfor %}
-<a href="{% url 'arch_site:update' archaeologicalsite.slug %}">Редактировать</a>
+<a href="{% url 'arch_site:update' object.slug %}">Редактировать</a>
 {% endblock content %}

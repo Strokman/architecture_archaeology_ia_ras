@@ -61,7 +61,7 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{% url 'artwork:list-indoor' %}">Изображения в постройке</a></li>
                                 <li><a class="dropdown-item" href="{% url 'artwork:list-frescoe' %}">Фрески</a></li>
-                                <li><a class="dropdown-item" href="#">Лотки</a></li>
+                                <li><a class="dropdown-item" href="{% url 'artwork:list-lotok' %}">Лотки</a></li>
                               </ul>
                           </div>
                           <a href="{% url 'artefact:list' %}" class="btn btn-dark btn-lg d-block">Находки</a>
@@ -70,11 +70,11 @@
                                 Измерения
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'measurement:submit-rfa' %}">РФА</a></li>
-                                <li><a class="dropdown-item" href="{% url 'measurement:submit-scanningelectronmicroscopy' %}">Растровая электронная микроскопия</a></li>
-                                <li><a class="dropdown-item" href="{% url 'measurement:submit-gaschromatographymassspectrometry' %}">ГХ-МС</a></li>
-                                <li><a class="dropdown-item" href="#">ИК и рамановская спектроскопия</a></li>
-                                <li><a class="dropdown-item" href="#">Рентгенофазовый и рентгеноструктурный анализы</a></li>
+                                <li><a class="dropdown-item" href="{% url 'measurement:list-rfa' %}">РФА</a></li>
+                                <li><a class="dropdown-item" href="{% url 'measurement:list-scanningelectronmicroscopy' %}">Растровая электронная микроскопия</a></li>
+                                <li><a class="dropdown-item" href="{% url 'measurement:list-gaschromatographymassspectrometry' %}">ГХ-МС</a></li>
+                                <li><a class="dropdown-item" href="{% url 'measurement:list-infraredramanmicroscopy' %}">ИК и рамановская спектроскопия</a></li>
+                                <li><a class="dropdown-item" href="{% url 'measurement:list-roentgen' %}">Рентгенофазовый и рентгеноструктурный анализы</a></li>
                               </ul>
                           </div>
                         </div>

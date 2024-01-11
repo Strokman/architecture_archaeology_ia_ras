@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% load settings_value %}
+
+<h1>{{ object.name }}</h1>
+
+<br>
+
+{{ object.description }}<br>
+{% for file in object.file_set.all %}
+<img src="{% url 'file:get' file.filename %}" alt="{{file.original_filename}}" width="200" height="100"> <br>
+{% endfor %}
+<a href="{{action}}">Редактировать</a>
+{% endblock content %}
