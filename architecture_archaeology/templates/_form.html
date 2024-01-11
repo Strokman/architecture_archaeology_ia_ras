@@ -1,9 +1,9 @@
 {% load widget_tweaks %}
 <div class="row justify-content-center">
 
-<div class="col-md-5">
+<div class="col-md-6">
 
-<form action='{{action}}' method='{{method}}' {% if render_kw %} {% for k, v in render_kw.items %} {{k}}="{{v}}" {% endfor %} {% endif %} novalidate>
+<form method='post' enctype='multipart/form-data' novalidate>
     {% csrf_token %}
 
     {% for hidden_field in form.hidden_fields %}

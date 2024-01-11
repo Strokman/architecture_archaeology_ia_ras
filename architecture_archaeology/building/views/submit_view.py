@@ -10,7 +10,7 @@ from core.view_mixins import CreateViewMixin
 
 
 class SubmitBuildingView(CreateViewMixin):
-    template_name = 'submit.html'
+    template_name = 'form_template.html'
     model = Building
     form_class = SubmitBuildingForm
     success_url = reverse_lazy('index')

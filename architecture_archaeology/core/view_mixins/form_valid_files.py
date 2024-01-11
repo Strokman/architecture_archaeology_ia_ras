@@ -1,4 +1,5 @@
 from django.views import View
+from django.views.generic.edit import ModelFormMixin
 
 from django.http import HttpResponseRedirect
 from file.services import FileHandler
@@ -14,7 +15,7 @@ filetypes = {
 # TODO: сделать проверку на несуществующие ключи и сделать ошибку
 
 
-class FormValidFilesMixin(View):
+class FormValidFilesMixin(ModelFormMixin):
 
     def form_valid(self, form):
         super().form_valid(form)
@@ -31,9 +32,9 @@ class FormValidFilesMixin(View):
                     processed_foto = FileHandler(file,
                                              self.object,
                                              filetypes.get(key))
-                file_instance = processed_foto.to_orm()
-                uploader = S3FileHandler(processed_foto)
-                uploader.upload_file_to_s3()
-                file_instance.save()
-                self.object.file_set.add(file_instance)
+                    file_instance = processed_foto.to_orm()
+                    uploader = S3FileHandler(processed_foto)
+                    uploader.upload_file_to_s3()
+                    file_instance.save()
+                    self.object.file_set.add(file_instance)
         return HttpResponseRedirect(self.get_success_url())

@@ -7,5 +7,5 @@ from core.view_mixins import CreateViewMixin
 class SubmitRFAView(CreateViewMixin):
     model = RFA
     form_class = SubmitRFAForm
-    template_name = 'submit.html'
+    template_name = 'form_template.html'
     success_url = '/'

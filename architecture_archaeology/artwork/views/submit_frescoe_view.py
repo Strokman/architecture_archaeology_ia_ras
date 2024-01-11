@@ -9,7 +9,7 @@ from file.services import FileHandler, S3FileHandler
 class SubmitFrescoeView(CreateView):
     model = Frescoe
     form_class = SubmitFrescoeForm
-    template_name = 'submit.html'
+    template_name = 'form_template.html'
     context_object_name = 'object'
     success_url = '/'
 

@@ -25,6 +25,10 @@ class File(TimestampMixin):
     frescoe = models.ForeignKey('artwork.Frescoe', null=True, on_delete=models.CASCADE)
     artefact = models.ForeignKey('artefact.Artefact', null=True, on_delete=models.CASCADE)
     rfa = models.ForeignKey('measurement.RFA', null=True, on_delete=models.CASCADE)
+    scanning_microscopy = models.ForeignKey('measurement.ScanningElectronMicroscopy', null=True, on_delete=models.CASCADE)
+    gc_ms = models.ForeignKey('measurement.GasChromatographyMassSpectrometry', null=True, on_delete=models.CASCADE)
+    roentgen = models.ForeignKey('measurement.Roentgen', null=True, on_delete=models.CASCADE)
+    infrared_ramanov = models.ForeignKey('measurement.InfraredRamanMicroscopy', null=True, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.filename

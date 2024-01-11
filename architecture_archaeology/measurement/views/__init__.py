@@ -1,1 +1,3 @@
-from .submit_view import SubmitRFAView
+from .submit_rfa_view import SubmitRFAView
+from .submit_microscopy_view import SubmitMicroscopyView
+from .submit_gc_ms_view import SubmitGCMSView

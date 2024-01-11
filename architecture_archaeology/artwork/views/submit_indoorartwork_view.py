@@ -7,7 +7,7 @@ from core.view_mixins import CreateViewMixin
 class SubmitIndoorArtworkView(CreateViewMixin):
     model = IndoorArtwork
     form_class = SubmitIndoorArtworkForm
-    template_name = 'submit.html'
+    template_name = 'form_template.html'
     success_url = '/'
 
     def get_context_data(self, **kwargs):
