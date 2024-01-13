@@ -1,0 +1,31 @@
+{% load widget_tweaks %}
+<div class="row">
+
+<div class="col">
+
+<form method='{% if method %}{{method}}{%else%}post{%endif%}' enctype='multipart/form-data' novalidate>
+    {% csrf_token %}
+
+    {% for hidden_field in form.hidden_fields %}
+        {{ hidden_field }}
+    {% endfor %}
+
+  {% for field in form.visible_fields %}
+    <div class="form-group">
+      {{ field.label_tag }}
+
+
+          {% render_field field class="form-control" %}
+
+
+
+      {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+      {% endif %}
+    </div>
+  {% endfor %}
+    <button type="submit" class="btn btn-primary mt-3" value="{% if value %} {{value}} {% else %}Submit{% endif %}">Применить фильтр</button> 
+</form>
+
+</div>
+</div>

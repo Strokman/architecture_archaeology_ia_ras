@@ -17,7 +17,7 @@ from artwork.views import (SubmitIndoorArtworkView,
 app_name = 'artwork'
 urlpatterns = [
     path("submit/indoor/", SubmitIndoorArtworkView.as_view(), name="submit-indoorartwork"),
-    path("list/indoor/", ListIndoorArtworkView.as_view(), name="list-indoor"),
+    path("list/indoor/", ListIndoorArtworkView.as_view(), name="list-indoorartwork"),
     path("detail/indoor/<slug:slug>", DetailIndoorArtworkView.as_view(), name="detail-indoorartwork"),
     path("update/indoor/<slug:slug>", UpdateIndoorArtworkView.as_view(), name="update-indoorartwork"),
     path("submit/frescoe/", SubmitFrescoeView.as_view(), name="submit-frescoe"),

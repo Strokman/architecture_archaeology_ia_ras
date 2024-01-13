@@ -5,7 +5,7 @@ from building.views import SubmitBuildingView, BuildingDetailView, BuildingListV
 app_name = 'building'
 urlpatterns = [
     path("submit/", SubmitBuildingView.as_view(), name="submit"),
-    path("display/<slug:slug>/", BuildingDetailView.as_view(), name="display"),
+    path("detail/<slug:slug>/", BuildingDetailView.as_view(), name="detail"),
     path("list/", BuildingListView.as_view(), name="list"),
     path("update/<slug:slug>", UpdateBuildingView.as_view(), name="update")
 ]

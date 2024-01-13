@@ -3,17 +3,54 @@
 <div class="row text-center">
     <h2> {{title}} </h2>
 </div>
-{% with filter.form as form and 'get' as method %}
-{% include '_form.html' %}
-{% endwith%}
+
+{% if filter.form %}
+
+  <a class="btn btn-primary" data-bs-toggle="offcanvas" aria-current="page" href="#searchFilter" aria-controls="searchFilter">Фильтр</a>
+  <a href="{{base_url}}" class="btn btn-primary">Сбросить</a>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="searchFilter" aria-labelledby="searchFilterLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="searchFilterLabel">Поисковый фильтр</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+        {% with filter.form as form and 'get' as method %}
+        {% include '_filter-form.html' %}
+        {% endwith %}
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<a href="{{action}}" class="btn btn-primary">Добавить новый</a>
 
 
-<br>
-<br>
+
+
 <br>
 {% for obj in objects %}
-<a href="{{obj.get_absolute_url}}"> {{obj}} </a><br>
+
+<div class="card mt-3">
+    <div class="card-body">
+
+        {% comment %}
+        
+        {% if obj.file_set.all %}
+        <div class="col">
+            <img src="{% url 'file:get' obj.file_set.all.0.filename %}" alt="{{obj.file_set.all.0.original_filename}}" width="64" height="64">
+        </div>
+        {% endif %}
+
+        {% endcomment %}
+
+
+
+      <h5 class="card-title"><a href="{{obj.get_absolute_url}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{obj.name}}</a></h5>
+      <p class="card-text">{{obj.region.country}}, {{obj.region}}</p>
+
+    </div>
+  </div>
 {% endfor %}
-<br>
-<a href="{{action}}" class="btn btn-primary">Добавить новый</a>
+
 {% endblock content %}

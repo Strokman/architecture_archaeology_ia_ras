@@ -12,11 +12,12 @@
     {% load static %}
 
     <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/sidebars.css' %}">
     {% endblock styles %}
     <title>
         {% if title %}
 
-        Architecture Archaeology - {{title}}
+        Архитектурная археология - {{title}}
 
         {% else %}
 
@@ -28,83 +29,110 @@
     {% endblock head %}
   </head>
   <body>
-    <nav class="navbar bg-body-tertiary">
-        <div class="container">
-          <a class="navbar-brand" href="/">
-            <img src="{% static 'images/main-logo.svg' %}" alt="Bootstrap" width="60" height="48">
-          </a>
-          <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <span class="fs-5 d-none d-sm-inline text-dark">Архитектурная археология</span>
+
+
+
+      <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-body-tertiary">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+          <svg class="bi me-2" width="60" height="48"><image href="{% static 'images/main-logo.svg' %}" alt="ArchArch" width="60" height="48"/></svg>
+          <span class="fs-5">Архитектурная археология</span>
         </a>
-      </nav>
+      </header>
+
+
+
+
 
     <div class="container-fluid">
-        <div class="row flex-nowrap">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0">
-                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
 
 
+        
+        <div class="row">
 
 
-                        <div class="button-group">
-                        
-                        <a href="{% url 'arch_site:list' %}" class="btn btn-dark btn-lg d-block">Памятники</a>
+            <div class="flex-shrink-0 p-3" style="width: 280px;">
+                <ul class="list-unstyled ps-0">
+                  <li class="mb-1">
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#sites-collapse" aria-expanded="false">
+                      Памятники
+                    </button>
+                    <div class="collapse" id="sites-collapse">
+                      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="{% url 'arch_site:list' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Список</a></li>
+                        <li><a href="{% url 'arch_site:submit' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Добавить новый</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="mb-1">
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#building-collapse" aria-expanded="false">
+                      Постройки
+                    </button>
+                    <div class="collapse" id="building-collapse">
+                      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="{% url 'building:list' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Список</a></li>
+                        <li><a href="{% url 'building:submit' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Добавить новую</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="mb-1">
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#artworks-collapse" aria-expanded="false">
+                      Изображения
+                    </button>
+                    <div class="collapse" id="artworks-collapse">
+                      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="{% url 'artwork:list-indoorartwork' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Изображения в постройке</a></li>
+                        <li><a href="{% url 'artwork:list-frescoe' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Фрески</a></li>
+                        <li><a href="{% url 'artwork:list-lotok' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Лотки</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="mb-1">
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#artefacts-collapse" aria-expanded="false">
+                      Находки
+                    </button>
+                    <div class="collapse" id="artefacts-collapse">
+                      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="{% url 'artefact:list' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Список</a></li>
+                        <li><a href="{% url 'artefact:submit' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Добавить новую</a></li>
+                      </ul>
+                    </div>
+                  </li>
 
-                        <a href="{% url 'building:list' %}" class="btn btn-dark btn-lg d-block">Постройки</a>
-
-                        <div class="dropdown">
-                            <button class="btn btn-dark dropdown-toggle btn-lg" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Изображения
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'artwork:list-indoor' %}">Изображения в постройке</a></li>
-                                <li><a class="dropdown-item" href="{% url 'artwork:list-frescoe' %}">Фрески</a></li>
-                                <li><a class="dropdown-item" href="{% url 'artwork:list-lotok' %}">Лотки</a></li>
-                              </ul>
-                          </div>
-                          <a href="{% url 'artefact:list' %}" class="btn btn-dark btn-lg d-block">Находки</a>
-                          <div class="dropdown">
-                            <button class="btn btn-dark dropdown-toggle btn-lg" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Измерения
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'measurement:list-rfa' %}">РФА</a></li>
-                                <li><a class="dropdown-item" href="{% url 'measurement:list-scanningelectronmicroscopy' %}">Растровая электронная микроскопия</a></li>
-                                <li><a class="dropdown-item" href="{% url 'measurement:list-gaschromatographymassspectrometry' %}">ГХ-МС</a></li>
-                                <li><a class="dropdown-item" href="{% url 'measurement:list-infraredramanmicroscopy' %}">ИК и рамановская спектроскопия</a></li>
-                                <li><a class="dropdown-item" href="{% url 'measurement:list-roentgen' %}">Рентгенофазовый и рентгеноструктурный анализы</a></li>
-                              </ul>
-                          </div>
-                        </div>
-
+                  <li class="mb-1">
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#measurements-collapse" aria-expanded="false">
+                      Измерения
+                    </button>
+                    <div class="collapse" id="measurements-collapse">
+                      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="{% url 'measurement:list-rfa' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">РФА</a></li>
+                        <li><a href="{% url 'measurement:list-scanningelectronmicroscopy' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Растровая электронная микроскопия</a></li>
+                        <li><a href="{% url 'measurement:list-gaschromatographymassspectrometry' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">ГХ-МС</a></li>
+                        <li><a href="{% url 'measurement:list-infraredramanmicroscopy' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">ИК и рамановская спектроскопия</a></li>
+                        <li><a href="{% url 'measurement:list-roentgen' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Рентгенофазовый и рентгеноструктурный анализы</a></li>
+                        <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Петрография</a></li>
                     </ul>
+                    </div>
+                  </li>
 
 
+                  <li class="border-top my-3"></li>
+                  <li class="mb-1">
+                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                      Личный кабинет
+                    </button>
+                    <div class="collapse" id="account-collapse">
+                      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">New...</a></li>
+                        <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Profile</a></li>
+                        <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Settings</a></li>
+                        <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Sign out</a></li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
 
 
-
-
-
-                    <!-- <hr>
-                    <div class="dropdown pb-4">
-                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                            <span class="d-none d-sm-inline mx-1">loser</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                            <li><a class="dropdown-item" href="#">New project...</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
-                        </ul>
-                    </div> -->
-                </div>
-            </div>
             <div class="col py-3">
                 {% if messages %}
 <ul class="messages">
@@ -131,14 +159,17 @@
 
     </div>
     {% block footer %}
-    <div class="text-center">
-    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-50 link-underline-opacity-75-hover" href="https://archaeolog.ru/ru/scientific-departments/laboratoriya-arkhitekturnoy-arkheologii">
-    Лаборатория архитектурной археологии
-    </a>
-    <br>
-    <a class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-50 link-underline-opacity-75-hover" href="https://archaeolog.ru/">
-    Институт археологии РАН
-    </a>
+    <div class="container-fluid">
+    <footer class="py-5">
+
+        <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+            <p>© 2023 Институт археологии РАН</p>
+            <ul class="list-unstyled d-flex">
+                <li class="ms-3"><a class="link-body-emphasis" href="https://archaeolog.ru/" id="ia-ras-logo"><img src="{% static 'images/ia-ras-logo.png' %}" width="64" height="64"></a></li>
+                <li class="ms-3"><a class="link-body-emphasis" href="https://archaeolog.ru/ru/scientific-departments/laboratoriya-arkhitekturnoy-arkheologii" id="ia-ras-logo"><img src="{% static 'images/aa-lab-logo.jpeg' %}" width="64" height="64"></a></li>
+            </ul>
+          </div>
+    </footer>
 </div>
     {% endblock %}
     {% block scripts %}
@@ -148,6 +179,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
         integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
         crossorigin="anonymous"></script>
+    <script src="{% static 'styles/sidebars.css' %}"></script>
+        
     {% endblock scripts %}
   </body>
 </html>

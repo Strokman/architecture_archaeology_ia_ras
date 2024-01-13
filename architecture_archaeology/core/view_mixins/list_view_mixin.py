@@ -16,6 +16,9 @@ class ListViewMixin(FilterView):
         context['action'] = reverse_lazy(
             f'{app}:submit{"-" + model_name if app in ['artwork', 'measurement'] else ""}'
             )
+        context['base_url'] = reverse_lazy(
+            f'{app}:list{"-" + model_name if app in ['artwork', 'measurement'] else ""}'
+            )
         return context
 
     def get_template_names(self) -> list[str]:
