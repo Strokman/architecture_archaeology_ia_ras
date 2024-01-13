@@ -1,10 +1,11 @@
 from typing import Any
 
 from django.urls import reverse_lazy
-from django.views.generic import ListView
+# from django.views.generic import ListView
+from django_filters.views import FilterView
 
 
-class ListViewMixin(ListView):
+class ListViewMixin(FilterView):
     context_object_name = 'objects'
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:

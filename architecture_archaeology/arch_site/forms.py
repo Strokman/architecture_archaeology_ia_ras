@@ -5,7 +5,13 @@ from core.custom_forms import MultipleFileFormMixin
 
 
 class SubmitArchaeologicalSiteForm(forms.ModelForm, MultipleFileFormMixin):
-    plan = forms.FileField(required=False, validators=[validators.FileExtensionValidator(['pdf', 'tif', 'tiff', 'jpg', 'jpeg'])], label='План', help_text='Допустимые форматы: .pdf, .tiff, jpg')
+    plan = forms.FileField(required=False,
+                           validators=[validators.FileExtensionValidator(
+                               ['pdf', 'tif', 'tiff', 'jpg', 'jpeg']
+                               )],
+                           label='План',
+                           help_text='Допустимые форматы: .pdf, .tiff, jpg'
+                           )
 
     class Meta:
         model = ArchaeologicalSite
