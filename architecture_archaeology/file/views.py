@@ -1,6 +1,5 @@
 from typing import Any
 from django.http import HttpResponse
-from django.urls import reverse_lazy
 
 from file.services import S3FileHandler
 from file.models import File
@@ -13,4 +12,3 @@ def get_file(request, filename):
     return_value = file_from_cloud.get_file_from_s3()
     response = HttpResponse(return_value, content_type=f'application/{file.extension}')
     return response
-

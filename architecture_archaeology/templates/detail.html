@@ -9,7 +9,7 @@
 
 {{ object.description }}<br>
 {% for file in object.file_set.all %}
-<img src="{% url 'file:get' file.filename %}" alt="{{file.original_filename}}" width="200" height="100"> <br>
+<a href="{% url 'file:get' file.filename %}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{file.original_name}}</a> {{file.type}} <br>
 {% endfor %}
 <a href="{{action}}">Редактировать</a>
 {% endblock content %}

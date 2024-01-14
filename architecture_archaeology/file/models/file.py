@@ -32,3 +32,9 @@ class File(TimestampMixin):
 
     def __str__(self) -> str:
         return self.filename
+    
+    class Meta:
+
+        verbose_name = 'Файл'
+        verbose_name_plural = 'Файлы'
+        ordering = ('type', )

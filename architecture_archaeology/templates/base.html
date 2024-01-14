@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
     <link rel="stylesheet" href="{% static 'styles/sidebars.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/sticky-footer.css' %}">
     {% endblock styles %}
     <title>
         {% if title %}
@@ -33,17 +34,19 @@
 
 
       <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-body-tertiary">
+        <div class="container-fluid">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
           <svg class="bi me-2" width="60" height="48"><image href="{% static 'images/main-logo.svg' %}" alt="ArchArch" width="60" height="48"/></svg>
           <span class="fs-5">Архитектурная археология</span>
         </a>
+      </div>
       </header>
 
 
 
 
 
-    <div class="container-fluid">
+
 
 
         
@@ -133,8 +136,9 @@
               </div>
 
 
-            <div class="col py-3">
+              <div class="col py-3">
                 {% if messages %}
+                
 <ul class="messages">
     {% for message in messages %}
     <div class="row">
@@ -147,29 +151,32 @@
     </div>
     {% endfor %}
 </ul>
-{% endif %}
-                {% block content %}{% endblock content %}
 
-            </div>
+{% endif %}
+
+
+                {% block content %}{% endblock content %}
+              </div>
+              </div>
+     
+
+
+
+    
+    {% block footer %}
+    <div class="row">
+    <footer class="footer mt-auto bg-light fixed-bottom">
+
+      <div class="d-flex flex-column flex-sm-row justify-content-between my-3 border-top">
+
+          <p>© 2023 Институт археологии РАН</p>
+          <ul class="list-unstyled d-flex">
+              <li class="ms-3"><a class="link-body-emphasis" href="https://archaeolog.ru/" id="ia-ras-logo"><img src="{% static 'images/ia-ras-logo.png' %}" width="64" height="64"></a></li>
+              <li class="ms-3"><a class="link-body-emphasis" href="https://archaeolog.ru/ru/scientific-departments/laboratoriya-arkhitekturnoy-arkheologii" id="ia-ras-logo"><img src="{% static 'images/aa-lab-logo.jpeg' %}" width="64" height="64"></a></li>
+          </ul>
 
         </div>
-    </div>
-    
-    <div>
-
-    </div>
-    {% block footer %}
-    <div class="container-fluid">
-    <footer class="py-5">
-
-        <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-            <p>© 2023 Институт археологии РАН</p>
-            <ul class="list-unstyled d-flex">
-                <li class="ms-3"><a class="link-body-emphasis" href="https://archaeolog.ru/" id="ia-ras-logo"><img src="{% static 'images/ia-ras-logo.png' %}" width="64" height="64"></a></li>
-                <li class="ms-3"><a class="link-body-emphasis" href="https://archaeolog.ru/ru/scientific-departments/laboratoriya-arkhitekturnoy-arkheologii" id="ia-ras-logo"><img src="{% static 'images/aa-lab-logo.jpeg' %}" width="64" height="64"></a></li>
-            </ul>
-          </div>
-    </footer>
+  </footer>
 </div>
     {% endblock %}
     {% block scripts %}
@@ -179,7 +186,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
         integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
         crossorigin="anonymous"></script>
-    <script src="{% static 'styles/sidebars.css' %}"></script>
+    <script src="{% static 'js/sidebars.js' %}"></script>
         
     {% endblock scripts %}
   </body>
