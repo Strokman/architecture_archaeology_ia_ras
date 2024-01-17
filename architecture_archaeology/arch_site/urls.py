@@ -8,7 +8,7 @@ from arch_site.views import (SubmitSiteView,
 app_name = 'arch_site'
 urlpatterns = [
     path("submit/", SubmitSiteView.as_view(), name="submit"),
-    path("display/<slug:slug>/", DetailSiteView.as_view(), name="detail"),
+    path("detail/<slug:slug>/", DetailSiteView.as_view(), name="detail"),
     path("list/", ListSiteView.as_view(), name="list"),
     path("update/<slug:slug>", UpdateSiteView.as_view(), name="update")
 ]

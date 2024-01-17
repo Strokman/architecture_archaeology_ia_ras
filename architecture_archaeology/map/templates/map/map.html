@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{ block.super }}
+<script src="https://api-maps.yandex.ru/2.1/?apikey=7c6b33de-990e-43aa-a48d-cd8f0919286f&lang=ru_RU"
+type="text/javascript">
+</script>
+
+{% load static %}
+
+
+
+
+
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+  <h1>{{ title }}</h1>
+</div>
+
+<div id="map" style="width:100%; height:600px"></div>
+{% endblock content %}
+
+{% block scripts %}
+
+
+<script src="{% static 'js/map.js' %}"></script>
+  {{block.super}}
+
+
+
+
+
+{% endblock %}

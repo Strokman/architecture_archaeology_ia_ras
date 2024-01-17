@@ -31,9 +31,5 @@ class FormValidFilesMixin(ModelFormMixin):
                     processed_foto = FileHandler(file,
                                              self.object,
                                              filetypes.get(key))
-                    file_instance = processed_foto.to_orm()
-                    uploader = S3FileHandler(processed_foto)
-                    uploader.upload_file_to_s3()
-                    file_instance.save()
-                    self.object.file_set.add(file_instance)
+                    processed_foto.to_orm()
         return HttpResponseRedirect(self.get_success_url())

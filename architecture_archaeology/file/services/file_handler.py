@@ -5,6 +5,7 @@ from uuid import uuid4
 import os
 # from dataclasses import dataclass
 from file.models import File, FileType
+from file.services.file_to_s3 import S3FileHandler
 
 from django.db import models
 
@@ -75,10 +76,38 @@ class FileHandler:
         return f'{self.parent_obj._meta.db_table}/{self.parent_obj.id}/{self.filename}'
 
     def to_orm(self):
+        uploader = S3FileHandler(self)
+        if self.file_type.name in ('фотография', 'отчет', 'план'):
+            try:
+                instance: models.Model = self.parent_obj.file_set.get(type=self.file_type)
+                old_file_in_s3 = S3FileHandler(instance)
+                old_file_in_s3.delete_file_from_s3()
+                instance.filename = self.filename
+                instance.extension = self.extension
+                instance.original_name = self.original_filename
+                instance.type = self.file_type
+                instance.object_storage_key = self.object_storage_key
+                uploader.upload_file_to_s3()
+                instance.save()  
+                return True
+            except File.DoesNotExist:
+                pass
         instance = File(filename=self.filename,
                         extension=self.extension,
                         original_name=self.original_filename,
                         type=self.file_type,
                         object_storage_key=self.object_storage_key
-                        )
-        return instance
+                        )       
+        uploader.upload_file_to_s3()
+        instance.save()
+        self.parent_obj.file_set.add(instance)
+        return True
+
+    # @classmethod
+    # def from_orm(cls, **kwargs):
+    #     try:
+    #         file = cls.objects.get(**kwargs)
+    #         return file
+    #     except:
+    #         raise FileNotFoundError('No such file')
+

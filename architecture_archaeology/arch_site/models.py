@@ -13,7 +13,7 @@ class ArchaeologicalSite(DescriptionMixin, TimestampMixin, SlugMixin):
     year_min = models.IntegerField(verbose_name='Датировка от:', null=True, blank=True)
     year_max = models.IntegerField(verbose_name='до:', null=True, blank=True)
     comment = models.TextField(verbose_name='Примечание', null=True, blank=True)
-
+  
     region = models.ForeignKey('helpers.Region',
                                verbose_name='Административная принадлежность',
                                null=False,

@@ -2,13 +2,13 @@ from logging import getLogger
 from .client import create_s3_client
 from botocore.exceptions import ClientError
 import architecture_archaeology.settings as settings
-from file.services import FileHandler
-from file.models import File
+# from file.services.file_handler import FileHandler
+# from file.models import File
 
 
 class S3FileHandler:
 
-    def __init__(self, file: FileHandler | File):
+    def __init__(self, file):
         self.client = create_s3_client()
         self.file = file
         self.logger = getLogger(
@@ -18,13 +18,17 @@ class S3FileHandler:
     def upload_file_to_s3(self):
         try:
             self.client.put_object(Body=self.file.file.read(),
-                                   Bucket=settings.BUCKET,
-                                   Key=self.file.object_storage_key,
-                                   )
+                                    Bucket=settings.BUCKET,
+                                    Key=self.file.object_storage_key,
+                                    )
             self.logger.info(
                 f'{self.file.object_storage_key} successfully uploaded to object storage')
         except ClientError as e:
             self.logger.error(e)
+            raise e
+        except AttributeError as e:
+            self.logger.error(e)
+            raise e
         return True
 
     def get_file_from_s3(self):
