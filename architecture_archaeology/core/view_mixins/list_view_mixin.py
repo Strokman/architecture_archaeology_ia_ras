@@ -13,11 +13,6 @@ class ListViewMixin(FilterView):
         context['title'] = self.model._meta.verbose_name_plural
         app = self.model._meta.app_label
         model_name = self.model.__name__.lower()
-        objects = self.get_queryset()
-        context['test'] = {
-            i: i.file_set.filter(type__name='фотография').first() for i in objects
-        }
-        print(context['test'])
         context['action'] = reverse_lazy(
             f'{app}:submit{"-" + model_name if app in ['artwork', 'measurement'] else ""}'
             )

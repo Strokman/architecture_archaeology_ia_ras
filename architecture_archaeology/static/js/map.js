@@ -2,7 +2,8 @@ ymaps.ready(function(){
     // Указывается идентификатор HTML-элемента.
     var map = new ymaps.Map("map", {
         center: [55.76, 37.64],
-        zoom: 6
+        zoom: 6,
+        controls: ['rulerControl', 'searchControl', "zoomControl", "typeSelector", "searchControl"]
     });
   
     fetch('/map/get/').then(function(response) {
@@ -19,13 +20,6 @@ ymaps.ready(function(){
             });
  
             });
-  //   var myGeoObject = new ymaps.GeoObject({
-  //     geometry: {
-  //         type: "Point", // тип геометрии - точка
-  //         coordinates: [data.fields.lat, data.fields.long] // координаты точки
-  //     }
-  // });
-  // map.geoObjects.add(myGeoObject);
   
   });
     });

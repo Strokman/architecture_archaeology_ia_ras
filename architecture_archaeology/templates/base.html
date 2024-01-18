@@ -64,28 +64,12 @@
 
             <div class="flex-shrink-0 p-3" style="width: 280px;">
                 <ul class="list-unstyled ps-0">
-                  <li class="mb-1">
-                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#sites-collapse" aria-expanded="false">
-                      Памятники
-                    </button>
-                    <div class="collapse" id="sites-collapse">
-                      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="{% url 'arch_site:list' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Список</a></li>
-                        <li><a href="{% url 'arch_site:submit' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Добавить новый</a></li>
-                      </ul>
-                    </div>
-                  </li>
-                  <li class="mb-1">
-                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#building-collapse" aria-expanded="false">
-                      Постройки
-                    </button>
-                    <div class="collapse" id="building-collapse">
-                      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="{% url 'building:list' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Список</a></li>
-                        <li><a href="{% url 'building:submit' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Добавить новую</a></li>
-                      </ul>
-                    </div>
-                  </li>
+                  <a href="{% url 'arch_site:list' %}" class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed mb-1" aria-expanded="false">
+                    Памятники
+                  </a>
+                  <a href="{% url 'building:list' %}" class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed mb-1" aria-expanded="false">
+                    Постройки
+                  </a>
                   <li class="mb-1">
                     <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#artworks-collapse" aria-expanded="false">
                       Изображения
