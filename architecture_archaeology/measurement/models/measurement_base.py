@@ -1,12 +1,12 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from core.models import DescriptionMixin
+
 from core.models import TimestampMixin
 from core.models import SlugMixin
 
 
 # Create your models here.
-class MeasurementBase(DescriptionMixin, TimestampMixin, SlugMixin):
+class MeasurementBase(TimestampMixin, SlugMixin):
 
     class Material(models.TextChoices):
         COLOR_LAYER = 'CL', _('красочный слой')
@@ -28,6 +28,7 @@ class MeasurementBase(DescriptionMixin, TimestampMixin, SlugMixin):
 
     additional_elements = models.CharField(verbose_name='Дополнительные выявленные соединения', max_length=255)
     source = models.CharField(verbose_name='Источник референсных значений', max_length=255)
+    
 
     def __str__(self):
         return self.name

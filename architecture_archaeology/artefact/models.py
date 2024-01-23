@@ -15,10 +15,10 @@ class Artefact(DescriptionMixin, TimestampMixin, SlugMixin):
     find_date_to = models.IntegerField(null=True, verbose_name='до:')
     comment = models.TextField(verbose_name='Примечание', null=True)
     square_number = models.CharField(max_length=255, verbose_name='Номер квадрата/участка/пласта по археологическим отчетам', null=True)
-    museum_code = models.CharField(max_length=255)
+    museum_code = models.CharField(max_length=255, verbose_name='Музейный шифр')
 
     site = models.ForeignKey('arch_site.ArchaeologicalSite', verbose_name='Постройка', on_delete=models.PROTECT)
-    storage = models.ForeignKey('helpers.Storage', on_delete=models.PROTECT)
+    storage = models.ForeignKey('helpers.Storage', verbose_name='Место хранения', on_delete=models.PROTECT)
 
     def get_absolute_url(self):
         if hasattr(self, 'slug'):

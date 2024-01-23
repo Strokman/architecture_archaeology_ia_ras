@@ -6,3 +6,4 @@ from .region import Region
 from .pigment import Pigment
 from .material import Material
 from .mineral import Mineral
+from .filler import Filler

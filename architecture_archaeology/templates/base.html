@@ -82,17 +82,9 @@
                       </ul>
                     </div>
                   </li>
-                  <li class="mb-1">
-                    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#artefacts-collapse" aria-expanded="false">
-                      Находки
-                    </button>
-                    <div class="collapse" id="artefacts-collapse">
-                      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="{% url 'artefact:list' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Список</a></li>
-                        <li><a href="{% url 'artefact:submit' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Добавить новую</a></li>
-                      </ul>
-                    </div>
-                  </li>
+                  <a href="{% url 'artefact:list' %}" class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed mb-1" aria-expanded="false">
+                    Находки
+                  </a>
 
                   <li class="mb-1">
                     <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#measurements-collapse" aria-expanded="false">
@@ -105,7 +97,7 @@
                         <li><a href="{% url 'measurement:list-gaschromatographymassspectrometry' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">ГХ-МС</a></li>
                         <li><a href="{% url 'measurement:list-infraredramanmicroscopy' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">ИК и рамановская спектроскопия</a></li>
                         <li><a href="{% url 'measurement:list-roentgen' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Рентгенофазовый и рентгеноструктурный анализы</a></li>
-                        <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Петрография</a></li>
+                        <li><a href="{% url 'measurement:list-petrography' %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Петрография</a></li>
                     </ul>
                     </div>
                   </li>

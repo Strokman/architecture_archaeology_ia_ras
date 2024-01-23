@@ -29,6 +29,7 @@ class File(TimestampMixin):
     gc_ms = models.ForeignKey('measurement.GasChromatographyMassSpectrometry', null=True, on_delete=models.CASCADE)
     roentgen = models.ForeignKey('measurement.Roentgen', null=True, on_delete=models.CASCADE)
     infrared_ramanov = models.ForeignKey('measurement.InfraredRamanMicroscopy', null=True, on_delete=models.CASCADE)
+    petrography = models.ForeignKey('measurement.Petrography', null=True, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.filename

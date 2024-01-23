@@ -13,44 +13,67 @@
 
 </div>
 {% endif %}
-{% if object.description %}
+
+<div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Оператор</strong>
+      </div>
+      <div class="col">
+        {{ object.operator }}
+      </div>
+    </div>
+  </div>
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Оборудование</strong>
+      </div>
+      <div class="col">
+        {{ object.equipment }}
+      </div>
+    </div>
+  </div>
+
+
 <div class="container mb-3">
   <div class="row">
     <div class="col">
-    <strong>Описание</strong>
+    <strong>Материал</strong>
     </div>
     <div class="col">
-      {{ object.description }}
+      {{ object.get_material_display }}
     </div>
+  </div>
 </div>
 
-</div>
-{% endif %}
-{% if object.year_min %}
 <div class="container mb-3">
-  <div class="row">
-    <div class="col">
-    <strong>Датировка</strong>
+    <div class="row">
+      <div class="col">
+      <strong>Цвета</strong>
+      </div>
+      <div class="col">
+        {% for color in object.color.all %}
+        {{ color }}<br>
+        {% endfor %}
+      </div>
     </div>
-    <div class="col">
-      {{ object.year_min }} - {{object.year_max}}
-    </div>
-</div>
+  </div>
 
-</div>
-{% elif object.year_max %}
-<div class="container mb-3">
-  <div class="row">
-    <div class="col">
-    <strong>Датировка</strong>
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Пигменты</strong>
+      </div>
+      <div class="col">
+        {% for pigment in object.pigment.all %}
+        {{ pigment }}<br>
+        {% endfor %}
+      </div>
     </div>
-    <div class="col">
-      {{ object.year_min }} - {{object.year_max}}
-    </div>
-</div>
+  </div>
 
-</div>
-{% endif %}
 
 
 <div class="container mb-5">

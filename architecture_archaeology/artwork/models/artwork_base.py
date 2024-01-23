@@ -15,7 +15,8 @@ class ArtworkBase(DescriptionMixin, TimestampMixin, SlugMixin):
     find_date_to = models.IntegerField(null=True, verbose_name='до:')
     comment = models.TextField(verbose_name='Примечание', null=True)
     square_number = models.CharField(max_length=255, verbose_name='Номер квадрата/участка/пласта по археологическим отчетам', null=True)
-
+    
+    site = models.ForeignKey("arch_site.ArchaeologicalSite", verbose_name='Памятник', null=False, on_delete=models.CASCADE)
     building = models.ForeignKey('building.Building', verbose_name='Постройка', on_delete=models.PROTECT)
     building_part = models.ForeignKey('building.BuildingPart', verbose_name='Элемент постройки', on_delete=models.PROTECT)
     color = models.ManyToManyField('helpers.Color', verbose_name='Цвета')

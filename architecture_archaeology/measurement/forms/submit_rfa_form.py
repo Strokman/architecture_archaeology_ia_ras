@@ -1,7 +1,7 @@
 from django import forms
 from django.core import validators
 from measurement.models import RFA
-from core.custom_forms import FileFormMixin
+from core.custom_forms import FileFormMixin, BaseDateInputMeta
 
 
 class SubmitRFAForm(forms.ModelForm, FileFormMixin):
@@ -10,7 +10,7 @@ class SubmitRFAForm(forms.ModelForm, FileFormMixin):
 
     other = forms.FileField(required=False, label='Спектр', validators=[validators.FileExtensionValidator(['png', 'jpg', 'jpeg'])], help_text='Обработанный спектр. Допустимые форматы: .png, .jpg')
 
-    class Meta:
+    class Meta(BaseDateInputMeta):
         model = RFA
         fields = (
             'name',
@@ -25,13 +25,3 @@ class SubmitRFAForm(forms.ModelForm, FileFormMixin):
             'source',
             'comment'
         )
-
-        widgets = {
-            'measurement_date': forms.DateInput(
-                attrs={'type': 'date', 'class': 'form-control'}
-            )
-        }
-        
-    # def __init__(self, *args, **kwargs):
-    #     super(SubmitRFAForm, self).__init__(*args, **kwargs)
-    #     self.initial['measurement_date'] = timezone.now()

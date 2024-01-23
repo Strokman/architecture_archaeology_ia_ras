@@ -21,3 +21,8 @@ from .detail_infrared_raman_view import DetailInfraredRamanView
 from .detail_rfa_view import DetailRFAView
 from .detail_roentgen_view import DetailRoentgenView
 from .detail_scanning_microscopy_view import DetailScanningMiscroscopyView
+
+from .detail_petrography_view import DetailPetrographyView
+from .submit_petrography_view import SubmitPetrographyView
+from .update_petrography_view import UpdatePetrographyView
+from .list_petrography_view import ListPetrographyView

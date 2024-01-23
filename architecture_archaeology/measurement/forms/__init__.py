@@ -3,3 +3,4 @@ from .submit_scanning_microscopy_form import SubmitScanningMicroscopyForm
 from .submit_gc_ms_form import SubmitGCMSForm
 from .submit_infrared_raman_form import SubmitInfraredRamanForm
 from .submit_roentgen_form import SubmitRoentgenForm
+from .submit_petrography_form import SubmitPetrographyForm

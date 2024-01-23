@@ -26,6 +26,6 @@ class ArchaeologicalSite(DescriptionMixin, TimestampMixin, SlugMixin):
 
     class Meta:
 
-        verbose_name = 'Археологический памятник'
-        verbose_name_plural = 'Археологические памятники'
+        verbose_name = 'Памятник'
+        verbose_name_plural = 'Памятники'
         ordering = ('name',)

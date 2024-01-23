@@ -54,7 +54,14 @@
         <h5 class="card-title"><a href="{{obj.get_absolute_url}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{obj.name}}</a></h5>
         {% if obj.region %}
         <p class="card-text">{{obj.region.country}}, {{obj.region}}</p>
-        {% else %}
+        {% endif %}
+        {% if obj.site %}
+        <p class="card-text">{{obj.site}}</p>
+        {% endif %}
+        {% if obj.year_min %}
+        <p class="card-text">Датировка: {{obj.year_min}} - {{obj.year_max}}</p>
+        {% endif %}
+        {% if obj.description %}
         <p class="card-text">{{obj.description}}</p>
         {% endif %}
       </div>
