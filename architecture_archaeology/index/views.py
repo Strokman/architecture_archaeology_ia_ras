@@ -4,6 +4,7 @@ from django.template import loader
 from django.views import View
 import requests
 import pprint
+import architecture_archaeology.settings as settings
 
 
 
@@ -17,7 +18,7 @@ def index(request):
     context = {
         'text': 'placeholder'
     }
-    resp = requests.get('https://geocode-maps.yandex.ru/1.x?apikey=7c6b33de-990e-43aa-a48d-cd8f0919286f&geocode=140.727552, 38.170710&lang=ru_RU&format=json').json()
+    resp = requests.get(f'https://geocode-maps.yandex.ru/1.x?apikey={settings.YMAPS_TOKEN}&geocode=140.727552, 38.170710&lang=ru_RU&format=json').json()
     # pprint.pprint(resp.json())
     # pprint.pprint(resp['response']['GeoObjectCollection']['featureMember'][0]['GeoObject']['metaDataProperty']['GeocoderMetaData']['Address']['Components'])
     if resp['response']['GeoObjectCollection']['featureMember']:

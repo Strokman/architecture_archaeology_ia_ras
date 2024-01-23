@@ -230,3 +230,5 @@ BUCKET = environ.get('BUCKET')
 AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
 
 AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
+
+YMAPS_TOKEN = environ.get('YMAPS_TOKEN')
