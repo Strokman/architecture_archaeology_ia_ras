@@ -23,7 +23,7 @@ class MeasurementBase(TimestampMixin, SlugMixin):
 
     color = models.ManyToManyField('helpers.Color', verbose_name='Цвета')
 
-    comment = models.TextField(verbose_name='Примечание', null=True)
+    comment = models.TextField(verbose_name='Примечание', null=True, blank=True)
     pigment = models.ManyToManyField('helpers.Pigment', verbose_name='Пигменты')
 
     additional_elements = models.CharField(verbose_name='Дополнительные выявленные соединения', max_length=255)
