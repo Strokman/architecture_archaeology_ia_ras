@@ -5,7 +5,7 @@ from core.models import TimestampMixin
 from core.models import SlugMixin
 
 
-# Create your models here.
+# TODO: implement date representation
 class ArtworkBase(DescriptionMixin, TimestampMixin, SlugMixin):
     name = models.CharField(verbose_name='Название', max_length=255)
     code = models.CharField(verbose_name='Шифр', max_length=100)
@@ -15,7 +15,7 @@ class ArtworkBase(DescriptionMixin, TimestampMixin, SlugMixin):
     find_date_to = models.IntegerField(null=True, verbose_name='до:')
     comment = models.TextField(verbose_name='Примечание', null=True)
     square_number = models.CharField(max_length=255, verbose_name='Номер квадрата/участка/пласта по археологическим отчетам', null=True)
-    
+
     site = models.ForeignKey("arch_site.ArchaeologicalSite", verbose_name='Памятник', null=False, on_delete=models.CASCADE)
     building = models.ForeignKey('building.Building', verbose_name='Постройка', on_delete=models.PROTECT)
     building_part = models.ForeignKey('building.BuildingPart', verbose_name='Элемент постройки', on_delete=models.PROTECT)
@@ -26,6 +26,9 @@ class ArtworkBase(DescriptionMixin, TimestampMixin, SlugMixin):
         if hasattr(self, 'slug'):
             return reverse_lazy(f"{self._meta.app_label}:detail-{self.__class__.__name__.lower()}", kwargs={"slug": self.slug})
         return reverse_lazy(f"{self._meta.app_label}:detail-{self.__class__.__name__.lower()}", kwargs={"pk": self.pk})
+
+    def dating(self):
+        pass
 
     class Meta:
         abstract = True

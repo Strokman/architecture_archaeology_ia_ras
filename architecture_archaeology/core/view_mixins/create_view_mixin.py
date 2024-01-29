@@ -1,10 +1,21 @@
+from django.forms.forms import BaseForm
+from django.http.response import HttpResponse
 from django.views.generic import CreateView
 from django.contrib.messages.views import SuccessMessageMixin
-
+from core.geocode import create_geocode_url, get_location_data
 from core.view_mixins.form_valid_files import FormValidFilesMixin
 
 
 class CreateViewMixin(SuccessMessageMixin, FormValidFilesMixin, CreateView):
+
+    # def form_valid(self, form: BaseForm) -> HttpResponse:
+    #     print(form.cleaned_data)
+    #     long = form.cleaned_data['long']
+    #     lat = form.cleaned_data['lat']
+    #     print(type(long))
+    #     loc = get_location_data(create_geocode_url(long, lat))
+    #     print(loc)
+    #     return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

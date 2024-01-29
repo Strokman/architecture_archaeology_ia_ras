@@ -3,4 +3,6 @@ from core.models import DescriptionMixin
 
 # Create your models here.
 class Preservation(DescriptionMixin):
-    pass
+        
+    class Meta:
+        verbose_name = verbose_name_plural = 'Сохранность'

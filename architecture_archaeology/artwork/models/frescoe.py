@@ -12,10 +12,14 @@ class Frescoe(ArtworkBase, DescriptionMixin, TimestampMixin, SlugMixin):
         MASS = 'M', _('массовый')
         INDIVIDUAL = 'I', _('индивидуальный')
 
-    type = models.CharField(max_length=100, choices=Type)
-    size = models.CharField(max_length=255)
-    amount = models.IntegerField(null=True)
-    museum_code = models.CharField(max_length=255)
+    type = models.CharField(verbose_name='Тип', max_length=100, choices=Type)
+    size = models.CharField(verbose_name='Размер', max_length=255)
+    amount = models.IntegerField(verbose_name='Количество фрагментов', null=True)
+    museum_code = models.CharField(verbose_name='Музейный шифр', max_length=255)
 
-    storage = models.ForeignKey('helpers.Storage', on_delete=models.PROTECT)
-    indoor_artwork = models.ForeignKey('artwork.IndoorArtwork', on_delete=models.PROTECT)
+    storage = models.ForeignKey('helpers.Storage', verbose_name='Место хранения', on_delete=models.PROTECT)
+    indoor_artwork = models.ForeignKey('artwork.IndoorArtwork', verbose_name='Изображение в постройке', on_delete=models.PROTECT)
+
+    class Meta:
+        verbose_name = 'Фреска'
+        verbose_name_plural = 'Фрески'

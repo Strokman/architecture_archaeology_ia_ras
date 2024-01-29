@@ -7,9 +7,13 @@ from artwork.models.artwork_base import ArtworkBase
 
 # Create your models here.
 class Lotok(ArtworkBase, DescriptionMixin, TimestampMixin, SlugMixin):
-    size = models.CharField(max_length=255)
-    amount = models.IntegerField(null=True)
-    museum_code = models.CharField(max_length=255)
+    size = models.CharField(verbose_name='Размер', max_length=255)
+    amount = models.IntegerField(verbose_name='Количество фрагментов', null=True)
+    museum_code = models.CharField(verbose_name='Музейный шифр', max_length=255)
 
-    storage = models.ForeignKey('helpers.Storage', on_delete=models.PROTECT)
-    indoor_artwork = models.ForeignKey('artwork.IndoorArtwork', on_delete=models.PROTECT)
+    storage = models.ForeignKey('helpers.Storage', verbose_name='Место хранения', on_delete=models.PROTECT)
+    indoor_artwork = models.ForeignKey('artwork.IndoorArtwork', verbose_name='Изображение в постройке', on_delete=models.PROTECT)
+
+    class Meta:
+        verbose_name = 'Лоток'
+        verbose_name_plural = 'Лотки'

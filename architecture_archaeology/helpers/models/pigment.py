@@ -2,4 +2,7 @@ from core.models import DescriptionMixin
 
 
 class Pigment(DescriptionMixin):
-    pass
+        
+    class Meta:
+        verbose_name = 'Пигмент'
+        verbose_name_plural = 'Пигменты'

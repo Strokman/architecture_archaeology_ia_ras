@@ -7,3 +7,7 @@ class Color(DescriptionMixin):
 
     def __str__(self):
         return f'{self.description}'
+
+    class Meta:
+        verbose_name = 'Цвет'
+        verbose_name_plural = 'Цвета'

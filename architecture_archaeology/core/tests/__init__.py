@@ -1,1 +1,2 @@
 from .base_create_view_test import BaseTestCreateView
+from .geocode_test import GeocodeTest
