@@ -1,0 +1,31 @@
+services:
+
+  db:
+    environment:
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      POSTGRES_DB: $POSTGRES_DB
+    image: postgres:16
+    networks:
+      - default
+    ports:
+      - 55432:5432
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "basehabilis" ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+    restart: always
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+
+  aa:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./app/:/usr/src/app/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env

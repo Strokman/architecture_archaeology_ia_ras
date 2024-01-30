@@ -34,7 +34,7 @@ SECRET_KEY = environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver', '0.0.0.0']
 
 # Application definition
 
@@ -98,11 +98,11 @@ WSGI_APPLICATION = 'architecture_archaeology.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'aa_db',
-        'HOST': '158.160.98.190',
-        'USER': 'test',
-        'PASSWORD': 'test',
-        'PORT': '55432',
+        'NAME': environ.get('POSTGRES_DB'),
+        'HOST': environ.get('POSTGRES_HOST'),
+        'USER': environ.get('POSTGRES_USER'),
+        'PASSWORD': environ.get('POSTGRES_PASSWORD'),
+        'PORT': environ.get('POSTGRES_PORT'),
         'ATOMIC_REQUESTS': True,
         "TEST": {
             "NAME": "aa-testdb",
