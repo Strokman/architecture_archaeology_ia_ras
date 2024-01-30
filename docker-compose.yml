@@ -23,6 +23,9 @@ services:
   aa:
     build: .
     env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
     command: python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000
     ports:
       - 8000:8000

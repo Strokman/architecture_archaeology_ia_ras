@@ -1,7 +1,7 @@
 FROM python:3.12-slim
 
 # switch working directory
-WORKDIR /home/architecture_archaeology/architecture_archaeology
+WORKDIR /app
 
 # copy the files into the image
 COPY . .
