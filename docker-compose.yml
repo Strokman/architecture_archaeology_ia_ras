@@ -24,7 +24,5 @@ services:
     build: .
     env_file: .env
     command: python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000
-    volumes:
-      - ./app/:/usr/src/app/
     ports:
       - 8000:8000
