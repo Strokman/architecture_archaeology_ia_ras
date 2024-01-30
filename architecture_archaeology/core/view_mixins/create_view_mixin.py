@@ -4,9 +4,10 @@ from django.views.generic import CreateView
 from django.contrib.messages.views import SuccessMessageMixin
 from core.geocode import create_geocode_url, get_location_data
 from core.view_mixins.form_valid_files import FormValidFilesMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class CreateViewMixin(SuccessMessageMixin, FormValidFilesMixin, CreateView):
+class CreateViewMixin(SuccessMessageMixin, LoginRequiredMixin, FormValidFilesMixin, CreateView):
 
     # def form_valid(self, form: BaseForm) -> HttpResponse:
     #     print(form.cleaned_data)

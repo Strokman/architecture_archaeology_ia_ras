@@ -3,8 +3,10 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 from core.view_mixins.form_valid_files import FormValidFilesMixin
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class UpdateViewMixin(SuccessMessageMixin, FormValidFilesMixin, UpdateView):
+
+class UpdateViewMixin(SuccessMessageMixin, LoginRequiredMixin, FormValidFilesMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

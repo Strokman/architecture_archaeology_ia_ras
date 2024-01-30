@@ -58,12 +58,14 @@
 
 
 
-        
+      
         <div class="row">
 
-
+          
             <div class="flex-shrink-0 p-3" style="width: 280px;">
+              
                 <ul class="list-unstyled ps-0">
+                  {% if user.is_authenticated %}
                   <a href="{% url 'arch_site:list' %}" class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed mb-1" aria-expanded="false">
                     Памятники
                   </a>
@@ -101,24 +103,53 @@
                     </ul>
                     </div>
                   </li>
+                  {% endif %}
                   <a href="{% url 'map:map' %}" class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" aria-expanded="false">
                     Карта
                   </a>
 
                   <li class="border-top my-3"></li>
+                  {% if user.is_authenticated %}
+                  {% comment %}
                   <li class="mb-1">
                     <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
                       Личный кабинет
                     </button>
                     <div class="collapse" id="account-collapse">
                       <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">New...</a></li>
-                        <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Profile</a></li>
-                        <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Settings</a></li>
-                        <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Sign out</a></li>
+                        <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Профиль</a></li>
+                        <li>
+                          <div class="form-group">
+                            <form method="post" action="{% url 'logout' %}">
+                              {% csrf_token %}
+                              <button type='submit' value="submit" class="btn link-body-emphasis d-inline-flex text-decoration-none rounded">Выход</button>
+                            </form>
+                          </div>
+      
+
+                        </li>
+                        
                       </ul>
                     </div>
                   </li>
+                  {% endcomment %}
+                  <li>
+                    <div class="form-group">
+                      <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type='submit' value="submit" class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Выход</button>
+                      </form>
+                    </div>
+
+
+                  </li>
+                  {% else %}
+                  <li class="mb-1">
+
+                      <a href="{% url 'login' %}" class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Вход</a>
+
+                  </li>
+                  {% endif %}
                 </ul>
               </div>
 
@@ -140,7 +171,6 @@
 </ul>
 
 {% endif %}
-
 
                 {% block content %}{% endblock content %}
               </div>

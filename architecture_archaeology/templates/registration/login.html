@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+<div class="row">
+    <div class="alert alert-danger alert-dismissible text-center center-block fade show mx-auto w-50"
+        role="alert">
+        <strong>Введенные имя пользователя или пароль неверны</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        </button>
+    </div>
+</div>
+{% endif %}
+
+{% if next %}
+<div class="row text-center">
+    {% if user.is_authenticated %}
+    <h5>Для просмотра содержание войдите в систему.</h5>
+    {% else %}
+    <h5>Пожалуйста, войдите в систему.</h5>
+    {% endif %}
+</div>
+{% endif %}
+
+{% include "_form.html" %}
+
+
+
+
+
+{% comment %}
+{# Assumes you set up the password_reset view in your URLconf #}
+<div class="row text-center">
+<p><a href="{% url 'password_reset' %}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Забыли пароль?</a></p>
+</div>
+{% endcomment %}
+
+
+
+{% endblock %}

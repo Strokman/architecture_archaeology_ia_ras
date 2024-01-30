@@ -3,6 +3,7 @@ from django.views.generic.edit import ModelFormMixin
 from django.http import HttpResponseRedirect
 from file.services import FileHandler
 from file.services import S3FileHandler
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 filetypes = {
     'foto': 'фотография',
