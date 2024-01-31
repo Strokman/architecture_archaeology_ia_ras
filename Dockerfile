@@ -1,11 +1,12 @@
 FROM python:3.12-slim
 
-# switch working directory
-WORKDIR /app
+
 
 # copy the files into the image
-COPY . .
+COPY . /home/architecture_archaeology
 
+# switch working directory
+WORKDIR /home/architecture_archaeology/architecture_archaeology
 
 # install the dependencies and packages in the requirements file
 # RUN pip install --no-cache-dir -r requirements.txt
