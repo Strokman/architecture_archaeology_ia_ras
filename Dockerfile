@@ -11,7 +11,7 @@ RUN pip install -r /home/architecture_archaeology/requirements.txt
 
 # switch working directory
 WORKDIR /home/architecture_archaeology/architecture_archaeology
-
+RUN chmod +x /home/architecture_archaeology/boot.sh
 
 ENTRYPOINT ["/home/architecture_archaeology/boot.sh"]
 
