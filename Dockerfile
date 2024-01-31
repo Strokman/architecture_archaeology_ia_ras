@@ -13,3 +13,6 @@ RUN pip install -r /home/architecture_archaeology/requirements.txt
 WORKDIR /home/architecture_archaeology/architecture_archaeology
 
 
+ENTRYPOINT ["boot.sh"]
+
+

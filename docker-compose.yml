@@ -9,7 +9,7 @@ services:
     networks:
       - default
     ports:
-      - 5432
+      - 55432:5432
     healthcheck:
       test: [ "CMD", "pg_isready", "-U", $POSTGRES_USER ]
       interval: 10s
@@ -26,7 +26,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    entrypoint: boot.sh
     expose:
       - 8000
 
