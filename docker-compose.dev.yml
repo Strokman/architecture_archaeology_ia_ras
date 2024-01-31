@@ -9,7 +9,7 @@ services:
     networks:
       - default
     ports:
-      - 5432
+      - 55432:5432
     healthcheck:
       test: [ "CMD", "pg_isready", "-U", $POSTGRES_USER ]
       interval: 10s
@@ -26,22 +26,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    command: bash -c "python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
+    # command: bash -c "python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
     expose:
-      - 8000
-
-  nginx:
-    build: ./nginx
-    ports:
-      - 80:80
-      - 443:443
-    # volumes:
-    #   - ./certbot/www:/var/www/certbot/:ro
-    #   - ./certbot/conf/:/etc/nginx/ssl/:ro
-    restart: always
-
-  # certbot:
-  #   image: certbot/certbot:latest
-  #   volumes:
-  #     - ./certbot/www/:/var/www/certbot/:rw
-  #     - ./certbot/conf/:/etc/letsencrypt/:rw
+      - 8000:8000
