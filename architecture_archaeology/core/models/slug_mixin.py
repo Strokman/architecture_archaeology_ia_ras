@@ -8,6 +8,9 @@ class SlugMixin(BaseModel):
 
     slug = models.SlugField(max_length=500, unique=True, null=False, db_index=True)
 
+    creator = models.ForeignKey('auth.User', null=True, related_name='creator+', on_delete=models.PROTECT)
+    editor = models.ForeignKey('auth.User', null=True, related_name='editor+', on_delete=models.PROTECT)
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name, allow_unicode=True) + '-' + str(uuid1())
         super().save(*args, **kwargs)

@@ -9,14 +9,18 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class CreateViewMixin(SuccessMessageMixin, LoginRequiredMixin, FormValidFilesMixin, CreateView):
 
-    # def form_valid(self, form: BaseForm) -> HttpResponse:
-    #     print(form.cleaned_data)
-    #     long = form.cleaned_data['long']
-    #     lat = form.cleaned_data['lat']
-    #     print(type(long))
-    #     loc = get_location_data(create_geocode_url(long, lat))
-    #     print(loc)
-    #     return super().form_valid(form)
+    def form_valid(self, form: BaseForm) -> HttpResponse:
+        
+        self.object = form.save()
+        self.object.creator = self.object.editor = self.request.user
+        self.object.save()
+        # print(form.cleaned_data)
+        # long = form.cleaned_data['long']
+        # lat = form.cleaned_data['lat']
+        # print(type(long))
+        # loc = get_location_data(create_geocode_url(long, lat))
+        # print(loc)
+        return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -27,6 +31,7 @@ class CreateViewMixin(SuccessMessageMixin, LoginRequiredMixin, FormValidFilesMix
         return f'{self.model._meta.verbose_name} {self.object.name} успешно создан'
 
     def get_success_url(self) -> str:
+        print(self.object)
         return self.object.get_absolute_url()
 
     def get_template_names(self) -> list[str]:

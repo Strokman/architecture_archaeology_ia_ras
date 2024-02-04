@@ -102,12 +102,3 @@ class FileHandler:
         instance.save()
         self.parent_obj.file_set.add(instance)
         return True
-
-    # @classmethod
-    # def from_orm(cls, **kwargs):
-    #     try:
-    #         file = cls.objects.get(**kwargs)
-    #         return file
-    #     except:
-    #         raise FileNotFoundError('No such file')
-

@@ -2,8 +2,7 @@ from django.views.generic.edit import ModelFormMixin
 
 from django.http import HttpResponseRedirect
 from file.services import FileHandler
-from file.services import S3FileHandler
-from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 filetypes = {
     'foto': 'фотография',
@@ -18,7 +17,6 @@ filetypes = {
 class FormValidFilesMixin(ModelFormMixin):
 
     def form_valid(self, form):
-        super().form_valid(form)
         existing_keys = set(form.cleaned_data) & set(filetypes)
         for key in existing_keys:
             files = form.cleaned_data.get(key)

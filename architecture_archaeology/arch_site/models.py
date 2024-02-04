@@ -20,6 +20,7 @@ class ArchaeologicalSite(DescriptionMixin, TimestampMixin, SlugMixin):
                                on_delete=models.PROTECT,
                                related_name='sites',
                                help_text='Выберите один из регионов')
+    
 
     def __str__(self):
         return f'{self.name}'

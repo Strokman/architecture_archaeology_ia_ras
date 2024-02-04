@@ -1,1 +1,1 @@
-[{"model": "file.filetype", "pk": 1, "fields": {"name": "фотография"}}, {"model": "file.filetype", "pk": 2, "fields": {"name": "план"}}, {"model": "file.filetype", "pk": 3, "fields": {"name": "отчет"}}]
+[{"model": "file.filetype", "pk": 1, "fields": {"name": "фотография"}}, {"model": "file.filetype", "pk": 2, "fields": {"name": "план"}}, {"model": "file.filetype", "pk": 3, "fields": {"name": "отчет"}}, {"model": "file.filetype", "pk": 4, "fields": {"name": "другое"}}]

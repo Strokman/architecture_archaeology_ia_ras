@@ -185,6 +185,9 @@ LOGGING = {
         "require_debug_true": {
             "()": "django.utils.log.RequireDebugTrue",
         },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
     },
     "handlers": {
         "console": {
@@ -198,6 +201,12 @@ LOGGING = {
             "filters": ["require_debug_true"],
             "class": "logging.StreamHandler",
             "formatter": "simple",
+        },
+        'console_on_not_debug': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_false'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
         },
         # "mail_admins": {
         #     "level": "ERROR",
@@ -216,7 +225,7 @@ LOGGING = {
         #     "propagate": False,
         # },
         PROJECT: {
-            "handlers": ["console"],
+            "handlers": ["console", 'console_on_not_debug'],
             "level": "INFO"
         },
     },

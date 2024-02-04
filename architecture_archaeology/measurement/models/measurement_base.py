@@ -16,7 +16,7 @@ class MeasurementBase(TimestampMixin, SlugMixin):
     name = models.CharField(verbose_name='Название', max_length=255)
     measurement_date = models.DateField(verbose_name='Дата исследования', null=False)
 
-    material = models.CharField(max_length=100, choices=Material)
+    material = models.CharField(verbose_name='Материал', max_length=100, choices=Material)
     operator = models.CharField(verbose_name='Оператор', max_length=255, null=False)
     equipment = models.CharField(verbose_name='Оборудование', max_length=255, null=False)
     conditions = models.CharField(verbose_name='Условия', max_length=255, null=False)
@@ -28,7 +28,6 @@ class MeasurementBase(TimestampMixin, SlugMixin):
 
     additional_elements = models.CharField(verbose_name='Дополнительные выявленные соединения', max_length=255)
     source = models.CharField(verbose_name='Источник референсных значений', max_length=255)
-    
 
     def __str__(self):
         return self.name

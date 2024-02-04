@@ -6,6 +6,10 @@
     <h3>{{ object.name }}</h3>
 
 </div>
+<div class="container mb-5 text-center">
+    <p>{{ object.site }}</p>
+
+</div>
 {% if object.file_set.all %}
 <div class="container mb-5">
 
@@ -22,41 +26,66 @@
 {% endif %}
 
 <div class="container mb-3">
+  <div class="row">
+    <div class="col">
+    <strong>Оператор</strong>
+    </div>
+    <div class="col">
+      {{ object.operator }}
+    </div>
+</div>
+</div>
+
+
+<div class="container mb-3">
     <div class="row">
       <div class="col">
-      <strong>Административаня принадлежность</strong>
+      <strong>Оборудование</strong>
       </div>
       <div class="col">
-        {{ object.region.country }}<br>
-        {{ object.region }}
+        {{ object.equipment }}
       </div>
   </div>
-  
+  </div>
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Условия</strong>
+      </div>
+      <div class="col">
+        {{ object.conditions }}
+      </div>
+  </div>
+  </div>
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Цвета</strong>
+      </div>
+      <div class="col">
+        {% for color in object.color.all %}
+        {{ color }}<br>
+        {% endfor %}
+      </div>
+  </div>
   </div>
 
 
+
+{% if object.material %}
 <div class="container mb-3">
   <div class="row">
     <div class="col">
-    <strong>Описание</strong>
+    <strong>Материал</strong>
     </div>
     <div class="col">
-      {{ object.description }}
-    </div>
-</div>
-
-</div>
-
-<div class="container mb-3">
-  <div class="row">
-    <div class="col">
-    <strong>Датировка</strong>
-    </div>
-    <div class="col">
-      {{ object.year_min }} - {{object.year_max}}
+      {{ object.get_material_display }}
     </div>
 </div>
 </div>
+{% endif %}
 
 <div class="container mb-3">
     <div class="row">
@@ -68,20 +97,6 @@
       </div>
   </div>
   
-  </div>
-
-
-<div class="container mb-3">
-    <div class="row">
-      <div class="col">
-      <strong>Постройки памятника</strong>
-      </div>
-      <div class="col">
-        {% for building in object.building_set.all %}
-        <a href="{{ building.get_absolute_url }}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ building.name }}</a>
-        {% endfor %}
-      </div>
-  </div>
   </div>
 
 
@@ -97,6 +112,19 @@
     </div>
 </div>
 </div>
+
+<div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Дата исследования</strong>
+      </div>
+      <div class="col">
+        {{ object.measurement_date }}
+      </div>
+  </div>
+  
+  </div>
+
 
 <div class="container mb-3">
     <div class="row">

@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django_filters.views import FilterView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+
 class ListViewMixin(LoginRequiredMixin, FilterView):
     context_object_name = 'objects'
 
