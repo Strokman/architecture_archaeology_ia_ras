@@ -1,9 +1,9 @@
 from django import forms
 from artefact.models import Artefact
-from core.custom_forms import FileFormMixin
+from core.custom_forms import FileFormMixin, YearValidationMixin
 
 
-class SubmitArtefactForm(forms.ModelForm, FileFormMixin):
+class SubmitArtefactForm(YearValidationMixin, forms.ModelForm, FileFormMixin):
 
     class Meta:
         model = Artefact
@@ -19,4 +19,5 @@ class SubmitArtefactForm(forms.ModelForm, FileFormMixin):
                   'comment',
                   'storage',
                   'museum_code',
-                  'foto')
+                  'foto',
+                  'other')

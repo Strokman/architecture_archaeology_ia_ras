@@ -1,14 +1,14 @@
 from django import forms
-from django.core import validators
+# from django.core import validators
 from measurement.models import RFA
 from core.custom_forms import FileFormMixin, BaseDateInputMeta
 
 
 class SubmitRFAForm(forms.ModelForm, FileFormMixin):
 
-    report = forms.FileField(required=False, label='Результат', help_text='Файл отчета об анализе')
+    # report = forms.FileField(required=False, label='Результат', help_text='Файл отчета об анализе')
 
-    other = forms.FileField(required=False, label='Спектр', validators=[validators.FileExtensionValidator(['png', 'jpg', 'jpeg'])], help_text='Обработанный спектр. Допустимые форматы: .png, .jpg')
+    # other = forms.FileField(required=False, label='Спектр', validators=[validators.FileExtensionValidator(['png', 'jpg', 'jpeg'])], help_text='Обработанный спектр. Допустимые форматы: .png, .jpg')
 
     class Meta(BaseDateInputMeta):
         model = RFA
@@ -23,5 +23,7 @@ class SubmitRFAForm(forms.ModelForm, FileFormMixin):
             'pigment',
             'additional_elements',
             'source',
-            'comment'
+            'comment',
+            'foto',
+            'other'
         )

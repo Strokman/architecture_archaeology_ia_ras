@@ -1,7 +1,8 @@
 from django.views.generic import UpdateView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.forms.forms import BaseForm
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
 
 from core.view_mixins.form_valid_files import FormValidFilesMixin
 
@@ -11,6 +12,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class UpdateViewMixin(SuccessMessageMixin, LoginRequiredMixin, FormValidFilesMixin, UpdateView):
 
     def form_valid(self, form: BaseForm) -> HttpResponse:
+        fotos = [file for file in self.object.file_set.all() if file.type.name =='фотография']
+        other = [file for file in self.object.file_set.all() if file.type.name =='другое']
+        if len(form.cleaned_data.get('foto')) + len(fotos) > 3:
+            messages.error(self.request, 'Количество фотографий не может превышать 3')
+            return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
+        if len(form.cleaned_data.get('other')) + len(other) > 10:
+            messages.error(self.request, 'Количество других файлов не может превышать 10')
+            return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
         self.object.editor = self.request.user
         self.object = form.save()
         return super().form_valid(form)

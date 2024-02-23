@@ -1,10 +1,10 @@
 from django import forms
 from measurement.models import Petrography
 
-from core.custom_forms import FileFormMixin, BaseDateInputMeta, OtherFilesFormMixin
+from core.custom_forms import FileFormMixin, BaseDateInputMeta
 
 
-class SubmitPetrographyForm(forms.ModelForm, OtherFilesFormMixin, FileFormMixin):
+class SubmitPetrographyForm(forms.ModelForm, FileFormMixin):
 
     class Meta(BaseDateInputMeta):
         model = Petrography

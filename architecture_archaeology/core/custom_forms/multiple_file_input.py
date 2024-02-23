@@ -13,7 +13,7 @@ class MultipleFileField(forms.FileField):
         super().__init__(*args, **kwargs)
 
     def clean(self, data, initial=None):
-        if len(data) > 5:
+        if len(data) > self.allowed_number_of_files:
             raise FilesNumberValidationError(self.allowed_number_of_files)
         single_file_clean = super().clean
         if isinstance(data, (list, tuple)):

@@ -1,10 +1,10 @@
 from django import forms
 from measurement.models import Roentgen
 
-from core.custom_forms import FileFormMixin, BaseDateInputMeta, OtherFilesFormMixin
+from core.custom_forms import FileFormMixin, BaseDateInputMeta
 
 
-class SubmitRoentgenForm(forms.ModelForm, OtherFilesFormMixin, FileFormMixin):
+class SubmitRoentgenForm(forms.ModelForm, FileFormMixin):
 
     class Meta(BaseDateInputMeta):
         model = Roentgen

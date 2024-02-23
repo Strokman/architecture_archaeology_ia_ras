@@ -1,10 +1,10 @@
 from django import forms
 from measurement.models import InfraredRamanMicroscopy
 
-from core.custom_forms import FileFormMixin, BaseDateInputMeta, OtherFilesFormMixin
+from core.custom_forms import FileFormMixin, BaseDateInputMeta
 
 
-class SubmitInfraredRamanForm(forms.ModelForm, OtherFilesFormMixin, FileFormMixin):
+class SubmitInfraredRamanForm(forms.ModelForm, FileFormMixin):
 
     class Meta(BaseDateInputMeta):
         model = InfraredRamanMicroscopy

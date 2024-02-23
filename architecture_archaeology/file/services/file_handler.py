@@ -77,21 +77,21 @@ class FileHandler:
 
     def to_orm(self):
         uploader = S3FileHandler(self)
-        if self.file_type.name in ('фотография', 'отчет', 'план'):
-            try:
-                instance: models.Model = self.parent_obj.file_set.get(type=self.file_type)
-                old_file_in_s3 = S3FileHandler(instance)
-                old_file_in_s3.delete_file_from_s3()
-                instance.filename = self.filename
-                instance.extension = self.extension
-                instance.original_name = self.original_filename
-                instance.type = self.file_type
-                instance.object_storage_key = self.object_storage_key
-                uploader.upload_file_to_s3()
-                instance.save()  
-                return True
-            except File.DoesNotExist:
-                pass
+        # if self.file_type.name in ('фотография', 'отчет', 'план'):
+        #     try:
+        #         instance: models.Model = self.parent_obj.file_set.get(type=self.file_type)
+        #         old_file_in_s3 = S3FileHandler(instance)
+        #         old_file_in_s3.delete_file_from_s3()
+        #         instance.filename = self.filename
+        #         instance.extension = self.extension
+        #         instance.original_name = self.original_filename
+        #         instance.type = self.file_type
+        #         instance.object_storage_key = self.object_storage_key
+        #         uploader.upload_file_to_s3()
+        #         instance.save()  
+        #         return True
+        #     except File.DoesNotExist:
+        #         pass
         instance = File(filename=self.filename,
                         extension=self.extension,
                         original_name=self.original_filename,

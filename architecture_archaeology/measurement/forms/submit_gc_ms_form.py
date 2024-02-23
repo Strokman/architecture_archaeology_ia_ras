@@ -1,10 +1,10 @@
 from django import forms
 from measurement.models import GasChromatographyMassSpectrometry
 
-from core.custom_forms import FileFormMixin, BaseDateInputMeta, OtherFilesFormMixin
+from core.custom_forms import FileFormMixin, BaseDateInputMeta
 
 
-class SubmitGCMSForm(forms.ModelForm, OtherFilesFormMixin, FileFormMixin):
+class SubmitGCMSForm(forms.ModelForm, FileFormMixin):
 
     class Meta(BaseDateInputMeta):
         model = GasChromatographyMassSpectrometry

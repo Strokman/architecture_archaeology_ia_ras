@@ -2,15 +2,13 @@ from django.db import models
 from django.urls import reverse_lazy
 from core.models import DescriptionMixin
 from core.models import TimestampMixin
-from core.models import SlugMixin
+from core.models import SlugMixin, YearMixin
 
 
 # Create your models here.
-class Artefact(DescriptionMixin, TimestampMixin, SlugMixin):
+class Artefact(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
     name = models.CharField(verbose_name='Название', max_length=255)
     code = models.CharField(verbose_name='Шифр', max_length=100)
-    year_min = models.IntegerField(null=False, blank=True, verbose_name='Датировка от:')
-    year_max = models.IntegerField(null=False, blank=True, verbose_name='до:')
     find_date_from = models.IntegerField(null=True, blank=True, verbose_name='Год находки от:')
     find_date_to = models.IntegerField(null=True, blank=True, verbose_name='до:')
     comment = models.TextField(verbose_name='Примечание', null=True)

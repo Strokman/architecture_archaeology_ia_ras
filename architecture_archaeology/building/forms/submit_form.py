@@ -1,10 +1,10 @@
 from django import forms
 
 from building.models import Building
-from core.custom_forms import MultipleFileFormMixin
+from core.custom_forms import FileFormMixin, YearValidationMixin
 
 
-class SubmitBuildingForm(forms.ModelForm, MultipleFileFormMixin):
+class SubmitBuildingForm(YearValidationMixin, forms.ModelForm, FileFormMixin):
 
     class Meta:
         model = Building

@@ -1,9 +1,9 @@
 from django import forms
 from artwork.models import IndoorArtwork
-from core.custom_forms import FileFormMixin
+from core.custom_forms import FileFormMixin, YearValidationMixin
 
 
-class SubmitIndoorArtworkForm(forms.ModelForm, FileFormMixin):
+class SubmitIndoorArtworkForm(YearValidationMixin, forms.ModelForm, FileFormMixin):
 
     class Meta:
         model = IndoorArtwork
@@ -20,4 +20,5 @@ class SubmitIndoorArtworkForm(forms.ModelForm, FileFormMixin):
                   'building_part',
                   'color',
                   'preservation',
-                  'foto')
+                  'foto',
+                  'other')

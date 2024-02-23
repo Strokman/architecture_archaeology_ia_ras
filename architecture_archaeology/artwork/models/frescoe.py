@@ -21,5 +21,5 @@ class Frescoe(ArtworkBase, DescriptionMixin, TimestampMixin, SlugMixin):
     indoor_artwork = models.ForeignKey('artwork.IndoorArtwork', verbose_name='Изображение в постройке', on_delete=models.PROTECT)
 
     class Meta:
-        verbose_name = 'Фреска'
-        verbose_name_plural = 'Фрески'
+        verbose_name = 'Индивидуальная фреска'
+        verbose_name_plural = 'Индивидуальные фрески'

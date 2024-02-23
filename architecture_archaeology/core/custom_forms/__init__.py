@@ -1,5 +1,6 @@
 from .multiple_file_input import MultipleFileField
-from .file_mixin import MultipleFileFormMixin, FileFormMixin
+from .file_mixin import FileFormMixin
 from .archaeological_obj import ArchaeologicalObjectFormMixin
-from .other_files_mixin import OtherFilesFormMixin
 from .meta_data_input import BaseDateInputMeta
+from .year_validation_mixin import YearValidationMixin
+

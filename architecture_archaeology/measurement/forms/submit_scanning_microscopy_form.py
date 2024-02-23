@@ -1,12 +1,12 @@
 from django import forms
 from measurement.models import ScanningElectronMicroscopy
 
-from core.custom_forms import FileFormMixin, BaseDateInputMeta, OtherFilesFormMixin
+from core.custom_forms import FileFormMixin, BaseDateInputMeta
 
 
-class SubmitScanningMicroscopyForm(forms.ModelForm, OtherFilesFormMixin, FileFormMixin):
+class SubmitScanningMicroscopyForm(forms.ModelForm, FileFormMixin):
 
-    report = forms.FileField(required=False, label='Результат', help_text='Файл отчета об анализе')
+    # report = forms.FileField(required=False, label='Результат', help_text='Файл отчета об анализе')
 
     class Meta(BaseDateInputMeta):
         model = ScanningElectronMicroscopy
@@ -24,6 +24,5 @@ class SubmitScanningMicroscopyForm(forms.ModelForm, OtherFilesFormMixin, FileFor
             'source',
             'comment',
             'foto',
-            'report',
             'other'
         )
