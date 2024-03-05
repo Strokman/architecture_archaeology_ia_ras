@@ -2,24 +2,36 @@ from django.forms.forms import BaseForm
 from django.http.response import HttpResponse
 from django.views.generic import CreateView
 from django.contrib.messages.views import SuccessMessageMixin
-from core.geocode import create_geocode_url, get_location_data
 from core.view_mixins.form_valid_files import FormValidFilesMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+from core.geocode import create_geocode_url, get_location_data
+from django.contrib import messages
+from helpers.models import Country, Region
 
 
 class CreateViewMixin(SuccessMessageMixin, LoginRequiredMixin, FormValidFilesMixin, CreateView):
 
     def form_valid(self, form: BaseForm) -> HttpResponse:
-        
+        if hasattr(self.model, 'region'):
+            lat = form.cleaned_data['lat']
+            long = form.cleaned_data['long']
+            try:
+                region_data = get_location_data(create_geocode_url(lat, long))
+            except ValueError as error:
+                messages.error(self.request, error)
+                return super().form_invalid(form)
+            try:
+                country = Country.objects.get(name=region_data['country'])
+            except Country.DoesNotExist:
+                country = Country.objects.create(name=region_data['country'])
+            try:
+                region = Region.objects.get(name=region_data['region'])
+            except Region.DoesNotExist:
+                region = Region.objects.create(name=region_data['region'], country=country)
+            form.instance.region = region
+        form.instance.creator = form.instance.editor = self.request.user
         self.object = form.save()
-        self.object.creator = self.object.editor = self.request.user
-        self.object.save()
-        # print(form.cleaned_data)
-        # long = form.cleaned_data['long']
-        # lat = form.cleaned_data['lat']
-        # print(type(long))
-        # loc = get_location_data(create_geocode_url(long, lat))
-        # print(loc)
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -31,7 +43,6 @@ class CreateViewMixin(SuccessMessageMixin, LoginRequiredMixin, FormValidFilesMix
         return f'{self.model._meta.verbose_name} {self.object.name} успешно создан'
 
     def get_success_url(self) -> str:
-        print(self.object)
         return self.object.get_absolute_url()
 
     def get_template_names(self) -> list[str]:

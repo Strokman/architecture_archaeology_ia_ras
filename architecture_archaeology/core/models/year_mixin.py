@@ -21,7 +21,7 @@ class YearMixin(BaseModel):
         elif self.year_min:
             date = f'Не ранее {year_min}'
         elif self.year_max:
-            date = f'Не позднее {year_min}'
+            date = f'Не позднее {year_max}'
         for i in a:
             if date.count(i) > 1:
                 date = date.replace(i, '', 1)
