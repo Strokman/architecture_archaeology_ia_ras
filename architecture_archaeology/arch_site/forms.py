@@ -16,4 +16,4 @@ class SubmitArchaeologicalSiteForm(YearValidationMixin, forms.ModelForm, FileFor
 
     class Meta:
         model = ArchaeologicalSite
-        fields = ['name', 'description', 'long', 'lat', 'year_min', 'year_max', 'comment']
+        fields = ['name', 'description', 'long', 'lat', 'preservation', 'year_min', 'year_max', 'comment']

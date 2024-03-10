@@ -8,4 +8,4 @@ class SubmitBuildingForm(YearValidationMixin, forms.ModelForm, FileFormMixin):
 
     class Meta:
         model = Building
-        fields = ('name', 'description', 'site', 'long', 'lat', 'year_min', 'year_max', 'comment')
+        fields = ('name', 'description', 'site', 'preservation', 'long', 'lat', 'year_min', 'year_max', 'comment')
