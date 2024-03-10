@@ -38,7 +38,7 @@ class UpdateViewMixin(SuccessMessageMixin, LoginRequiredMixin, FormValidFilesMix
                 region = Region.objects.get(name=region_data['region'])
             except Region.DoesNotExist:
                 region = Region.objects.create(name=region_data['region'], country=country)
-            
+         
             form.instance.region = region
         self.object.editor = self.request.user
         self.object = form.save()

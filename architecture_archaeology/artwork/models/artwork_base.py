@@ -14,8 +14,7 @@ class ArtworkBase(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
     square_number = models.CharField(max_length=255, verbose_name='Номер квадрата/участка/пласта по археологическим отчетам', null=True)
 
     site = models.ForeignKey("arch_site.ArchaeologicalSite", verbose_name='Памятник', null=False, on_delete=models.CASCADE)
-    building = models.ForeignKey('building.Building', verbose_name='Постройка', on_delete=models.PROTECT)
-    building_part = models.ForeignKey('building.BuildingPart', verbose_name='Элемент постройки', on_delete=models.PROTECT)
+
     color = models.ManyToManyField('helpers.Color', verbose_name='Цвета')
     preservation = models.ForeignKey('helpers.Preservation', verbose_name='Сохранность', on_delete=models.PROTECT)
 

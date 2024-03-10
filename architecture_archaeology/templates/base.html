@@ -133,6 +133,11 @@
                     </div>
                   </li>
                   {% endcomment %}
+                  {% if user.is_superuser %}
+                  <a href="{% url 'admin:index' %}" class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed mb-1" aria-expanded="false">
+                    Админка
+                  </a>
+                  {% endif %}
                   <li>
                     <div class="form-group">
                       <form method="post" action="{% url 'logout' %}">

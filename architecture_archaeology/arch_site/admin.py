@@ -3,4 +3,4 @@ from .models import ArchaeologicalSite
 # Register your models here.
 
 
-admin.site.register(ArchaeologicalSite)
+# admin.site.register(ArchaeologicalSite)
