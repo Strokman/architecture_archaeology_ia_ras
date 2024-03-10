@@ -14,7 +14,7 @@ class DetailViewMixin(LoginRequiredMixin, DetailView):
         model_name = self.model.__name__.lower()
         context['action'] = reverse_lazy(
             f'{app}:update{"-" + model_name if app in ['artwork', 'measurement'] else ""}',
-            kwargs= {'slug': self.object.slug}
+            kwargs={'slug': self.object.slug}
             )
         return context
 

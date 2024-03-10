@@ -9,9 +9,10 @@ from helpers.models import Region, Country
 from core.geocode import create_geocode_url, get_location_data
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 
-class UpdateViewMixin(SuccessMessageMixin, LoginRequiredMixin, FormValidFilesMixin, UpdateView):
+class UpdateViewMixin(SuccessMessageMixin, UserPassesTestMixin, LoginRequiredMixin, FormValidFilesMixin, UpdateView):
 
     def form_valid(self, form: BaseForm) -> HttpResponse:
         fotos = [file for file in self.object.file_set.all() if file.type.name == 'фотография']
@@ -59,3 +60,13 @@ class UpdateViewMixin(SuccessMessageMixin, LoginRequiredMixin, FormValidFilesMix
         template_names = super().get_template_names()
         template_names.append('form_template.html')
         return template_names
+
+    def test_func(self) -> bool | None:
+        obj = self.model.objects.get(slug=self.request.resolver_match.kwargs['slug'])
+        if obj.creator != self.request.user and not self.request.user.is_superuser:
+            return False
+        return True
+
+    def handle_no_permission(self) -> HttpResponseRedirect:
+        messages.error(self.request, 'Вы можете изменять только созданные Вами объекты')
+        return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
