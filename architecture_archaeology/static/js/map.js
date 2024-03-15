@@ -4,9 +4,20 @@ ymaps.ready(function(){
         zoom: 6,
         controls: ['rulerControl', 'searchControl', "zoomControl", "typeSelector", "searchControl"]
     });
+
     var marks = fetch('/map/get/').then(function(response) {
         return response.json();
     });
+
+    var isAuth;
+    fetch('/map/user/').then(response => response.json())
+    .then(data => {
+        isAuth = data;
+    })
+    .then(() => {
+        isAuth = isAuth.is_authenticated;
+    });
+
     function renderMarks(data){
         data.then(function(data) {
                 data.forEach(element => {
@@ -23,13 +34,14 @@ ymaps.ready(function(){
                 });
   
         };
+
     renderMarks(marks);
+
     map.events.add('boundschange', function (event) {
         var currentZoom = event.get('newZoom');
-
-        // Проверяем текущий масштаб
-        if (currentZoom >= 10) {
-            // Удаляем метки, если зум больше или равно 10
+        // Проверяем текущий масштаб и залогинен ли пользователь
+        if (currentZoom >= 10 && isAuth === false) {
+            // Удаляем метки, если зум больше или равно 10 и пользователь не залогинен
             map.geoObjects.removeAll();
         } else {
             // Возвращаем метки на место
@@ -37,6 +49,5 @@ ymaps.ready(function(){
             renderMarks(marks);
         }
     });
+
 });
-
-

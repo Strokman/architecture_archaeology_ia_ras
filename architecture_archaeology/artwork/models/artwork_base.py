@@ -6,8 +6,8 @@ from core.models import SlugMixin, YearMixin
 
 
 class ArtworkBase(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
-    name = models.CharField(verbose_name='Название', max_length=255)
-    code = models.CharField(verbose_name='Шифр', max_length=100)
+    name = models.CharField(verbose_name='Название', null=True, max_length=255)
+    code = models.CharField(verbose_name='Шифр', null=True, max_length=100)
     find_date_from = models.IntegerField(null=True, verbose_name='Год находки от:')
     find_date_to = models.IntegerField(null=True, verbose_name='до:')
     comment = models.TextField(verbose_name='Примечание', null=True)

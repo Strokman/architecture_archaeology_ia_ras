@@ -12,7 +12,12 @@ class Frescoe(ArtworkBase, DescriptionMixin, TimestampMixin, SlugMixin):
         MASS = 'M', _('массовый')
         INDIVIDUAL = 'I', _('индивидуальный')
 
+    class Kind(models.TextChoices):
+        LOTOK = 'L', _('лоток')
+        INDIVIDUAL = 'I', _('индивидуальная фреска')
+
     type = models.CharField(verbose_name='Тип', max_length=100, choices=Type)
+    kind = models.CharField(verbose_name='Вид', default=Kind.INDIVIDUAL, max_length=255, choices=Kind)
     size = models.CharField(verbose_name='Размер', max_length=255)
     amount = models.IntegerField(verbose_name='Количество фрагментов', null=True)
     museum_code = models.CharField(verbose_name='Музейный шифр', max_length=255)

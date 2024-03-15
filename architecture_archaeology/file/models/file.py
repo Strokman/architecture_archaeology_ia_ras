@@ -21,7 +21,6 @@ class File(TimestampMixin):
     bulding = models.ForeignKey('building.Building', null=True, on_delete=models.CASCADE)
     bulding_part = models.ForeignKey('building.BuildingPart', null=True, on_delete=models.CASCADE)
     indoor_artwork = models.ForeignKey('artwork.IndoorArtwork', null=True, on_delete=models.CASCADE)
-    lotok = models.ForeignKey('artwork.Lotok', null=True, on_delete=models.CASCADE)
     frescoe = models.ForeignKey('artwork.Frescoe', null=True, on_delete=models.CASCADE)
     artefact = models.ForeignKey('artefact.Artefact', null=True, on_delete=models.CASCADE)
     rfa = models.ForeignKey('measurement.RFA', null=True, on_delete=models.CASCADE)

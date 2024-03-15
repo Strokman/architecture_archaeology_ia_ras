@@ -7,11 +7,7 @@ from artwork.views import (SubmitIndoorArtworkView,
                            ListFrescoeView,
                            DetailFrescoeView,
                            UpdateFrescoeView,
-                           UpdateIndoorArtworkView,
-                           ListLotokView,
-                           SubmitLotokView,
-                           DetailLotokView,
-                           UpdateLotokView
+                           UpdateIndoorArtworkView
                            )
 
 app_name = 'artwork'
@@ -24,8 +20,8 @@ urlpatterns = [
     path("list/frescoes/", ListFrescoeView.as_view(), name="list-frescoe"),
     path("detail/frescoe/<slug:slug>", DetailFrescoeView.as_view(), name="detail-frescoe"),
     path("update/frescoe/<slug:slug>", UpdateFrescoeView.as_view(), name="update-frescoe"),
-    path("list/lotok/", ListLotokView.as_view(), name="list-lotok"),
-    path("submit/lotok/", SubmitLotokView.as_view(), name="submit-lotok"),
-    path("detail/lotok/<slug:slug>", DetailLotokView.as_view(), name="detail-lotok"),
-    path("update/lotok/<slug:slug>", UpdateLotokView.as_view(), name="update-lotok"),
+    path("list/lotok/", ListFrescoeView.as_view(), name="list-lotok"),
+    path("submit/lotok/", SubmitFrescoeView.as_view(), name="submit-lotok"),
+    # path("detail/lotok/<slug:slug>", DetailLotokView.as_view(), name="detail-lotok"),
+    # path("update/lotok/<slug:slug>", UpdateLotokView.as_view(), name="update-lotok"),
 ]

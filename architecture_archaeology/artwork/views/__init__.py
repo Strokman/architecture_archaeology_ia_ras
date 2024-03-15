@@ -6,7 +6,3 @@ from .list_frescoes_view import ListFrescoeView
 from .detail_frescoe_view import DetailFrescoeView
 from .update_frescoe_view import UpdateFrescoeView
 from .update_indoorartwork_view import UpdateIndoorArtworkView
-from .list_lotok_view import ListLotokView
-from .submit_lotok_view import SubmitLotokView
-from .detail_lotok_view import DetailLotokView
-from .update_lotok_view import UpdateLotokView
