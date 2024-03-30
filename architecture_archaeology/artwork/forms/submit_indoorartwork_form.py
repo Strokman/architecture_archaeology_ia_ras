@@ -9,12 +9,10 @@ class SubmitIndoorArtworkForm(YearValidationMixin, forms.ModelForm, FileFormMixi
         model = IndoorArtwork
         fields = ('name',
                   'description',
-                  'code',
                   'year_min',
                   'year_max',
                   'find_date_from',
                   'find_date_to',
-                  'square_number',
                   'comment',
                   'site',
                   'color',

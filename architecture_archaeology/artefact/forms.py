@@ -10,7 +10,6 @@ class SubmitArtefactForm(YearValidationMixin, forms.ModelForm, FileFormMixin):
         fields = ('name',
                   'description',
                   'site',
-                  'code',
                   'year_min',
                   'year_max',
                   'find_date_from',

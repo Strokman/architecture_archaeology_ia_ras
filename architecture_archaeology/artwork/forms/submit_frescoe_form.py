@@ -10,7 +10,6 @@ class SubmitFrescoeForm(YearValidationMixin, forms.ModelForm, FileFormMixin):
         fields = ('name',
                   'type',
                   'description',
-                  'code',
                   'year_min',
                   'year_max',
                   'find_date_from',

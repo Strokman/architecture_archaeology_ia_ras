@@ -8,7 +8,7 @@ from artwork.models.artwork_base import ArtworkBase
 class IndoorArtwork(ArtworkBase, DescriptionMixin, TimestampMixin, SlugMixin):
 
     def __str__(self):
-        return self.name
+        return self.name if self.name else f'{self._meta.verbose_name} №{self.code}'
 
     class Meta:
 

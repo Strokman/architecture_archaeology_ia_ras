@@ -6,17 +6,16 @@ from core.models import SlugMixin, YearMixin
 
 
 class ArtworkBase(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
-    name = models.CharField(verbose_name='Название', null=True, max_length=255)
-    code = models.CharField(verbose_name='Шифр', null=True, max_length=100)
-    find_date_from = models.IntegerField(null=True, verbose_name='Год находки от:')
-    find_date_to = models.IntegerField(null=True, verbose_name='до:')
-    comment = models.TextField(verbose_name='Примечание', null=True)
-    square_number = models.CharField(max_length=255, verbose_name='Номер квадрата/участка/пласта по археологическим отчетам', null=True)
+    name = models.CharField(verbose_name='Название', null=True, blank=True, max_length=255)
+    code = models.IntegerField(null=True, db_index=True, unique=True, verbose_name='Шифр')
+    find_date_from = models.IntegerField(null=True, blank=True, verbose_name='Год находки от:')
+    find_date_to = models.IntegerField(null=True, blank=True, verbose_name='до:')
+    comment = models.TextField(verbose_name='Примечание', null=True, blank=True)
 
     site = models.ForeignKey("arch_site.ArchaeologicalSite", verbose_name='Памятник', null=False, on_delete=models.CASCADE)
 
-    color = models.ManyToManyField('helpers.Color', verbose_name='Цвета')
-    preservation = models.ForeignKey('helpers.Preservation', verbose_name='Сохранность', on_delete=models.PROTECT)
+    color = models.ManyToManyField('helpers.Color', blank=True, verbose_name='Цвета')
+    preservation = models.ForeignKey('helpers.Preservation', null=False, verbose_name='Сохранность', on_delete=models.PROTECT)
 
     def get_absolute_url(self):
         if hasattr(self, 'slug'):

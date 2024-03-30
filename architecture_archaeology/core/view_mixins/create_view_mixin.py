@@ -7,7 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from core.geocode import create_geocode_url, get_location_data
 from django.contrib import messages
-from helpers.models import Country, Region
+from helpers.models import Country, Region, IndexTable
 
 
 class CreateViewMixin(SuccessMessageMixin, LoginRequiredMixin, FormValidFilesMixin, CreateView):
@@ -32,6 +32,21 @@ class CreateViewMixin(SuccessMessageMixin, LoginRequiredMixin, FormValidFilesMix
             form.instance.region = region
         form.instance.creator = form.instance.editor = self.request.user
         self.object = form.save()
+        indx = IndexTable()
+        match self.model.__name__.lower():
+            case 'frescoe':
+                indx.frescoe = self.object
+                indx.save()
+                self.object.code = indx.id
+            case 'indoorartwork':
+                indx.indoor_artwork = self.object
+                indx.save()
+                self.object.code = indx.id
+            case 'artefact':
+                indx.artefact = self.object
+                indx.save()
+                self.object.code = indx.id
+        self.object.save()
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):

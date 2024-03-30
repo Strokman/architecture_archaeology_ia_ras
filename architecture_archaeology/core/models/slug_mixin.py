@@ -12,7 +12,7 @@ class SlugMixin(BaseModel):
     editor = models.ForeignKey('auth.User', null=True, related_name='editor+', on_delete=models.PROTECT)
 
     def save(self, *args, **kwargs):
-        if hasattr(self, 'name'):
+        if hasattr(self, 'name') and self.name:
             self.slug = slugify(self.name, allow_unicode=True) + '-' + str(uuid1())
         else:
             self.slug = str(uuid4())
