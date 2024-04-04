@@ -6,8 +6,9 @@ from core.view_mixins.form_valid_files import FormValidFilesMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from core.geocode import create_geocode_url, get_location_data
+from core.services.index_service import sequence_id
 from django.contrib import messages
-from helpers.models import Country, Region, IndexTable
+from helpers.models import Country, Region
 
 
 class CreateViewMixin(SuccessMessageMixin, LoginRequiredMixin, FormValidFilesMixin, CreateView):
@@ -31,22 +32,9 @@ class CreateViewMixin(SuccessMessageMixin, LoginRequiredMixin, FormValidFilesMix
                 region = Region.objects.create(name=region_data['region'], country=country)
             form.instance.region = region
         form.instance.creator = form.instance.editor = self.request.user
+        if hasattr(form.instance, 'code'):
+            form.instance.code = sequence_id()
         self.object = form.save()
-        indx = IndexTable()
-        match self.model.__name__.lower():
-            case 'frescoe':
-                indx.frescoe = self.object
-                indx.save()
-                self.object.code = indx.id
-            case 'indoorartwork':
-                indx.indoor_artwork = self.object
-                indx.save()
-                self.object.code = indx.id
-            case 'artefact':
-                indx.artefact = self.object
-                indx.save()
-                self.object.code = indx.id
-        self.object.save()
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):

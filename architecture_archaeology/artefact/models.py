@@ -7,7 +7,7 @@ from core.models import SlugMixin, YearMixin
 
 # Create your models here.
 class Artefact(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
-    name = models.CharField(verbose_name='Название', max_length=255)
+    name = models.CharField(verbose_name='Название', null=True, blank=True, max_length=255)
     code = models.IntegerField(null=True, db_index=True, unique=True, verbose_name='Шифр')
     find_date_from = models.IntegerField(null=True, blank=True, verbose_name='Год находки от:')
     find_date_to = models.IntegerField(null=True, blank=True, verbose_name='до:')
@@ -24,7 +24,7 @@ class Artefact(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
         return reverse_lazy(f"{self._meta.app_label}:detail", kwargs={"pk": self.pk})
     
     def __str__(self):
-        return self.name
+        return self.name if self.name else f'{self._meta.verbose_name} №{self.code}'
 
     class Meta:
 

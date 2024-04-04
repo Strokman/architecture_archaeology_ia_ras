@@ -7,7 +7,7 @@ from core.models import SlugMixin, YearMixin
 
 class ArtworkBase(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
     name = models.CharField(verbose_name='Название', null=True, blank=True, max_length=255)
-    code = models.IntegerField(null=True, db_index=True, unique=True, verbose_name='Шифр')
+    code = models.IntegerField(null=False, db_index=True, unique=True, verbose_name='Шифр')
     find_date_from = models.IntegerField(null=True, blank=True, verbose_name='Год находки от:')
     find_date_to = models.IntegerField(null=True, blank=True, verbose_name='до:')
     comment = models.TextField(verbose_name='Примечание', null=True, blank=True)
@@ -16,7 +16,7 @@ class ArtworkBase(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
 
     color = models.ManyToManyField('helpers.Color', blank=True, verbose_name='Цвета')
     preservation = models.ForeignKey('helpers.Preservation', null=False, verbose_name='Сохранность', on_delete=models.PROTECT)
-
+    
     def get_absolute_url(self):
         if hasattr(self, 'slug'):
             return reverse_lazy(f"{self._meta.app_label}:detail-{self.__class__.__name__.lower()}", kwargs={"slug": self.slug})

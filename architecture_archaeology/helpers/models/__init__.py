@@ -7,4 +7,3 @@ from .pigment import Pigment
 from .material import Material
 from .mineral import Mineral
 from .filler import Filler
-from .index_table import IndexTable

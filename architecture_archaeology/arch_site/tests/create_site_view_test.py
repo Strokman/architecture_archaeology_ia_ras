@@ -6,9 +6,9 @@ from core.tests import BaseTestCreateView
 
 
 class CreateSiteViewTest(BaseTestCreateView):
-    fixtures = ['countries.json',
-                'regions.json'
-                ]
+    # fixtures = ['countries.json',
+    #             'regions.json'
+    #             ]
     model = ArchaeologicalSite
     form = SubmitArchaeologicalSiteForm
     
@@ -17,6 +17,5 @@ class CreateSiteViewTest(BaseTestCreateView):
         self.payload = {
             'name': "Килиса-кая",
             'long': 56.6,
-            'lat': 45.3,
-            'region': 16
+            'lat': 45.3
         }

@@ -3,16 +3,45 @@
 {% load static %}
 {% load settings_value %}
 <div class="container mb-5 text-center">
-    <h3>{{ object.name }}</h3>
+    <h3>{{ object }}</h3>
 
 </div>
-{% if object.file_set.all %}
-<div class="container mb-5">
 
-  <img src="{% for file in object.file_set.all %}{% if file.type.id == 1 %}{% url 'file:get' file.filename %}{% endif %}{% endfor %}" alt="Pic" width="100%">
-
+  {% if object.file_set.all %}
+  <div class="container mb-5">
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-theme="dark">
+    <div class="carousel-indicators">
+      {% for file in object.file_set.all %}
+      {% if forloop.counter0 == 0 %}
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop.counter0}}"  aria-current="true" class="active"  aria-label="Slide {{forloop.counter}}"></button>
+      {% else %}
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop.counter0}}" aria-label="Slide {{forloop.counter}}"></button>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <div class="carousel-inner">
+      {% for file in object.file_set.all %}
+      {% if file.type.id == 1 %}
+      <div class="carousel-item{% if forloop.counter == 1 %} active{% else %}{% endif %}">
+        <img src="{% url 'file:get' file.filename %}" class="d-block w-100 h-100 object-fit-contain border rounded" alt="{{file.original_name}}">
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 </div>
-{% endif %}
+  {% endif %}
+
+
+
 {% if object.description %}
 <div class="container mb-3">
   <div class="row">

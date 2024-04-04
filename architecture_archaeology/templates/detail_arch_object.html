@@ -10,8 +10,9 @@
     <p>{{ object.site }}</p>
 
 </div>
-<div class="container mb-5">
+
 {% if object.file_set.all %}
+<div class="container mb-5">
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-theme="dark">
   <div class="carousel-indicators">
     {% for file in object.file_set.all %}
@@ -40,19 +41,19 @@
     <span class="visually-hidden">Next</span>
   </button>
 </div>
-
+</div>
 {% else %}
-
+<div class="container mb-5">
 
     <img src="{% static 'images/default.png' %}" alt="Pic" width="100%">
   
   
-
+  </div>
 {% endif %}
-</div>
 
 
-<div class="container mb-3">
+
+<div class="container mb-3 mt-5">
     <div class="row">
       <div class="col">
       <strong>Административаня принадлежность</strong>

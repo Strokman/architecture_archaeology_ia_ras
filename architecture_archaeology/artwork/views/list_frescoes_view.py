@@ -23,7 +23,6 @@ class ListFrescoeView(ListViewMixin):
             context['base_url'] = reverse_lazy('artwork:list-frescoe')
         return context
 
-
     def get_queryset(self) -> QuerySet[Any]:
         if 'lotok' in self.request.path:
             qs = Frescoe.objects.filter(kind='L')
