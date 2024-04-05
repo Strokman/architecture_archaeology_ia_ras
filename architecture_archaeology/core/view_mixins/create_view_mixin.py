@@ -11,7 +11,12 @@ from django.contrib import messages
 from helpers.models import Country, Region
 
 
-class CreateViewMixin(SuccessMessageMixin, LoginRequiredMixin, FormValidFilesMixin, CreateView):
+class CreateViewMixin(
+                    SuccessMessageMixin,
+                    LoginRequiredMixin,
+                    FormValidFilesMixin,
+                    CreateView
+                    ):
 
     def form_valid(self, form: BaseForm) -> HttpResponse:
         if hasattr(self.model, 'region'):
@@ -43,7 +48,7 @@ class CreateViewMixin(SuccessMessageMixin, LoginRequiredMixin, FormValidFilesMix
         return context
 
     def get_success_message(self, cleaned_data: dict[str, str]) -> str:
-        return f'{self.model._meta.verbose_name} {self.object.name} успешно создан'
+        return f'{self.model._meta.verbose_name} {self.object} успешно создан'
 
     def get_success_url(self) -> str:
         return self.object.get_absolute_url()

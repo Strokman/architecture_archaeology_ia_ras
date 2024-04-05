@@ -9,7 +9,7 @@ class DetailViewMixin(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context['title'] = f'{self.object.name}'
+        context['title'] = f'{self.object}'
         app = self.model._meta.app_label
         model_name = self.model.__name__.lower()
         context['action'] = reverse_lazy(

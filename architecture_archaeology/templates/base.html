@@ -38,7 +38,7 @@
 
     {% endblock head %}
   </head>
-  <body>
+  <body class="d-flex flex-column" style="min-height: 100vh">
 
 
 
@@ -59,7 +59,7 @@
 
 
       
-        <div class="row">
+        <div class="row flex-grow-1" style="width:100%">
 
           
             <div class="flex-shrink-0 p-3" style="width: 280px;">
@@ -186,12 +186,12 @@
 
     
     {% block footer %}
-    <div class="row">
+
     <footer class="footer mt-auto bg-light">
 
-      <div class="d-flex flex-column flex-sm-row justify-content-between my-3 border-top">
+      <div class="d-flex flex-column flex-sm-row justify-content-between my-3 mx-3 border-top">
 
-          <p>© 2023 Институт археологии РАН</p>
+          <p>© 2024 Институт археологии РАН</p>
           <ul class="list-unstyled d-flex">
               <li class="ms-3"><a class="link-body-emphasis" href="https://archaeolog.ru/" id="ia-ras-logo"><img src="{% static 'images/ia-ras-logo.png' %}" width="64" height="64"></a></li>
               <li class="ms-3"><a class="link-body-emphasis" href="https://archaeolog.ru/ru/scientific-departments/laboratoriya-arkhitekturnoy-arkheologii" id="ia-ras-logo"><img src="{% static 'images/aa-lab-logo.jpeg' %}" width="64" height="64"></a></li>
@@ -199,7 +199,7 @@
 
         </div>
   </footer>
-</div>
+
     {% endblock %}
     {% block scripts %}
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

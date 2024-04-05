@@ -9,7 +9,7 @@ class PetrographyFilter(django_filters.FilterSet):
     measurement_date = django_filters.DateFromToRangeFilter(widget=widgets.RangeWidget(attrs={'placeholder': 'гггг-мм-дд', 'class': 'input-group mb-3'}))
     operator = django_filters.CharFilter(lookup_expr='icontains')
     equipment = django_filters.CharFilter(lookup_expr='icontains')
-    
+
     binder_name = django_filters.CharFilter(lookup_expr='icontains')
     filler_description = django_filters.CharFilter(lookup_expr='icontains')
     comment = django_filters.CharFilter(lookup_expr='icontains')

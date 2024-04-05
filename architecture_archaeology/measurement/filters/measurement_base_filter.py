@@ -1,7 +1,6 @@
 import django_filters
 from django_filters import widgets
 from helpers.models import Color
-from arch_site.models import ArchaeologicalSite
 
 
 class MeasurementBaseFilter(django_filters.FilterSet):
@@ -13,5 +12,4 @@ class MeasurementBaseFilter(django_filters.FilterSet):
     comment = django_filters.CharFilter(lookup_expr='icontains')
     additional_elements = django_filters.CharFilter(lookup_expr='icontains')
     source = django_filters.CharFilter(lookup_expr='icontains')
-    site = django_filters.ModelMultipleChoiceFilter(queryset=ArchaeologicalSite.objects.all())
     color = django_filters.ModelMultipleChoiceFilter(queryset=Color.objects.all())

@@ -8,8 +8,8 @@ class InfraredRamanMicroscopy(MeasurementBase):
         INFRARED = 'IR', _('ИК спектроскопия')
         RAMAN_SPECTR = 'RS', _('рамановская спектроскопия')
 
-    method = models.CharField(verbose_name='Метод', choices=Method, max_length=255, null=True)
-    groups = models.CharField(verbose_name='Функциональные группы и соединения', max_length=255, null=True)
+    method = models.CharField(verbose_name='Метод', choices=Method, max_length=255, null=True, blank=True)
+    groups = models.CharField(verbose_name='Функциональные группы и соединения', max_length=255, null=True, blank=True)
 
     class Meta:
         verbose_name = verbose_name_plural = 'ИК и рамановская спектроскопия'
