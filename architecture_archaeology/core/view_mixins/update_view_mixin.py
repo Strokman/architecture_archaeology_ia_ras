@@ -12,7 +12,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 
 
-class UpdateViewMixin(SuccessMessageMixin, UserPassesTestMixin, LoginRequiredMixin, FormValidFilesMixin, UpdateView):
+# TODO: добавить проверку, что широта и долгота == записи в ДБ и не делать ничего
+class UpdateViewMixin(
+                    SuccessMessageMixin,
+                    UserPassesTestMixin,
+                    LoginRequiredMixin,
+                    FormValidFilesMixin,
+                    UpdateView
+                    ):
 
     def form_valid(self, form: BaseForm) -> HttpResponse:
         fotos = [file for file in self.object.file_set.all() if file.type.name == 'фотография']

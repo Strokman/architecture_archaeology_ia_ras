@@ -29,6 +29,26 @@ class Petrography(SlugMixin, TimestampMixin):
     pores_diameter = models.DecimalField(max_digits=8, decimal_places=5, verbose_name='Диаметр пор', null=True, blank=True)
     comment = models.TextField(verbose_name='Примечание', null=True, blank=True)
 
+    frescoe = models.ForeignKey('artwork.Frescoe', null=True, blank=True, on_delete=models.CASCADE)
+    indoor_artwork = models.ForeignKey('artwork.IndoorArtwork', null=True, blank=True, on_delete=models.CASCADE)
+    artefact = models.ForeignKey('artefact.Artefact', null=True, blank=True, on_delete=models.CASCADE)
+
+    @property
+    def parent_obf(self):
+        return self.frescoe or self.indoor_artwork or self.artefact
+
+    @parent_obf.setter
+    def parent_obj(self, obj):
+        match obj.__class__.__name__.lower():
+            case 'indoorartwork':
+                self.indoor_artwork = obj
+            case 'frescoe':
+                self.frescoe = obj
+            case 'artefact':
+                self.artefact = obj
+            case _:
+                raise ValueError('Object must be of type Artwork or Artefact')
+
     def __str__(self) -> str:
         return f'Шлиф № {self.number}'
 

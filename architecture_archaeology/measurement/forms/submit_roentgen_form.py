@@ -1,10 +1,10 @@
 from django import forms
 from measurement.models import Roentgen
 
-from core.custom_forms import FileFormMixin, BaseDateInputMeta
+from core.custom_forms import FileFormMixin, BaseDateInputMeta, CodeMixin
 
 
-class SubmitRoentgenForm(forms.ModelForm, FileFormMixin):
+class SubmitRoentgenForm(forms.ModelForm, FileFormMixin, CodeMixin):
 
     class Meta(BaseDateInputMeta):
         model = Roentgen
@@ -14,6 +14,7 @@ class SubmitRoentgenForm(forms.ModelForm, FileFormMixin):
             'material',
             'operator',
             'equipment',
+            'code',
             'conditions',
             'color',
             'pigment',

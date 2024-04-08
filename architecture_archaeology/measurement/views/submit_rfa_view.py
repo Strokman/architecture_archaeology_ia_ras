@@ -1,9 +1,9 @@
 from measurement.models import RFA
 from measurement.forms import SubmitRFAForm
 
-from core.view_mixins import CreateViewMixin
+from core.view_mixins import CreateMeasurementMixin
 
 
-class SubmitRFAView(CreateViewMixin):
+class SubmitRFAView(CreateMeasurementMixin):
     model = RFA
     form_class = SubmitRFAForm

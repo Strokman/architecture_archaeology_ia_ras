@@ -20,6 +20,7 @@ class ListViewMixin(LoginRequiredMixin, FilterView):
         context['base_url'] = reverse_lazy(
             f'{app}:list{"-" + model_name if app in ['artwork', 'measurement'] else ""}'
             )
+        print(self.request.GET)
         return context
 
     def get_template_names(self) -> list[str]:

@@ -3,8 +3,10 @@ from measurement.models import GasChromatographyMassSpectrometry
 
 from core.custom_forms import FileFormMixin, BaseDateInputMeta
 
+from core.custom_forms import CodeMixin
 
-class SubmitGCMSForm(forms.ModelForm, FileFormMixin):
+
+class SubmitGCMSForm(forms.ModelForm, FileFormMixin, CodeMixin):
 
     class Meta(BaseDateInputMeta):
         model = GasChromatographyMassSpectrometry
@@ -14,6 +16,7 @@ class SubmitGCMSForm(forms.ModelForm, FileFormMixin):
             'material',
             'operator',
             'equipment',
+            'code',
             'conditions',
             'color',
             'pigment',
