@@ -46,7 +46,7 @@ class UpdateViewMixin(
                 region = Region.objects.get(name=region_data['region'])
             except Region.DoesNotExist:
                 region = Region.objects.create(name=region_data['region'], country=country)
-         
+   
             form.instance.region = region
         self.object.editor = self.request.user
         self.object = form.save()
@@ -58,7 +58,7 @@ class UpdateViewMixin(
         return context
 
     def get_success_message(self, cleaned_data: dict[str, str]) -> str:
-        return f'{self.model._meta.verbose_name} {self.object.name} успешно отредактирован'
+        return f'{self.model._meta.verbose_name} {self.object} успешно отредактирован'
 
     def get_success_url(self) -> str:
         return self.object.get_absolute_url()

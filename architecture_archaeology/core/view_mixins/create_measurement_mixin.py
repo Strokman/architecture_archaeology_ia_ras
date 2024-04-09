@@ -1,3 +1,4 @@
+from typing import Any
 from django.forms.forms import BaseForm
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
@@ -31,3 +32,8 @@ class CreateMeasurementMixin(CreateViewMixin):
             messages.error(self.request, 'Фрески или находки не существует!')
             return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
         return super().form_valid(form)
+
+    def get_initial(self) -> dict[str, Any]:
+        initial = super().get_initial()
+        initial['code'] = self.request.GET.get('code')
+        return initial

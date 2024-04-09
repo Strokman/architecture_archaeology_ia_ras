@@ -1,3 +1,5 @@
+# TODO: сделать макс не 2024, а сейчас из datetime
+
 class RangeDatesFilterBase:
 
     def filter_dating(self, queryset, name, value):

@@ -9,4 +9,4 @@ class RoentgenFilter(MeasurementBaseFilter):
 
     class Meta:
         model = Roentgen
-        fields = ['mineral']
+        fields = ()
