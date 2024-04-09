@@ -13,3 +13,4 @@ class InfraredRamanMicroscopy(MeasurementBase):
 
     class Meta:
         verbose_name = verbose_name_plural = 'ИК и рамановская спектроскопия'
+        ordering = ('created_at', 'id')

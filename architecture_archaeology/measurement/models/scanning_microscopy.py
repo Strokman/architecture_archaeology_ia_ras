@@ -8,3 +8,4 @@ class ScanningElectronMicroscopy(MeasurementBase):
 
     class Meta:
         verbose_name = verbose_name_plural = 'Растровая электронная микроскопия'
+        ordering = ('created_at', 'id')

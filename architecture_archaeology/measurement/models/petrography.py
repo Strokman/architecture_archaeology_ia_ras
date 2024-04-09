@@ -54,3 +54,4 @@ class Petrography(SlugMixin, TimestampMixin):
 
     class Meta:
         verbose_name = verbose_name_plural = 'Петрография'
+        ordering = ('created_at', 'id')

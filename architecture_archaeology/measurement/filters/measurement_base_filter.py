@@ -35,5 +35,5 @@ class MeasurementBaseFilter(django_filters.FilterSet):
             i.pk for i in queryset if i.parent_obj.code >= start
             and i.parent_obj.code <= end
             ]
-        rv = queryset.filter(pk__in=list_of_ids)
-        return rv
+        qs = queryset.filter(pk__in=list_of_ids).order_by('pk')
+        return qs

@@ -9,3 +9,4 @@ class Roentgen(MeasurementBase):
     class Meta:
         verbose_name = 'Рентгенофазовый и рентгеноструктурный анализ'
         verbose_name_plural = 'Рентгенофазовый и рентгеноструктурный анализы'
+        ordering = ('created_at', 'id')

@@ -2,15 +2,19 @@
 {% block content %}
 {% load static %}
 {% load settings_value %}
-<div class="container mb-5 text-center">
-    <h3>{{ object.name }}</h3>
+<div class="container mb-3 text-center">
+    <h3>{{ object }}</h3>
 
 </div>
-<div class="container mb-5 text-center">
+
+<div class="container mb-3 text-center">
     <p>{{ object.site }}</p>
 
 </div>
 
+
+
+<!-- Прикрепленные фото в карусели, если нет - дефолтная картинка -->
 {% if object.file_set.all %}
 <div class="container mb-5">
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-theme="dark">
@@ -55,16 +59,14 @@
 
 <div class="container mb-3 mt-5">
     <div class="row">
-      <div class="col">
+      <div class="col-6">
       <strong>Административаня принадлежность</strong>
       </div>
       <div class="col">
         {% if object.region %}
-        {{ object.region.country }}<br>
-        {{ object.region }}
+        {{ object.region }}<br>
         {% else %}
-        {{ object.site.region.country }}<br>
-        {{ object.site.region }}
+        {{ object.site.region }}<br>
         {% endif %}
       </div>
   </div>
@@ -74,15 +76,15 @@
 
 <div class="container mb-3">
   <div class="row">
-    <div class="col">
+    <div class="col-6">
     <strong>Описание</strong>
     </div>
     <div class="col">
       {{ object.description }}
     </div>
 </div>
-
 </div>
+
 {% if object.year_min or object.year_max %}
 <div class="container mb-3">
   <div class="row">
@@ -108,6 +110,18 @@
   
   </div>
 
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Сохранность</strong>
+      </div>
+      <div class="col">
+        {{ object.get_preservation_display }}
+      </div>
+  </div>
+  
+  </div>
+
 {% if object.building_set.all %}
 <div class="container mb-3">
     <div class="row">
@@ -121,6 +135,20 @@
       </div>
   </div>
   </div>
+{% endif %}
+
+{% if object.query_string_for_all_children %}
+{% include '_measurements_links.html' %}
+{% endif %}
+
+{% if object.indoorartwork_set %}
+{% include '_artefacts_links.html' with id=object.pk %}
+
+{% comment %}
+{% else %}
+{% include '_artefacts_links.html' with id=object.site.pk %}
+{% endcomment %}
+
 {% endif %}
 
 {% if object.site %}

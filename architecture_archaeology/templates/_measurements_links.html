@@ -1,0 +1,16 @@
+<div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Измерения</strong>
+      </div>
+      <div class="col">
+      
+        <a href="{% url 'measurement:list-rfa' %}{{object.query_string_for_all_children}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">РФА</a><br>
+        <a href="{% url 'measurement:list-infraredramanmicroscopy' %}{{object.query_string_for_all_children}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">ИК и рамановская спектроскопия</a><br>
+        <a href="{% url 'measurement:list-gaschromatographymassspectrometry' %}{{object.query_string_for_all_children}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Газовая хроматография</a><br>
+        <a href="{% url 'measurement:list-roentgen' %}{{object.query_string_for_all_children}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Рентгенография</a><br>
+        <a href="{% url 'measurement:list-scanningelectronmicroscopy' %}{{object.query_string_for_all_children}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Микроскопия</a><br>
+        <a href="{% url 'measurement:list-petrography' %}{{object.query_string_for_all_children}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Петрография</a><br>
+      </div>
+  </div>
+  </div>

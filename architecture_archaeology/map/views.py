@@ -25,5 +25,8 @@ def get_data(request):
 
 
 def get_user_data(request):
-    is_authenticated = json.dumps({'is_authenticated': request.user.is_authenticated})
+    is_authenticated = json.dumps(
+        {'is_authenticated':
+         request.user.is_authenticated}
+         )
     return HttpResponse(is_authenticated, content_type='application/json')

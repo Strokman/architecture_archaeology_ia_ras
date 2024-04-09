@@ -54,3 +54,4 @@ class MeasurementBase(TimestampMixin, SlugMixin):
 
     class Meta:
         abstract = True
+        ordering = ('created_at', 'id')

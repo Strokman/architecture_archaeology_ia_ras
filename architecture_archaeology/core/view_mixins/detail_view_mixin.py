@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class DetailViewMixin(LoginRequiredMixin, DetailView):
     context_object_name = 'object'
+    template_name = 'detail_measurement.html'
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -17,8 +18,3 @@ class DetailViewMixin(LoginRequiredMixin, DetailView):
             kwargs={'slug': self.object.slug}
             )
         return context
-
-    def get_template_names(self) -> list[str]:
-        template_names = super().get_template_names()
-        template_names.append('detail.html')
-        return template_names

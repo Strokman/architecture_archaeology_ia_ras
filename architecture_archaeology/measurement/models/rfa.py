@@ -9,3 +9,5 @@ class RFA(MeasurementBase):
 
     class Meta:
         verbose_name = verbose_name_plural = 'РФА'
+        ordering = ('created_at', 'id')
+
