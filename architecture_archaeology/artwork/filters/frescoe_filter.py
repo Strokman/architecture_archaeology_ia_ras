@@ -17,4 +17,20 @@ class FrescoeFilter(ArtworkBaseFilter):
 
     class Meta:
         model = Frescoe
-        fields = ['type']
+        fields = ('type',
+                  'name',
+                  'code',
+                  'site',
+                  'indoor_artwork',
+                  'dating',
+                  'find_date',
+                  'color',
+                  'preservation',
+                  'storage',
+                  'description',
+                  'comment',
+                  'amount',
+                  'size',
+                  'museum_code',
+                  'square_number'
+                  )

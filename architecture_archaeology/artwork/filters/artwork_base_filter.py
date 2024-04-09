@@ -9,7 +9,7 @@ class ArtworkBaseFilter(django_filters.FilterSet, RangeDatesFilterBase):
     name = django_filters.CharFilter(lookup_expr='icontains')
     code = django_filters.CharFilter(lookup_expr='icontains')
     description = django_filters.CharFilter(lookup_expr='icontains')
-    year = django_filters.RangeFilter(
+    dating = django_filters.RangeFilter(
         label='Датировка',
         method='filter_dating')
     find_date = django_filters.RangeFilter(

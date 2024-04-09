@@ -10,7 +10,7 @@ class ListFrescoeView(ListViewMixin):
     filterset_class = FrescoeFilter
 
     model = Frescoe
-    
+
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         if 'lotok' in self.request.path:

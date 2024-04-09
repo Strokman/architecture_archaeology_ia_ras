@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class ListViewMixin(LoginRequiredMixin, FilterView):
     paginate_by = 10
     context_object_name = 'objects'
+    template_name = 'list.html'
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -22,8 +23,3 @@ class ListViewMixin(LoginRequiredMixin, FilterView):
             f'{app}:list{"-" + model_name if app in ['artwork', 'measurement'] else ""}'
             )
         return context
-
-    def get_template_names(self) -> list[str]:
-        template_names = super().get_template_names()
-        template_names.append('list.html')
-        return template_names

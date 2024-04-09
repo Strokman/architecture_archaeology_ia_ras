@@ -68,14 +68,12 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
 {% endfor %}
 </div>
+
+
+
+{% if objects %}
 <div class="pagination mt-3 container text-center">
   <span class="step-links">
       {% if page_obj.has_previous %}
@@ -93,5 +91,6 @@
       {% endif %}
   </span>
 </div>
+{% endif %}
 
 {% endblock content %}

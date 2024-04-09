@@ -9,7 +9,7 @@ class ArtefactFilter(django_filters.FilterSet, RangeDatesFilterBase):
     name = django_filters.CharFilter(lookup_expr='icontains')
     description = django_filters.CharFilter(lookup_expr='icontains')
     code = django_filters.CharFilter(lookup_expr='icontains')
-    year = django_filters.RangeFilter(label='Датировка', method='filter_dating')
+    dating = django_filters.RangeFilter(label='Датировка', method='filter_dating')
     find_date = django_filters.RangeFilter(label='Год находки', method='filter_dating')
     site = django_filters.ModelMultipleChoiceFilter(queryset=ArchaeologicalSite.objects.all())
     storage = django_filters.ModelMultipleChoiceFilter(queryset=Storage.objects.all())
@@ -17,4 +17,15 @@ class ArtefactFilter(django_filters.FilterSet, RangeDatesFilterBase):
 
     class Meta:
         model = Artefact
-        fields = []
+        fields = (
+            'name',
+            'code',
+            'site',
+            'dating',
+            'find_date',
+            'storage',
+            'square_number',
+            'museum_code',
+            'description',
+            'comment'
+        )

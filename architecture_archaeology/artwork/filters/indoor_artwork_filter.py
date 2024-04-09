@@ -6,4 +6,14 @@ class IndoorArtworkFilter(ArtworkBaseFilter):
 
     class Meta:
         model = IndoorArtwork
-        fields = []
+        fields = (
+            'name',
+            'code',
+            'site',
+            'dating',
+            'find_date',
+            'color',
+            'preservation',
+            'description',
+            'comment'
+        )
