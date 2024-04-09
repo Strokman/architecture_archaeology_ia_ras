@@ -1,0 +1,270 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+{% load settings_value %}
+<div class="container mb-3 text-center">
+    <h3>{{ object }}</h3>
+</div>
+
+<div class="container mb-3 text-center">
+    <a href="{{ object.parent_obj.get_absolute_url}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ object.parent_obj }}</a> 
+</div>
+
+<div class="container mb-5">
+  {% if object.file_set.all %}
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-theme="dark">
+    <div class="carousel-indicators">
+      {% for file in object.file_set.all %}
+      {% if forloop.counter0 == 0 %}
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop.counter0}}"  aria-current="true" class="active"  aria-label="Slide {{forloop.counter}}"></button>
+      {% else %}
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop.counter0}}" aria-label="Slide {{forloop.counter}}"></button>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <div class="carousel-inner">
+      {% for file in object.file_set.all %}
+      {% if file.type.id == 1 %}
+      <div class="carousel-item{% if forloop.counter == 1 %} active{% else %}{% endif %}">
+        <img src="{% url 'file:get' file.filename %}" class="d-block w-100 h-100 object-fit-contain border rounded" alt="{{file.original_name}}">
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  {% endif %}
+  </div>
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Номер шлифа</strong>
+      </div>
+      <div class="col">
+        {{ object.number }}
+      </div>
+  </div>
+  </div>
+
+<div class="container mb-3">
+  <div class="row">
+    <div class="col">
+    <strong>Оператор</strong>
+    </div>
+    <div class="col">
+      {{ object.operator }}
+    </div>
+</div>
+</div>
+
+
+<div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Оборудование</strong>
+      </div>
+      <div class="col">
+        {{ object.equipment }}
+      </div>
+  </div>
+  </div>
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Условия</strong>
+      </div>
+      <div class="col">
+        {{ object.conditions }}
+      </div>
+  </div>
+  </div>
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Поры</strong>
+      </div>
+      <div class="col">
+        {% if object.pores %}
+        {{ object.get_pores_display }}<br>
+        Диаметр пор: {{ object.pores_diameter }} %<br>
+        {% endif %}
+      </div>
+  </div>
+  </div>
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Вяжущее</strong>
+      </div>
+      <div class="col">
+        {% if object.binder %}
+        {{ object.binder_name }}<br>
+        {{ object.binder_percent }} %<br>
+        {{ object.binder_description }} %<br>
+        {% endif %}
+      </div>
+  </div>
+  </div>
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Заполнитель</strong>
+      </div>
+      <div class="col">
+        {% if object.filler_contains %}
+        {% for filler in object.filler_contains.all %}
+        {{ filler }}<br>
+        {% endfor %}
+        {{ object.filler_percent }} %<br>
+        {{ object.filler_description }}<br>
+        {% endif %}
+      </div>
+  </div>
+  </div>
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Цвета</strong>
+      </div>
+      <div class="col">
+        {% for color in object.color.all %}
+        {{ color }}<br>
+        {% endfor %}
+      </div>
+  </div>
+  </div>
+
+
+
+<div class="container mb-3">
+  <div class="row">
+    <div class="col">
+    <strong>Материал</strong>
+    </div>
+    <div class="col">
+      {{ object.get_material_display }}
+    </div>
+</div>
+</div>
+
+<div class="container mb-3">
+  <div class="row">
+    <div class="col">
+    <strong>Пигменты</strong>
+    </div>
+    <div class="col">
+      {% for pigment in object.pigment.all %}
+      {{ pigment }}<br>
+      {% endfor %}
+    </div>
+</div>
+</div>
+
+<div class="container mb-3">
+  <div class="row">
+    <div class="col">
+    <strong>Дополнительные соединения</strong>
+    </div>
+    <div class="col">
+      {% if object.additional_elements %} {{ object.additional_elements }} {% endif %}
+    </div>
+</div>
+</div>
+
+<div class="container mb-3">
+  <div class="row">
+    <div class="col">
+    <strong>Элементы</strong>
+    </div>
+    <div class="col">
+      {% for element in object.element.all %}
+      {{ element }}<br>
+      {% endfor %}
+    </div>
+</div>
+</div>
+
+<div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Примечание</strong>
+      </div>
+      <div class="col">
+        {{ object.comment }}
+      </div>
+  </div>
+  
+  </div>
+
+
+<div class="container mb-5">
+  <div class="row">
+    <div class="col">
+    <strong>Файлы</strong>
+    </div>
+    <div class="col">
+      {% for file in object.file_set.all %}
+      <a href="{% url 'file:get' file.filename %}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{file.original_name}}</a> - {{file.type}} <br>  
+      {% endfor %}
+    </div>
+</div>
+</div>
+
+<div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Дата исследования</strong>
+      </div>
+      <div class="col">
+        {{ object.measurement_date }}
+      </div>
+  </div>
+  
+  </div>
+
+
+<div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Кем создано</strong>
+      </div>
+      <div class="col">
+        {{ object.creator.first_name }} {{ object.creator.last_name }}<br>
+        {{ object.created_at }}
+      </div>
+  </div>
+</div>
+  
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Кем редактировалось</strong>
+      </div>
+      <div class="col">
+        {{ object.editor.first_name }} {{ object.editor.last_name }}<br>
+        {{ object.updated_at }}
+      </div>
+  </div>
+
+  </div>
+
+
+<div class="container text-center">
+  <a href="{{action}}" class="btn btn-primary">Редактировать</a>
+
+</div>
+
+{% endblock content %}

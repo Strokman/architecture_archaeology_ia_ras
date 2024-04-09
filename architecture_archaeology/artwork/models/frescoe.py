@@ -35,3 +35,4 @@ class Frescoe(ArtworkBase, DescriptionMixin, TimestampMixin, SlugMixin):
     class Meta:
         verbose_name = 'Индивидуальная фреска'
         verbose_name_plural = 'Индивидуальные фрески'
+        ordering = ('code', 'id')

@@ -25,6 +25,11 @@ class ArtworkBase(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
     def generate_query_string(self):
         url = f'{reverse_lazy("measurement:submit-rfa")}?code={self.code}&obj={self.__class__.__name__.lower()}'
         return url
+    
+    def find_date(self):
+        if not self.find_date_from and not self.find_date_to:
+            return ''
+        return f'{self.find_date_from} - {self.find_date_to} гг.' if self.find_date_to else f'{self.find_date_from} г.'
 
     class Meta:
         abstract = True

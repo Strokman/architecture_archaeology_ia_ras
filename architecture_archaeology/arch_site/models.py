@@ -23,15 +23,18 @@ class ArchaeologicalSite(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin)
                                on_delete=models.PROTECT,
                                related_name='sites',
                                help_text='Выберите один из регионов')
-    
+
     @property
     def query_string_for_all_children(self):
+        # TODO: Нужно оптимизировать, чтоб не было много запросов
         indoorartworks = self.indoorartwork_set.all()
         frescoes = self.frescoe_set.all()
         artefacts = self.artefact_set.all()
         all_children = [str(i.code) for i in indoorartworks] + [str(i.code) for i in frescoes] + [str(i.code) for i in artefacts]
+        if not all_children:
+            return ''
         query_string = ','.join(all_children)
-        return '?parent=' + query_string
+        return query_string
 
     def __str__(self):
         return f'{self.name}'

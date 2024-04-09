@@ -37,8 +37,8 @@ class ListViewMixin(LoginRequiredMixin, FilterView):
 
             # Если в запросе есть ключ parent - преобразовывается
             # в список интов
-            parent_obj_codes = list(map(int, parent_obj_codes.split(',')))
-
+            parent_obj_codes = (i for i in parent_obj_codes.split(',') if i.isdigit())
+            parent_obj_codes = list(map(int, parent_obj_codes))
             # делается запрос на все измерения
             qs = self.model.objects.all()
 
@@ -51,7 +51,7 @@ class ListViewMixin(LoginRequiredMixin, FilterView):
             # фильтруем объекты по списку айдишников
             qs = qs.filter(pk__in=list_of_ids)
             return qs
-        
+
         # Если нужная query string не пришла - 
         # вызываем метод дальше по иерархии
         return super().get_queryset()

@@ -34,3 +34,4 @@ class Artefact(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
 
         verbose_name = 'Находка'
         verbose_name_plural = 'Находки'
+        ordering = ('code', 'id')

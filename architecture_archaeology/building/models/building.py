@@ -25,3 +25,4 @@ class Building(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
 
         verbose_name = 'Постройка'
         verbose_name_plural = 'Постройки'
+        ordering = ('name', 'id')

@@ -4,7 +4,6 @@ from core.models import SlugMixin
 from artwork.models.artwork_base import ArtworkBase
 
 
-# Create your models here.
 class IndoorArtwork(ArtworkBase, DescriptionMixin, TimestampMixin, SlugMixin):
 
     def __str__(self):
@@ -14,3 +13,4 @@ class IndoorArtwork(ArtworkBase, DescriptionMixin, TimestampMixin, SlugMixin):
 
         verbose_name = 'Изображение в постройке'
         verbose_name_plural = 'Изображения в постройке'
+        ordering = ('code', 'id')
