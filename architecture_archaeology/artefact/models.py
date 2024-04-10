@@ -27,7 +27,7 @@ class Artefact(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
         return self.name if self.name else f'{self._meta.verbose_name} №{self.code}'
 
     def generate_query_string(self):
-        url = f'{reverse_lazy("measurement:submit-rfa")}?code={self.code}&obj={self.__class__.__name__.lower()}'
+        url = f'?code={self.code}'
         return url
 
     class Meta:

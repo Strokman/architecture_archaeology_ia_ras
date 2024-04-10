@@ -4,8 +4,7 @@ from measurement.models.measurement_base import MeasurementBase
 
 class RFA(MeasurementBase):
 
-    # TODO: сделать множественный выбор из таблицы менделеева
-    elements = models.CharField(verbose_name='Элементы', max_length=255, null=True, blank=True)
+    elements = models.ManyToManyField('helpers.Element', blank=True, verbose_name='Элементы периодической таблицы')
 
     class Meta:
         verbose_name = verbose_name_plural = 'РФА'

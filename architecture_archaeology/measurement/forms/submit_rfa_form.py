@@ -1,13 +1,19 @@
 from django import forms
 # from django.core import validators
 from measurement.models import RFA
+from helpers.models import Element
 from core.custom_forms import FileFormMixin, BaseDateInputMeta
 from core.custom_forms import CodeMixin
 
 
 class SubmitRFAForm(forms.ModelForm, FileFormMixin, CodeMixin):
 
-    # other = forms.FileField(required=False, label='Спектр', validators=[validators.FileExtensionValidator(['png', 'jpg', 'jpeg'])], help_text='Обработанный спектр. Допустимые форматы: .png, .jpg')
+    elements = forms.ModelMultipleChoiceField(
+        label='Элементы периодической таблицы',
+        required=False,
+        queryset=Element.objects.all(),
+        widget=forms.widgets.SelectMultiple(attrs={'size': 8})
+        )
 
     class Meta(BaseDateInputMeta):
         model = RFA
@@ -21,6 +27,7 @@ class SubmitRFAForm(forms.ModelForm, FileFormMixin, CodeMixin):
             'conditions',
             'color',
             'pigment',
+            'elements',
             'additional_elements',
             'source',
             'comment',

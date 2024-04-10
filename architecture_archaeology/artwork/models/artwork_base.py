@@ -23,7 +23,7 @@ class ArtworkBase(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
         return reverse_lazy(f"{self._meta.app_label}:detail-{self.__class__.__name__.lower()}", kwargs={"pk": self.pk})
     
     def generate_query_string(self):
-        url = f'{reverse_lazy("measurement:submit-rfa")}?code={self.code}&obj={self.__class__.__name__.lower()}'
+        url = f'?code={self.code}'
         return url
     
     def find_date(self):

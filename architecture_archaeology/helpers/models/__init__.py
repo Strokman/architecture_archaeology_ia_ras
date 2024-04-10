@@ -7,3 +7,4 @@ from .pigment import Pigment
 from .material import Material
 from .mineral import Mineral
 from .filler import Filler
+from .element import Element

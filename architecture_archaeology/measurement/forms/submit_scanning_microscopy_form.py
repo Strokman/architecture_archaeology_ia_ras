@@ -1,12 +1,18 @@
 from django import forms
 from measurement.models import ScanningElectronMicroscopy
+from helpers.models import Element
 
 from core.custom_forms import FileFormMixin, BaseDateInputMeta, CodeMixin
 
 
 class SubmitScanningMicroscopyForm(forms.ModelForm, FileFormMixin, CodeMixin):
 
-    # report = forms.FileField(required=False, label='Результат', help_text='Файл отчета об анализе')
+    elements = forms.ModelMultipleChoiceField(
+        label='Элементы периодической таблицы',
+        required=False,
+        queryset=Element.objects.all(),
+        widget=forms.widgets.SelectMultiple(attrs={'size': 8})
+        )
 
     class Meta(BaseDateInputMeta):
         model = ScanningElectronMicroscopy

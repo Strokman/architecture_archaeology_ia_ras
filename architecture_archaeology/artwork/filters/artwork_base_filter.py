@@ -27,3 +27,9 @@ class ArtworkBaseFilter(django_filters.FilterSet, RangeDatesFilterBase):
     preservation = django_filters.ModelMultipleChoiceFilter(
         queryset=Preservation.objects.all()
         )
+    
+    # TODO: сделать фильтрацию по авторам записи, переопредилить __str__ для юзера
+    # creator = django_filters.ModelMultipleChoiceFilter(
+    #     queryset=User.objects.all(),
+    #     widget=forms.widgets.SelectMultiple(attrs={'size': 10})
+    #     )
