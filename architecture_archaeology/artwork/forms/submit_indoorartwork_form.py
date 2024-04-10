@@ -15,6 +15,7 @@ class SubmitIndoorArtworkForm(YearValidationMixin, forms.ModelForm, FileFormMixi
                   'find_date_to',
                   'comment',
                   'site',
+                  'building_part',
                   'color',
                   'preservation',
                   'foto',

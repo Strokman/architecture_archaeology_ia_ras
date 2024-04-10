@@ -20,6 +20,7 @@ class SubmitFrescoeForm(YearValidationMixin, forms.ModelForm, FileFormMixin):
                   'square_number',
                   'comment',
                   'site',
+                  'building_part',
                   'indoor_artwork',
                   'color',
                   'preservation',
