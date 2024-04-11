@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import os
 from datetime import timedelta
 
 from dotenv import load_dotenv
@@ -33,7 +32,7 @@ PROJECT = 'architecture_archaeology'
 SECRET_KEY = environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = int(os.environ.get('DEBUG', 0))
+DEBUG = int(environ.get('DEBUG', 0))
 
 ALLOWED_HOSTS = ['*']
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver', 'base-habilis.ru', '185.70.185.20']
@@ -70,7 +69,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
-} #if not DEBUG else {}
+}
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=30),
@@ -90,12 +89,19 @@ MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://redis:6379",
+    }
+}
+
 ROOT_URLCONF = 'architecture_archaeology.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -249,6 +255,21 @@ LOGGING = {
     },
 }
 LOGIN_REDIRECT_URL = '/'
+
+# Cache settings
+
+REDIS_HOST = environ.get('REDIS_HOST', '158.160.98.190')
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": f"redis://{REDIS_HOST}:6379",
+        'TIMEOUT': 120,
+    }
+}
+
+DEFAULT_TIMEOUT = 60
 
 # Yandex cloud S3 config params
 

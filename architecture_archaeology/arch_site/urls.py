@@ -5,6 +5,10 @@ from arch_site.views import (SubmitSiteView,
                              DetailSiteView,
                              UpdateSiteView)
 
+from django.views.decorators.cache import cache_page
+
+from architecture_archaeology.settings import DEFAULT_TIMEOUT
+
 app_name = 'arch_site'
 urlpatterns = [
     path("submit/", SubmitSiteView.as_view(), name="submit"),

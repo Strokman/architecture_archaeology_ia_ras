@@ -26,10 +26,20 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     volumes:
       - ./static:/home/architecture_archaeology/architecture_archaeology/staticfiles
     expose:
       - 8000
+
+  redis:
+    restart: unless-stopped
+    image: redis:alpine3.19
+    healthcheck:
+        test: ["CMD", "redis-cli","ping"]
+    expose:
+        - 6379
 
   nginx:
     build: ./nginx
