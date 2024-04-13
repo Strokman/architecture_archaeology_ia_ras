@@ -1,1 +1,2 @@
 from .create_site_view_test import CreateSiteViewTest
+from .site_foto_test import ArchSiteFotoTest

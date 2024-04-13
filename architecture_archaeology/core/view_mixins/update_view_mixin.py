@@ -12,6 +12,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 
 
+
+
 # TODO: добавить проверку, что широта и долгота == записи в ДБ и не делать ничего
 class UpdateViewMixin(
                     SuccessMessageMixin,

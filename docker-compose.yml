@@ -37,7 +37,7 @@ services:
     restart: unless-stopped
     image: redis:alpine3.19
     healthcheck:
-        test: ["CMD", "redis-cli","ping"]
+        test: ["CMD", "redis-cli", "ping"]
         interval: 10s
         timeout: 10s
         retries: 5

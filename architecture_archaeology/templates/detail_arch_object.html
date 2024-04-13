@@ -19,10 +19,12 @@
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-theme="dark">
   <div class="carousel-indicators">
     {% for file in object.file_set.all %}
+    {% if file.type.id == 1 %}
     {% if forloop.counter0 == 0 %}
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop.counter0}}"  aria-current="true" class="active"  aria-label="Slide {{forloop.counter}}"></button>
     {% else %}
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop.counter0}}" aria-label="Slide {{forloop.counter}}"></button>
+    {% endif %}
     {% endif %}
     {% endfor %}
   </div>

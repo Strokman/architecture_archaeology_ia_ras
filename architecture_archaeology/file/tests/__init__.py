@@ -1,1 +1,2 @@
 from .file_handler_tests import FileHandlerTest
+from .file_factory_test import FileFactoryTest

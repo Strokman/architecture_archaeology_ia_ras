@@ -4,7 +4,14 @@ from botocore.exceptions import ClientError
 import architecture_archaeology.settings as settings
 # from file.services.file_handler import FileHandler
 # from file.models import File
+import threading
 
+
+def upload(self):
+    self.client.put_object(Body=self.file.file.read(),
+                        Bucket=settings.BUCKET,
+                        Key=self.file.object_storage_key,
+                        )
 
 class S3FileHandler:
 
@@ -14,13 +21,17 @@ class S3FileHandler:
         self.logger = getLogger(
             settings.PROJECT + '.' + self.__class__.__name__
             )
-
+        
+    from helpers.timer import timer
+    @timer
     def upload_file_to_s3(self):
         try:
-            self.client.put_object(Body=self.file.file.read(),
-                                    Bucket=settings.BUCKET,
-                                    Key=self.file.object_storage_key,
-                                    )
+            # self.client.put_object(Body=self.file.file.read(),
+            #                         Bucket=settings.BUCKET,
+            #                         Key=self.file.object_storage_key,
+            #                         )
+            t = threading.Thread(target=upload, args=(self,))
+            t.start()
             self.logger.info(
                 f'{self.file.object_storage_key} successfully uploaded to object storage')
         except ClientError as e:
@@ -37,6 +48,7 @@ class S3FileHandler:
                                                         Key=self.file.object_storage_key)
             self.logger.info(
                 f'{self.file.object_storage_key} successfully downloaded from object storage')
+            
             return get_object_response['Body']
         except ClientError as e:
             self.logger.error(e)

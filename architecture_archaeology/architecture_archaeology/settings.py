@@ -89,13 +89,6 @@ MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": "redis://redis:6379",
-    }
-}
-
 ROOT_URLCONF = 'architecture_archaeology.urls'
 
 TEMPLATES = [
@@ -270,6 +263,9 @@ CACHES = {
 }
 
 DEFAULT_TIMEOUT = 60
+
+# Celery settings
+CELERY_BROKER_URL = f'redis://{REDIS_HOST}:6379/0'
 
 # Yandex cloud S3 config params
 

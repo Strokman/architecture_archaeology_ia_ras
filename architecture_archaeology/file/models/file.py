@@ -2,13 +2,6 @@ from django.db import models
 from core.models import TimestampMixin
 
 
-# CHOICES = [
-#     ('F', 'фотография'),
-#     ('PIC', 'рисунок'),
-#     ('P', 'план')
-#     ]
-
-
 class File(TimestampMixin):
     filename = models.CharField(max_length=255)
     extension = models.CharField(max_length=255)

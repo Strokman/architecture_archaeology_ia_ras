@@ -3,7 +3,6 @@ from django.views.generic.edit import ModelFormMixin
 from django.http import HttpResponseRedirect
 from file.services import FileHandler
 
-
 filetypes = {
     'foto': 'фотография',
     'plan': 'план',
@@ -15,7 +14,7 @@ filetypes = {
 
 
 class FormValidFilesMixin(ModelFormMixin):
-
+    
     def form_valid(self, form):
         existing_keys = set(form.cleaned_data) & set(filetypes)
         for key in existing_keys:
