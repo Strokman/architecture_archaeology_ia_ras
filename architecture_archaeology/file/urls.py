@@ -7,5 +7,6 @@ from architecture_archaeology.settings import DEFAULT_TIMEOUT
 
 app_name = 'file'
 urlpatterns = [
-    path("get/<str:filename>", cache_page(DEFAULT_TIMEOUT)(views.get_file), name="get")
+    path("file/get/<str:filename>", cache_page(DEFAULT_TIMEOUT)(views.get_file), name="get"),
+    path("foto/get/<str:filename>", cache_page(DEFAULT_TIMEOUT)(views.get_foto), name="get-foto"),
 ]

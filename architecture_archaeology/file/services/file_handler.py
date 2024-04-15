@@ -1,10 +1,9 @@
 from django.core.files.uploadedfile import (TemporaryUploadedFile,
                                             InMemoryUploadedFile)
-
+from django.apps import apps
 from uuid import uuid4
 import os
 # from dataclasses import dataclass
-from file.models import File, FileType
 from file.services.file_to_s3 import S3FileHandler
 
 from django.db import models
@@ -22,10 +21,10 @@ class FileHandler:
 
     def __init__(self,
                  file: TemporaryUploadedFile | InMemoryUploadedFile,
-                 parent_obj, file_type: str) -> None:
+                 parent_obj, model: str) -> None:
         self.file = file
         self.parent_obj = parent_obj
-        self.file_type = file_type
+        self.model = model
         self.filename = f'{uuid4()}{self.extension}'
 
     @property
@@ -50,14 +49,14 @@ class FileHandler:
         self._parent_obj = parent_obj
 
     @property
-    def file_type(self):
-        return self.__file_type
+    def model(self):
+        return self.__model
 
-    @file_type.setter
-    def file_type(self, file_type):
+    @model.setter
+    def model(self, model):
         try:
-            self.__file_type = FileType.objects.get(name=file_type)
-        except FileType.DoesNotExist:
+            self.__model = apps.get_model('file', model)
+        except LookupError:
             raise ValueError('No such file type')
 
     @property
@@ -73,32 +72,32 @@ class FileHandler:
 
     @property
     def object_storage_key(self):
-        return f'{self.parent_obj._meta.db_table}/{self.parent_obj.id}/{self.filename}'
+        return f'{self.parent_obj._meta.db_table}/{self.model._meta.model_name}/{self.parent_obj.id}/{self.filename}'
 
     def to_orm(self):
         uploader = S3FileHandler(self)
-        # if self.file_type.name in ('фотография', 'отчет', 'план'):
+        # if self.model.name in ('фотография', 'отчет', 'план'):
         #     try:
-        #         instance: models.Model = self.parent_obj.file_set.get(type=self.file_type)
+        #         instance: models.Model = self.parent_obj.file_set.get(type=self.model)
         #         old_file_in_s3 = S3FileHandler(instance)
         #         old_file_in_s3.delete_file_from_s3()
         #         instance.filename = self.filename
         #         instance.extension = self.extension
         #         instance.original_name = self.original_filename
-        #         instance.type = self.file_type
+        #         instance.type = self.model
         #         instance.object_storage_key = self.object_storage_key
         #         uploader.upload_file_to_s3()
         #         instance.save()  
         #         return True
         #     except File.DoesNotExist:
         #         pass
-        instance = File(filename=self.filename,
+        instance = self.model(filename=self.filename,
                         extension=self.extension,
                         original_name=self.original_filename,
-                        type=self.file_type,
                         object_storage_key=self.object_storage_key
                         )       
         uploader.upload_file_to_s3()
         instance.save()
-        self.parent_obj.file_set.add(instance)
+        attr = getattr(self.parent_obj, f'{self.model._meta.model_name}_set')
+        attr.add(instance)
         return True

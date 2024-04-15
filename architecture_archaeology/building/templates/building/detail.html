@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-{% block content %}
-<h1>{{title}}</h1>
-{{ building.name }} <br>
-{{building.site.region.country}} <br>
-{{building.site.region}} <br>
-
-<a href="{% url 'building:update' building.slug %}">Редактировать</a>
-{% endblock content %}

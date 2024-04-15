@@ -24,12 +24,10 @@ class UpdateViewMixin(
                     ):
 
     def form_valid(self, form: BaseForm) -> HttpResponse:
-        fotos = [file for file in self.object.file_set.all() if file.type.name == 'фотография']
-        other = [file for file in self.object.file_set.all() if file.type.name == 'другое']
-        if len(form.cleaned_data.get('foto')) + len(fotos) > 3:
+        if len(form.cleaned_data.get('foto')) + len(self.object.foto_set.all()) > 3:
             messages.error(self.request, 'Количество фотографий не может превышать 3')
             return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
-        if len(form.cleaned_data.get('other')) + len(other) > 10:
+        if len(form.cleaned_data.get('other')) + len(self.object.file_set.all()) > 10:
             messages.error(self.request, 'Количество других файлов не может превышать 10')
             return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
         if hasattr(self.model, 'region'):

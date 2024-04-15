@@ -4,10 +4,10 @@ from django.http import HttpResponseRedirect
 from file.services import FileHandler
 
 filetypes = {
-    'foto': 'фотография',
+    'foto': 'foto',
     'plan': 'план',
     'report': 'отчет',
-    'other': 'другое'
+    'other': 'file'
 }
 
 # TODO: сделать проверку на несуществующие ключи и сделать ошибку

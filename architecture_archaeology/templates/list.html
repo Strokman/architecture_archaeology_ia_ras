@@ -46,7 +46,7 @@
       <div class="row">
         
         <div class="left-content col-lg-auto">
-          <img src="{% if obj.file_set.all %}{% for file in obj.file_set.all %}{% if file.type.id == 1 %}{% if forloop.counter == 1 %}{% url 'file:get' file.filename %}{% endif %}{% endif %}{% endfor %}{% else %}{% static 'images/default.png' %}{% endif %}" class="object-fit-contain border rounded" alt="Pic" width="200" height="150">
+          <img src="{% if obj.foto_set.all %}{% url 'file:get-foto' obj.foto_set.all.0 %}{% else %}{% static 'images/default.png' %}{% endif %}" class="object-fit-contain border rounded" alt="Pic" width="200" height="150">
       </div>
       
       <div class="right-content col-lg">
