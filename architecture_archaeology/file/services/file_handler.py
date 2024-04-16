@@ -72,7 +72,7 @@ class FileHandler:
 
     @property
     def object_storage_key(self):
-        return f'{self.parent_obj._meta.db_table}/{self.model._meta.model_name}/{self.parent_obj.id}/{self.filename}'
+        return f'{self.parent_obj._meta.db_table}/{self.parent_obj.id}/{self.model._meta.model_name}/{self.filename}'
 
     def to_orm(self):
         uploader = S3FileHandler(self)
