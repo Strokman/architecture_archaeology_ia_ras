@@ -54,7 +54,7 @@ class UpdateViewMixin(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = f'Редактирование {self.model._meta.verbose_name}: {self.object.name}'
+        context['title'] = f'Редактирование {self.model._meta.verbose_name}: {self.object}'
         return context
 
     def get_success_message(self, cleaned_data: dict[str, str]) -> str:
