@@ -111,6 +111,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'architecture_archaeology.wsgi.application'
 
+SESSION_COOKIE_AGE = 60 * 60 + 24
+
+SESSION_SAVE_EVERY_REQUEST = True
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
