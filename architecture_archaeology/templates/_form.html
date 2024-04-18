@@ -2,7 +2,7 @@
 <div class="row justify-content-center">
 
 <div class="col-md-6">
-
+  <span style="color:red">* обязательные поля</span>
 <form method='{% if method %}{{method}}{%else%}post{%endif%}' enctype='multipart/form-data' novalidate>
     {% csrf_token %}
 
@@ -20,7 +20,7 @@
 
   {% for field in form.visible_fields %}
     <div class="form-group">
-      {{ field.label_tag }}
+      <span style="color:red">{% if field.field.required %}* {% endif %}</span>{{ field.label_tag }}
 
       {% if form.is_bound %}
         {% if field.errors %}

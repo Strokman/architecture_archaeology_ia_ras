@@ -21,13 +21,20 @@ class Frescoe(ArtworkBase, DescriptionMixin, TimestampMixin, SlugMixin):
     size = models.CharField(verbose_name='Размер', null=True, blank=True, max_length=255)
     amount = models.IntegerField(verbose_name='Количество фрагментов', null=True, blank=True)
     museum_code = models.CharField(verbose_name='Музейный шифр', max_length=255)
-    square_number = models.CharField(max_length=255,
-                                     verbose_name='Номер квадрата/участка/пласта по археологическим отчетам',
-                                     null=True,
-                                     blank=True)
+    square_number = models.CharField(
+        max_length=255,
+        verbose_name='Номер квадрата/участка/пласта по археологическим отчетам',
+        null=True,
+        blank=True
+        )
 
     storage = models.ForeignKey('helpers.Storage', null=False, verbose_name='Место хранения', on_delete=models.PROTECT)
-    indoor_artwork = models.ForeignKey('artwork.IndoorArtwork', verbose_name='Изображение в постройке', on_delete=models.PROTECT)
+    indoor_artwork = models.ForeignKey(
+        'artwork.IndoorArtwork',
+        null=True, blank=True,
+        verbose_name='Изображение в постройке',
+        on_delete=models.PROTECT
+        )
 
     def __str__(self):
         return self.name if self.name else f'{self.get_kind_display().capitalize()} №{self.code}'

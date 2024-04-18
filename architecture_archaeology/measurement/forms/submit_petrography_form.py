@@ -9,6 +9,7 @@ class SubmitPetrographyForm(forms.ModelForm, FileFormMixin, CodeMixin):
     class Meta(BaseDateInputMeta):
         model = Petrography
         fields = (
+            'name',
             'number',
             'measurement_date',
             'operator',

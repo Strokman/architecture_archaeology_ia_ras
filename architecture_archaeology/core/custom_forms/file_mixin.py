@@ -18,5 +18,5 @@ from core.exceptions import FilesNumberValidationError
 
 class FileFormMixin(forms.Form):
     
-    foto = MultipleFileField(3, validators=[validators.FileExtensionValidator(['png', 'jpg', 'jpeg'])], label='Фотографии', help_text='Не более 3 файлов. Допустимые форматы: .png, .jpg')
-    other = MultipleFileField(10, label='Другие файлы', help_text='Не более 10 файлов')
+    foto = MultipleFileField(3, required=False, validators=[validators.FileExtensionValidator(['png', 'jpg', 'jpeg'])], label='Фотографии', help_text='Не более 3 файлов. Допустимые форматы: .png, .jpg')
+    other = MultipleFileField(10, required=False, label='Другие файлы', help_text='Не более 10 файлов')

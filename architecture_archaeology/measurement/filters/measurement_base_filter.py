@@ -5,12 +5,26 @@ from django_filters import widgets
 from helpers.models import Color
 
 
+class CustomDateTimeRangeField(django_filters.filters.RangeField):
+
+    def __init__(self, *args, **kwargs):
+        fields = (
+            forms.DateTimeField(input_formats=["%d.%m.%Y"]),
+            forms.DateTimeField(input_formats=["%d.%m.%Y"]),
+        )
+        super(CustomDateTimeRangeField, self).__init__(fields, *args, **kwargs)
+
+
+class CustomDateFromToRangeFilter(django_filters.RangeFilter):
+    field_class = CustomDateTimeRangeField
+
+
 class MeasurementBaseFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains')
-    measurement_date = django_filters.DateFromToRangeFilter(
-        widget=widgets.RangeWidget(
+    measurement_date = CustomDateFromToRangeFilter(
+        widget=widgets.DateRangeWidget(
             attrs={
-                'placeholder': 'гггг-мм-дд',
+                'placeholder': 'дд.мм.гггг',
                 'class': 'input-group mb-3'}
                 )
             )

@@ -13,7 +13,15 @@ class SubmitArchaeologicalSiteForm(YearValidationMixin, forms.ModelForm, FileFor
     #                        help_text='Допустимые форматы: .pdf, .tiff, jpg'
     #                        )
 
-
     class Meta:
         model = ArchaeologicalSite
-        fields = ['name', 'description', 'long', 'lat', 'preservation', 'year_min', 'year_max', 'comment']
+        fields = (
+            'name',
+            'description',
+            'lat',
+            'long',
+            'preservation',
+            'year_min',
+            'year_max',
+            'comment'
+            )

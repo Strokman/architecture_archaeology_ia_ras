@@ -11,6 +11,7 @@ class Petrography(SlugMixin, TimestampMixin):
         SM = 'SM', _('Поры мелкие')
         LG = 'LG', _('Поры крупные')
 
+    name = models.CharField(verbose_name='Название', null=True, blank=True, max_length=255)
     measurement_date = models.DateField(verbose_name='Дата исследования', null=False)
     number = models.CharField(verbose_name='Номер шлифа', null=False, max_length=255)
 
