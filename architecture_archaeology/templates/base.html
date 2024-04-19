@@ -64,11 +64,11 @@
           
             <div class="flex-shrink-0 p-3" style="width: 280px;">
               
-                <ul class="list-unstyled ps-0">
+                <ul class="list-unstyled ps-3">
                   {% if user.is_authenticated %}
                   <a href="{% url 'arch_site:list' %}" class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed mb-1" aria-expanded="false">
                     Памятники
-                  </a>
+                  </a><br>
                   <a href="{% url 'building:list' %}" class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed mb-1" aria-expanded="false">
                     Постройки
                   </a>
