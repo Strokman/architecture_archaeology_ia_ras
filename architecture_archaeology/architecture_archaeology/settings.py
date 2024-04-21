@@ -59,7 +59,6 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_filters',
     'rest_framework',
-    'rest_framework_simplejwt.token_blacklist',
 ]
 
 REST_FRAMEWORK = {
@@ -87,7 +86,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
-    # "core.filesize_middleware.FileSizeMiddleware"
+    "core.filesize_middleware.FileSizeMiddleware"
 ]
 
 ROOT_URLCONF = 'architecture_archaeology.urls'

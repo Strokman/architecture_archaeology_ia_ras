@@ -26,7 +26,7 @@ from rest_framework_simplejwt.views import (
 from api import api_view as view
 
 router = routers.DefaultRouter()
-router.register(r'arch_sites', view.ArchsiteViewSet)
+router.register(r'arch-sites', view.ArchsiteViewSet)
 
 admin.site.site_header = "Архитектурная Археология"
 admin.site.index_title = "Административная панель"

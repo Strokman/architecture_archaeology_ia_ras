@@ -14,6 +14,8 @@ class ArtworkBase(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
     comment = models.TextField(verbose_name='Примечание', null=True, blank=True)
 
     site = models.ForeignKey("arch_site.ArchaeologicalSite", verbose_name='Памятник', null=False, on_delete=models.CASCADE)
+    building = models.ForeignKey("building.Building", verbose_name='Постройка', null=True, blank=True, on_delete=models.CASCADE)
+    building_part = models.ForeignKey("building.BuildingPart", verbose_name='Элемент постройки', null=True, blank=True, on_delete=models.CASCADE)
 
     color = models.ManyToManyField('helpers.Color', blank=True, verbose_name='Цвета')
     preservation = models.ForeignKey('helpers.Preservation', null=False, verbose_name='Сохранность', on_delete=models.PROTECT)

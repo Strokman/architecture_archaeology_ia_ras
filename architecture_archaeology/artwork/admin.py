@@ -1,7 +1,7 @@
-from django.contrib import admin
+# from django.contrib import admin
 
 # Register your models here.
-from .models import IndoorArtwork, Frescoe
+# from .models import IndoorArtwork, Frescoe
 
-admin.site.register(IndoorArtwork)
-admin.site.register(Frescoe)
+# admin.site.register(IndoorArtwork)
+# admin.site.register(Frescoe)

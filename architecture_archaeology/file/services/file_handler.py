@@ -67,7 +67,7 @@ class FileHandler:
     @property
     def original_filename(self):
         original_filename = os.path.splitext(
-            self.file.name)[0].replace('/','-').replace('.', '-')
+            self.file.name)[0].replace('/', '-').replace('.', '-')
         return original_filename + self.extension
 
     @property
@@ -92,10 +92,10 @@ class FileHandler:
         #     except File.DoesNotExist:
         #         pass
         instance = self.model(filename=self.filename,
-                        extension=self.extension,
-                        original_name=self.original_filename,
-                        object_storage_key=self.object_storage_key
-                        )       
+                            extension=self.extension,
+                            original_name=self.original_filename,
+                            object_storage_key=self.object_storage_key
+                            )
         uploader.upload_file_to_s3()
         instance.save()
         attr = getattr(self.parent_obj, f'{self.model._meta.model_name}_set')

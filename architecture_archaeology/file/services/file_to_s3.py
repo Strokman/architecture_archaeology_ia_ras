@@ -2,16 +2,11 @@ from logging import getLogger
 from .client import create_s3_client
 from botocore.exceptions import ClientError
 import architecture_archaeology.settings as settings
+from helpers.timer import timer
 # from file.services.file_handler import FileHandler
 # from file.models import File
 import threading
 
-
-def upload(self):
-    self.client.put_object(Body=self.file.file.read(),
-                        Bucket=settings.BUCKET,
-                        Key=self.file.object_storage_key,
-                        )
 
 class S3FileHandler:
 
@@ -21,34 +16,34 @@ class S3FileHandler:
         self.logger = getLogger(
             settings.PROJECT + '.' + self.__class__.__name__
             )
-        
-    from helpers.timer import timer
+
     @timer
     def upload_file_to_s3(self):
-        try:
+        # try:
             # self.client.put_object(Body=self.file.file.read(),
             #                         Bucket=settings.BUCKET,
             #                         Key=self.file.object_storage_key,
             #                         )
-            t = threading.Thread(target=upload, args=(self,))
-            t.start()
-            self.logger.info(
-                f'{self.file.object_storage_key} successfully uploaded to object storage')
-        except ClientError as e:
-            self.logger.error(e)
-            raise e
-        except AttributeError as e:
-            self.logger.error(e)
-            raise e
-        return True
+        t = threading.Thread(target=self.upload)
+        t.start()
+        self.logger.info(
+            f'{self.file.object_storage_key} successfully uploaded to object storage')
+        # except ClientError as e:
+        #     self.logger.error(e)
+        #     raise e
+        # except AttributeError as e:
+        #     self.logger.error(e)
+        #     raise e
+        # return True
 
     def get_file_from_s3(self):
         try:
-            get_object_response = self.client.get_object(Bucket=settings.BUCKET,
-                                                        Key=self.file.object_storage_key)
+            get_object_response = self.client.get_object(
+                Bucket=settings.BUCKET,
+                Key=self.file.object_storage_key
+                )
             self.logger.info(
-                f'{self.file.object_storage_key} successfully downloaded from object storage')
-            
+                f'{self.file.object_storage_key} successfully downloaded from object storage')       
             return get_object_response['Body']
         except ClientError as e:
             self.logger.error(e)
@@ -61,3 +56,9 @@ class S3FileHandler:
         except ClientError as e:
             self.logger.error(e)
         return True
+
+    def upload(self):
+        self.client.put_object(Body=self.file.file.read(),
+                        Bucket=settings.BUCKET,
+                        Key=self.file.object_storage_key,
+                        )

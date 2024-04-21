@@ -11,4 +11,6 @@ class Element(models.Model):
         return f'{self.symbol} - {self.name}'
 
     class Meta:
+        verbose_name = 'Элемент'
+        verbose_name_plural = 'Элементы'
         ordering = ('name', )
