@@ -4,6 +4,8 @@ from arch_site.models import ArchaeologicalSite
 from helpers.models import Color, Preservation
 from core.filters import RangeDatesFilterBase
 
+# from django.contrib.auth.models import User
+
 
 class ArtworkBaseFilter(django_filters.FilterSet, RangeDatesFilterBase):
     name = django_filters.CharFilter(lookup_expr='icontains')
@@ -31,5 +33,5 @@ class ArtworkBaseFilter(django_filters.FilterSet, RangeDatesFilterBase):
     # TODO: сделать фильтрацию по авторам записи, переопредилить __str__ для юзера
     # creator = django_filters.ModelMultipleChoiceFilter(
     #     queryset=User.objects.all(),
-    #     widget=forms.widgets.SelectMultiple(attrs={'size': 10})
+    #     widget=forms.widgets.SelectMultiple(attrs={'size': 6})
     #     )

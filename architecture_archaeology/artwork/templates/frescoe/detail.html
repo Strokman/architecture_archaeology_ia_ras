@@ -12,10 +12,17 @@
 
 </div>
 
+{% if object.building %}
+<div class="container mb-3 text-center">
+  <a href="{{ object.building.get_absolute_url }}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ object.building }}</a>
+</div>
+{% endif %}
+
+{% if object.indoor_artwork %}
 <div class="container mb-3 text-center">
   <a href="{{ object.indoor_artwork.get_absolute_url }}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ object.indoor_artwork }}</a>
-
 </div>
+{% endif %}
 
 
 
@@ -63,6 +70,38 @@
   </div>
   </div>
 
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col-6">
+      <strong>Памятник</strong>
+      </div>
+      <div class="col">
+        <a href="{{ object.site.get_absolute_url }}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ object.site }}</a>
+      </div>
+  </div>
+  </div>
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col-6">
+      <strong>Постройка</strong>
+      </div>
+      <div class="col">
+        <a href="{{ object.building.get_absolute_url }}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ object.building }}</a>
+      </div>
+  </div>
+  </div>
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col-6">
+      <strong>Изображение в постройке</strong>
+      </div>
+      <div class="col">
+        {% if object.indoor_artwork %}<a href="{{ object.indoor_artwork.get_absolute_url }}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ object.indoor_artwork }}</a>{% endif %}
+      </div>
+  </div>
+  </div>
 
   <div class="container mb-3">
     <div class="row">

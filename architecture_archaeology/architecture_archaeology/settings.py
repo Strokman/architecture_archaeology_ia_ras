@@ -297,3 +297,12 @@ AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
 
 YMAPS_TOKEN = environ.get('YMAPS_TOKEN')
+
+# Mail settings
+
+EMAIL_HOST_PASSWORD = environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST = environ.get('EMAIL_HOST')
+EMAIL_PORT = environ.get('EMAIL_PORT')
+EMAIL_USE_SSL = environ.get('EMAIL_USE_SSL')
+EMAIL_HOST_USER = environ.get('EMAIL_HOST_USER')
+DEFAULT_FROM_EMAIL = 'arch-frescos@yandex.ru'

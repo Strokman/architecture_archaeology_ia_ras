@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.contrib.auth import views as auth_views
 
 from rest_framework import routers
 from rest_framework_simplejwt.views import (
@@ -32,6 +33,30 @@ admin.site.site_header = "Архитектурная Археология"
 admin.site.index_title = "Административная панель"
 
 urlpatterns = [
+    path(
+        "accounts/password_change/",
+        auth_views.PasswordChangeView.as_view(template_name="registration/change-password.html"),
+    ),
+    path(
+        "accounts/password_reset/",
+        auth_views.PasswordResetView.as_view(template_name="registration/change-password.html"),
+    ),
+    path(
+        "accounts/password_change/done/",
+        auth_views.PasswordResetView.as_view(template_name="registration/change-password-done.html"),
+    ),
+    path(
+        "accounts/reset/<uidb64>/<token>/",
+        auth_views.PasswordResetConfirmView.as_view(template_name="registration/change-password.html"),
+    ),
+    path(
+        "accounts/password_reset/done/",
+        auth_views.PasswordResetDoneView.as_view(template_name="registration/reset-password-done.html"),
+    ),
+    path(
+        "accounts/reset/done/",
+        auth_views.PasswordResetCompleteView.as_view(template_name="registration/change-password-done.html"),
+    ),
     path("", include("index.urls")),
     path("artwork/", include("artwork.urls")),
     path("arch-site/", include("arch_site.urls")),
@@ -43,6 +68,10 @@ urlpatterns = [
     path("__debug__/", include("debug_toolbar.urls")),
     path("map/", include("map.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
+    path(
+        "accounts/password_change/",
+        auth_views.PasswordChangeView.as_view(template_name="change-password.html"),
+    ),
     path('api/', include(router.urls)),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),

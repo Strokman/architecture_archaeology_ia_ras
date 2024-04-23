@@ -139,6 +139,10 @@
                   </a>
                   {% endif %}
                   <li>
+                    <a href="{% url 'password_change' %}" class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Смена пароля</a>
+
+                  </li>
+                  <li>
                     <div class="form-group">
                       <form method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
@@ -149,6 +153,12 @@
 
                   </li>
                   {% else %}
+                  <li class="mb-1">
+
+                    <a href="{% url 'password_reset' %}" class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Сброс пароля</a>
+
+                </li>
+
                   <li class="mb-1">
 
                       <a href="{% url 'login' %}" class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed">Вход</a>
