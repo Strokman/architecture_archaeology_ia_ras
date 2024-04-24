@@ -44,24 +44,34 @@
 
   <div class="container mb-3">
     <div class="row">
-      <div class="col">
-      <strong>Памятник</strong>
+      <div class="col-6">
+      <strong>Находка</strong>
       </div>
       <div class="col">
-        <a href="{{ object.parent_obj.site.get_absolute_url}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ object.parent_obj.site }}</a>
+        <a href="{{ object.parent_obj.get_absolute_url }}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ object.parent_obj }}</a>
       </div>
   </div>
   </div>
 
   <div class="container mb-3">
     <div class="row">
+      <div class="col-6">
+      <strong>Памятник</strong>
+      </div>
       <div class="col">
+        <a href="{{ object.parent_obj.site.get_absolute_url }}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ object.parent_obj.site|default:"" }}</a>
+      </div>
+  </div>
+  </div>
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col-6">
       <strong>Постройка</strong>
       </div>
       <div class="col">
-
-        {% if object.parent_obj.building %}<a href="{{ object.parent_obj.building.get_absolute_url}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ object.parent_obj.building }}</a><br>{% endif %}
-        {% if object.parent_obj.building_part %}{{ object.parent_obj.building_part}}{% endif %}
+        <a href="{{ object.parent_obj.building.get_absolute_url }}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ object.parent_obj.building|default:"" }}</a>
+        <br>{{ object.parent_obj.building_part|default:""}}
       </div>
   </div>
   </div>
@@ -146,6 +156,20 @@
     </div>
     <div class="col">
       {% if object.additional_elements %} {{ object.additional_elements }} {% endif %}
+    </div>
+</div>
+</div>
+
+
+<div class="container mb-3">
+  <div class="row">
+    <div class="col">
+    <strong>Источник референсных значений</strong>
+    </div>
+    <div class="col">
+
+      {{ object.source|default:"" }}
+
     </div>
 </div>
 </div>

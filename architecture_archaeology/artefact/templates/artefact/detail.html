@@ -56,7 +56,29 @@
       </div>
   </div>
   </div>
+  
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col-6">
+      <strong>Памятник</strong>
+      </div>
+      <div class="col">
+        <a href="{{ object.site.get_absolute_url }}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ object.site|default:"" }}</a>
+      </div>
+  </div>
+  </div>
 
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col-6">
+      <strong>Постройка</strong>
+      </div>
+      <div class="col">
+        <a href="{{ object.building.get_absolute_url }}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ object.building|default:"" }}</a>
+        <br>{{ object.building_part|default:""}}
+      </div>
+  </div>
+  </div>
 
 <div class="container mb-3">
   <div class="row">
@@ -115,7 +137,7 @@
       <strong>Музейный шифр</strong>
       </div>
       <div class="col">
-        {{ object.museum_code }}
+        {{ object.museum_code|default:"" }}
       </div>
   </div>
   </div>
@@ -126,7 +148,7 @@
       <strong>Номер квадратa</strong>
       </div>
       <div class="col">
-        {{ object.square_number }}
+        {{ object.square_number|default:"" }}
       </div>
   </div>
   </div>

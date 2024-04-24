@@ -54,6 +54,44 @@
   </div>
   </div>
 
+
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col-6">
+      <strong>Находка</strong>
+      </div>
+      <div class="col">
+        <a href="{{ object.parent_obj.get_absolute_url }}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ object.parent_obj }}</a>
+      </div>
+  </div>
+  </div>
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col-6">
+      <strong>Памятник</strong>
+      </div>
+      <div class="col">
+        <a href="{{ object.parent_obj.site.get_absolute_url }}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ object.parent_obj.site|default:"" }}</a>
+      </div>
+  </div>
+  </div>
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col-6">
+      <strong>Постройка</strong>
+      </div>
+      <div class="col">
+        <a href="{{ object.parent_obj.building.get_absolute_url }}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{ object.parent_obj.building|default:"" }}</a>
+        <br>{{ object.parent_obj.building_part|default:""}}
+      </div>
+  </div>
+  </div>
+
+
+
 <div class="container mb-3">
   <div class="row">
     <div class="col">
@@ -94,10 +132,10 @@
       <strong>Поры</strong>
       </div>
       <div class="col">
-        {% if object.pores %}
-        {{ object.get_pores_display }}<br>
-        Диаметр пор: {{ object.pores_diameter }} %<br>
-        {% endif %}
+
+        {{ object.get_pores_display|default:"" }}<br>
+        Диаметр пор: {{ object.pores_diameter|default:"" }}<br>
+
       </div>
   </div>
   </div>
@@ -108,11 +146,11 @@
       <strong>Вяжущее</strong>
       </div>
       <div class="col">
-        {% if object.binder %}
-        {{ object.binder_name }}<br>
-        {{ object.binder_percent }} %<br>
-        {{ object.binder_description }} %<br>
-        {% endif %}
+
+        Название: {{ object.binder_name|default:"" }}<br>
+        {{ object.binder_percent|default:"" }} %<br>
+        Описание: {{ object.binder_description|default:"" }}<br>
+
       </div>
   </div>
   </div>
@@ -120,16 +158,36 @@
   <div class="container mb-3">
     <div class="row">
       <div class="col">
-      <strong>Заполнитель</strong>
+      <strong>Заполнитель %</strong>
       </div>
       <div class="col">
-        {% if object.filler_contains %}
+        {{ object.filler_percent|default:"" }}
+      </div>
+  </div>
+  </div>
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Заполнитель описание</strong>
+      </div>
+      <div class="col">
+
+        {{ object.filler_description|default:"" }}
+
+      </div>
+  </div>
+  </div>
+
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col">
+      <strong>Заполнитель содержит</strong>
+      </div>
+      <div class="col">
         {% for filler in object.filler_contains.all %}
-        {{ filler }}<br>
+        {{ filler|default:"" }}<br>
         {% endfor %}
-        {{ object.filler_percent }} %<br>
-        {{ object.filler_description }}<br>
-        {% endif %}
       </div>
   </div>
   </div>

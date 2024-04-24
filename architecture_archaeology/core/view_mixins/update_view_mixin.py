@@ -1,3 +1,4 @@
+from typing import Any
 from django.views.generic import UpdateView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.forms.forms import BaseForm
@@ -12,9 +13,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 
 
-
-
-# TODO: добавить проверку, что широта и долгота == записи в ДБ и не делать ничего
+# TODO: добавить проверку, что широта и долгота == записи в ДБ
+# и не делать ничего. Сделать проверку для постройки - у нее нет
+# нет привязки к региону. Если надо - сделать либо проверять, чтоб
+# регион соответствовал региону памятника
 class UpdateViewMixin(
                     SuccessMessageMixin,
                     UserPassesTestMixin,
@@ -46,7 +48,7 @@ class UpdateViewMixin(
                 region = Region.objects.get(name=region_data['region'])
             except Region.DoesNotExist:
                 region = Region.objects.create(name=region_data['region'], country=country)
-   
+
             form.instance.region = region
         self.object.editor = self.request.user
         self.object = form.save()
@@ -54,7 +56,8 @@ class UpdateViewMixin(
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = f'Редактирование {self.model._meta.verbose_name}: {self.object}'
+        context['title'] = f'Редактирование {self.model.
+                             _meta.verbose_name}: {self.object}'
         return context
 
     def get_success_message(self, cleaned_data: dict[str, str]) -> str:

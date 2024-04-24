@@ -16,19 +16,46 @@ class Frescoe(ArtworkBase, DescriptionMixin, TimestampMixin, SlugMixin):
         LOTOK = 'L', _('лоток')
         INDIVIDUAL = 'I', _('индивидуальная фреска')
 
-    type = models.CharField(verbose_name='Тип', null=False, max_length=100, choices=Type)
-    kind = models.CharField(verbose_name='Вид', default=Kind.INDIVIDUAL, max_length=255, choices=Kind)
-    size = models.CharField(verbose_name='Размер', null=True, blank=True, max_length=255)
-    amount = models.IntegerField(verbose_name='Количество фрагментов', null=True, blank=True)
-    museum_code = models.CharField(verbose_name='Музейный шифр', max_length=255)
+    type = models.CharField(
+        verbose_name='Тип',
+        null=False,
+        max_length=100,
+        choices=Type
+        )
+    kind = models.CharField(
+        verbose_name='Вид',
+        default=Kind.INDIVIDUAL,
+        max_length=255,
+        choices=Kind
+        )
+    size = models.CharField(
+        verbose_name='Размер',
+        null=True,
+        blank=True,
+        max_length=255
+        )
+    amount = models.IntegerField(
+        verbose_name='Количество фрагментов',
+        null=True, blank=True
+        )
+    museum_code = models.CharField(
+        verbose_name='Музейный шифр',
+        max_length=255
+        )
     square_number = models.CharField(
         max_length=255,
-        verbose_name='Номер квадрата/участка/пласта по археологическим отчетам',
+        verbose_name='Номер квадрата/участка/пласта по \
+                      археологическим отчетам',
         null=True,
         blank=True
         )
 
-    storage = models.ForeignKey('helpers.Storage', null=False, verbose_name='Место хранения', on_delete=models.PROTECT)
+    storage = models.ForeignKey(
+        'helpers.Storage',
+        null=False,
+        verbose_name='Место хранения',
+        on_delete=models.PROTECT
+        )
     indoor_artwork = models.ForeignKey(
         'artwork.IndoorArtwork',
         null=True, blank=True,
@@ -37,8 +64,9 @@ class Frescoe(ArtworkBase, DescriptionMixin, TimestampMixin, SlugMixin):
         )
 
     def __str__(self):
-        return self.name if self.name else f'{self.get_kind_display().capitalize()} №{self.code}'
-    
+        return self.name if self.name \
+            else f'{self.get_kind_display().capitalize()} №{self.code}'
+
     class Meta:
         verbose_name = 'Индивидуальная фреска'
         verbose_name_plural = 'Индивидуальные фрески'
