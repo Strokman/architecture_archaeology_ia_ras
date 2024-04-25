@@ -61,6 +61,7 @@ urlpatterns = [
     path("artwork/", include("artwork.urls")),
     path("arch-site/", include("arch_site.urls")),
     path("building/", include("building.urls")),
+    path("helpers/", include("helpers.urls")),
     path("file/", include("file.urls")),
     path("artefact/", include("artefact.urls")),
     path("measurement/", include("measurement.urls")),

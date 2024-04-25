@@ -7,3 +7,4 @@ class UpdateIndoorArtworkView(UpdateViewMixin):
 
     model = IndoorArtwork
     form_class = SubmitIndoorArtworkForm
+    template_name = 'update.html'

@@ -6,3 +6,10 @@
 
 {% include "_form.html" %}
 {% endblock content %}
+
+{% block scripts %}
+{% load static %}
+{{block.super}}
+
+<script src="{% static 'js/update.js' %}"></script>
+{% endblock %}
