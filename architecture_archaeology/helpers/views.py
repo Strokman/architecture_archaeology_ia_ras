@@ -1,6 +1,7 @@
 from django.apps import apps
 from django.http import HttpResponse
 import json
+from django.contrib.auth.decorators import login_required
 
 
 def f(n):
@@ -11,6 +12,7 @@ def f(n):
 
 
 # Create your views here.
+@login_required
 def artwork_get_building(request, model, slug):
     model_mapper = {
         'indoor': ('artwork', 'indoorartwork'),

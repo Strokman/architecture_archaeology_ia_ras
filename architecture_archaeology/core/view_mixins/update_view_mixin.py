@@ -1,4 +1,3 @@
-from typing import Any
 from django.views.generic import UpdateView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.forms.forms import BaseForm
@@ -24,6 +23,7 @@ class UpdateViewMixin(
                     FormValidFilesMixin,
                     UpdateView
                     ):
+    template_name = 'update.html'
 
     def form_valid(self, form: BaseForm) -> HttpResponse:
         if len(form.cleaned_data.get('foto')) + len(self.object.foto_set.all()) > 3:
