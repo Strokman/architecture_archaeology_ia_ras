@@ -1,8 +1,7 @@
 from rest_framework import permissions, viewsets
 
-from arch_site.models import ArchaeologicalSite
-
 from api.serializers import ArchaeologicalSiteSerializer
+from arch_site.models import ArchaeologicalSite
 
 
 class ArchsiteViewSet(viewsets.ModelViewSet):
