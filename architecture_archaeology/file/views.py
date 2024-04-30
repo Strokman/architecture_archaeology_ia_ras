@@ -1,5 +1,5 @@
-from django.http import HttpResponse
-
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
 from file.services import S3FileHandler
 from file.models import File, Foto
 # Create your views here.
@@ -19,3 +19,13 @@ def get_foto(request, filename):
     return_value = file_from_cloud.get_file_from_s3()
     response = HttpResponse(return_value, content_type=f'application/{file.extension}')
     return response
+
+
+def delete_file(request, filename):
+    if request.method == 'POST':
+        file = File.objects.get(filename=filename)
+        s3file = S3FileHandler(file)
+        s3file.delete_file_from_s3()
+        file.delete()
+        messages.success(request, 'Файл успешно удален')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
