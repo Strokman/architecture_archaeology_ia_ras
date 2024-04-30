@@ -181,17 +181,18 @@
     <div class="col">
       {% for file in object.foto_set.all %}
       <a href="{% url 'file:get-foto' file.filename %}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{file.original_name}}</a> - фотография
+      {% if user.is_superuser %}<a href="#{{file.filename}}" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" data-bs-toggle="modal">Удалить<a>
+        {% include "_modal_foto_warning.html" %}
+        {% endif %}
 <br>  
       {% endfor %}
       {% for file in object.file_set.all %}
-      <a href="{% url 'file:get' file.filename %}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{file.original_name}}</a> - другой файл
-      <div class="form-group">
-        <form method="post" action="{% url 'file:delete-file' filename=file.filename %}">
-          {% csrf_token %}
-          <button type='submit' value="submit" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Выход</button>
-        </form>
-      </div><br>  
+      <a href="{% url 'file:get' file.filename %}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{file.original_name}}</a> - другой файл  
+      {% if user.is_superuser %}<a href="#{{file.filename}}" class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" data-bs-toggle="modal">Удалить<a>
+      {% include "_modal_file_warning.html" %}{% endif %}
+      <br>
       {% endfor %}
+      
     </div>
 </div>
 </div>
