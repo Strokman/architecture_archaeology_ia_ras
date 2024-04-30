@@ -60,7 +60,8 @@ class ArtworkBase(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
         )
     preservation = models.ForeignKey(
         'helpers.Preservation',
-        null=False,
+        null=True,
+        blank=True,
         verbose_name='Сохранность',
         on_delete=models.PROTECT
         )

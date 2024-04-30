@@ -36,10 +36,13 @@ class Frescoe(ArtworkBase, DescriptionMixin, TimestampMixin, SlugMixin):
         )
     amount = models.IntegerField(
         verbose_name='Количество фрагментов',
-        null=True, blank=True
+        null=True,
+        blank=True
         )
     museum_code = models.CharField(
         verbose_name='Музейный шифр',
+        null=True,
+        blank=True,
         max_length=255
         )
     square_number = models.CharField(
