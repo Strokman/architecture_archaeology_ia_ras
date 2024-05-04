@@ -5,3 +5,4 @@ from .update_view_mixin import UpdateViewMixin
 from .update_measurement_mixin import UpdateMeasurementMixin
 from .detail_view_mixin import DetailViewMixin
 from .list_view_mixin import ListViewMixin
+from .delete_view_mixin import DeleteViewMixin

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from building.views import SubmitBuildingView, BuildingDetailView, BuildingListView, UpdateBuildingView, get_bulding
+from building.views import SubmitBuildingView, BuildingDetailView, BuildingListView, UpdateBuildingView, get_bulding, DeleteBuildingView
 
 from django.views.decorators.cache import cache_page
 
@@ -12,5 +12,6 @@ urlpatterns = [
     path("detail/<slug:slug>/", BuildingDetailView.as_view(), name="detail"),
     path("list/", BuildingListView.as_view(), name="list"),
     path("update/<slug:slug>", UpdateBuildingView.as_view(), name="update"),
-    path("get-building/<int:pk>", get_bulding, name="get-buildings")
+    path("get-building/<int:pk>", get_bulding, name="get-buildings"),
+    path("delete/building/<slug:slug>", DeleteBuildingView.as_view(), name="delete"),
 ]

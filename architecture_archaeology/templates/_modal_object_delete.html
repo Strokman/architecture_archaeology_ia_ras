@@ -1,0 +1,24 @@
+<div class="modal fade" id="{{object.slug}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Предупреждение</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Вы уверены? <br>Это действие приведет к удалению {{object}} и всех связанных с ним объектов! Его нельзя будет отменить!
+        </div>
+        <div class="modal-footer">
+            <div class="form-group">
+                <form method="post" action="{{delete_action}}">
+                  {% csrf_token %}
+                  <button class="btn btn-danger" type="submit" value="Confirm">Удалить</button>
+                </form>
+                
+              </div>
+            {% csrf_token %}
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        </div>
+      </div>
+    </div>
+  </div>

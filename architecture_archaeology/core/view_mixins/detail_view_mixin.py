@@ -18,4 +18,8 @@ class DetailViewMixin(LoginRequiredMixin, DetailView):
             f'{app}:update{"-" + model_name if app in ['artwork', 'measurement'] else ""}',
             kwargs={'slug': self.object.slug}
             )
+        context['delete_action'] = reverse_lazy(
+            f'{app}:delete{"-" + model_name if app in ['artwork', 'measurement'] else ""}',
+            kwargs={'slug': self.object.slug}
+            )
         return context

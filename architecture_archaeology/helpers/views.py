@@ -26,8 +26,8 @@ def artwork_get_building(request, model, slug):
     all_other_buildings = list(map(f, [i for i in obj.site.building_set.all() if i != building]))
     rv = {
         'building': {
-            'id': building.id,
-            'name': building.name
+            'id': building.id if building else 'default',
+            'name': building.name if building else '---------'
         },
         'other': all_other_buildings
     }

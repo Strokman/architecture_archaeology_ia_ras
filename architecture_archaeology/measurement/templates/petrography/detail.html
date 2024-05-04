@@ -268,21 +268,7 @@
   </div>
 
 
-<div class="container mb-5">
-  <div class="row">
-    <div class="col">
-    <strong>Файлы</strong>
-    </div>
-    <div class="col">
-      {% for file in object.foto_set.all %}
-      <a href="{% url 'file:get-foto' file.filename %}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{file.original_name}}</a> - фотография <br>  
-      {% endfor %}
-      {% for file in object.file_set.all %}
-      <a href="{% url 'file:get' file.filename %}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">{{file.original_name}}</a> - другой файл <br>  
-      {% endfor %}
-    </div>
-</div>
-</div>
+  {% include "_file_block.html" %}
 
 <div class="container mb-3">
     <div class="row">
@@ -325,7 +311,8 @@
 
 <div class="container text-center">
   <a href="{{action}}" class="btn btn-primary">Редактировать</a>
-
+  {% if user.is_superuser %}<a href="#{{object.slug}}" class="btn btn-danger" data-bs-toggle="modal">Удалить</a>
+  {% include "_modal_object_delete.html"%}<br>{% endif %}
 </div>
 
 {% endblock content %}

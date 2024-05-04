@@ -6,3 +6,5 @@ from .list_frescoes_view import ListFrescoeView
 from .detail_frescoe_view import DetailFrescoeView
 from .update_frescoe_view import UpdateFrescoeView
 from .update_indoorartwork_view import UpdateIndoorArtworkView
+from .delete_frescoe_view import DeleteFrescoeView
+from .delete_indoor_view import DeleteIndoorArtworkView

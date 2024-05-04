@@ -12,7 +12,7 @@ class BuildingMixin(forms.ModelForm):
 
     def clean_building(self):
         building_id = self.cleaned_data.get('building')
-        if building_id != 'default':
+        if building_id != 'default' and building_id:
             building = Building.objects.get(id=building_id)
             return building
         return None

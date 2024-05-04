@@ -16,7 +16,7 @@ class Building(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
     preservation = models.CharField(verbose_name='Сохранность', null=False, max_length=100, choices=Preservation)
     comment = models.TextField(verbose_name='Примечание', null=True, blank=True)
 
-    site = models.ForeignKey('arch_site.ArchaeologicalSite', verbose_name='Памятник', on_delete=models.RESTRICT)
+    site = models.ForeignKey('arch_site.ArchaeologicalSite', verbose_name='Памятник', on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.name}'

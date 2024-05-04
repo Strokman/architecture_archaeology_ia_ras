@@ -1,10 +1,9 @@
 <div class="container mb-3">
     <div class="row">
-      <div class="col-md">
+      <div class="col-6">
       <strong>Измерения</strong>
       </div>
-      <div class="col-md">
-      
+      <div class="col-6">
         <a href="{% url 'measurement:list-rfa' %}?parent={{id}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">РФА</a><br>
         <a href="{% url 'measurement:list-infraredramanmicroscopy' %}?parent={{id}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">ИК и рамановская спектроскопия</a><br>
         <a href="{% url 'measurement:list-gaschromatographymassspectrometry' %}?parent={{id}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Газовая хроматография</a><br>
@@ -18,10 +17,10 @@
   {% if query_str %}
   <div class="container mb-3">
     <div class="row">
-      <div class="col-md">
+      <div class="col">
       <strong>Добавить новое измерение к объекту</strong>
       </div>
-      <div class="col-md">
+      <div class="col">
       
         <a href="{% url 'measurement:submit-rfa' %}{{query_str}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">РФА</a><br>
         <a href="{% url 'measurement:submit-infraredramanmicroscopy' %}{{query_str}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">ИК и рамановская спектроскопия</a><br>

@@ -26,7 +26,14 @@ from measurement.views import (SubmitRFAView,
                                ListGCMSView,
                                ListRFAView,
                                ListScanningMicroscopyView,
-                               ListPetrographyView
+                               ListPetrographyView,
+
+                               DeleteRoentgenView,
+                               DeleteGCMSView,
+                               DeleteInfraredRamanView,
+                               DeletePetrographyView,
+                               DeleteRfaView,
+                               DeleteScanningMicroscopyView
                                )
 
 app_name = 'measurement'
@@ -58,4 +65,11 @@ urlpatterns = [
     path("list/rfa/", ListRFAView.as_view(), name="list-rfa"),
     path("list/scanning-electron-microscopy/", ListScanningMicroscopyView.as_view(), name="list-scanningelectronmicroscopy"),
     path("list/petrography/", ListPetrographyView.as_view(), name="list-petrography"),
+
+    path("delete/rfa/<slug:slug>", DeleteRfaView.as_view(), name="delete-rfa"),
+    path("delete/scanning-microscopy/<slug:slug>", DeleteScanningMicroscopyView.as_view(), name="delete-scanningelectronmicroscopy"),
+    path("delete/petrography/<slug:slug>", DeletePetrographyView.as_view(), name="delete-petrography"),
+    path("delete/roentgen/<slug:slug>", DeleteRoentgenView.as_view(), name="delete-roentgen"),
+    path("delete/infraredramanmicroscopy/<slug:slug>", DeleteInfraredRamanView.as_view(), name="delete-infraredramanmicroscopy"),
+    path("delete/gc-ms/<slug:slug>", DeleteGCMSView.as_view(), name="delete-gaschromatographymassspectrometry"),
 ]
