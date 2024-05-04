@@ -235,3 +235,12 @@
 </div>
 
 {% endblock content %}
+
+{% block scripts %}
+
+
+<script src="{% static 'js/trunctext.js' %}"></script>
+  {{block.super}}
+
+
+{% endblock %}

@@ -84,16 +84,7 @@
   </div>
 {% endif %}
 
-<div class="container mb-3">
-  <div class="row">
-    <div class="col-6">
-    <strong>Описание</strong>
-    </div>
-    <div class="col">
-      {{ object.description }}
-    </div>
-</div>
-</div>
+{% include "_description.html" %}
 
 {% if object.year_min or object.year_max %}
 <div class="container mb-3">
@@ -208,3 +199,12 @@
 </div>
 
 {% endblock content %}
+
+{% block scripts %}
+
+
+<script src="{% static 'js/trunctext.js' %}"></script>
+  {{block.super}}
+
+
+{% endblock %}
