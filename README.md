@@ -32,6 +32,6 @@
 
 Проект в целом полностью следует архитектуре, которую предлагает Django "из коробки".
 
-[link](./architecture_archaeology/api/api_view.py)
+[link](./architecture_archaeology/api/)
 
 В коде есть комментарии, которые описывают основные блоки и их функции
