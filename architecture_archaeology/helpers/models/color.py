@@ -11,3 +11,4 @@ class Color(DescriptionMixin):
     class Meta:
         verbose_name = 'Цвет'
         verbose_name_plural = 'Цвета'
+        ordering = ('description', 'id')

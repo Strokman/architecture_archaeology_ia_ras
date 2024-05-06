@@ -11,3 +11,4 @@ class Storage(BaseModel):
     class Meta:
         verbose_name = 'Место хранения'
         verbose_name_plural = 'Места хранения'
+        ordering = ('name', 'id')

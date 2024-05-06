@@ -8,3 +8,4 @@ class Mineral(DescriptionMixin):
     class Meta:
         verbose_name = 'Минерал'
         verbose_name_plural = 'Минералы'
+        ordering = ('description', 'id')

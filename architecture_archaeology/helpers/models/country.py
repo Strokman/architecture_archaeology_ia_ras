@@ -12,3 +12,4 @@ class Country(BaseModel):
 
         verbose_name = 'Страна'
         verbose_name_plural = 'Страны'
+        ordering = ('name', 'id')

@@ -6,3 +6,4 @@ class Filler(DescriptionMixin):
     class Meta:
         verbose_name = 'Заполнитель'
         verbose_name_plural = 'Заполнители'
+        ordering = ('description', 'id')

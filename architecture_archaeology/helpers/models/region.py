@@ -12,3 +12,4 @@ class Region(BaseModel):
 
     class Meta:
         verbose_name = verbose_name_plural = 'Административная принадлежность'
+        ordering = ('country', 'name')

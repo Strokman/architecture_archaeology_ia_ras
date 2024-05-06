@@ -6,3 +6,4 @@ class Preservation(DescriptionMixin):
         
     class Meta:
         verbose_name = verbose_name_plural = 'Сохранность'
+        ordering = ('description', 'id')

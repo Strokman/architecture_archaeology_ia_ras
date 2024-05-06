@@ -6,3 +6,4 @@ class Pigment(DescriptionMixin):
     class Meta:
         verbose_name = 'Пигмент'
         verbose_name_plural = 'Пигменты'
+        ordering = ('description', 'id')
