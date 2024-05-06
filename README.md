@@ -32,6 +32,19 @@
 
 Проект в целом полностью следует архитектуре, которую предлагает Django "из коробки".
 
-[link](./architecture_archaeology/api/)
+* [Основные настройки](./architecture_archaeology/architecture_archaeology)
+
+Пакет содержит основные настройки проекта, а также модуль настроек [Celery](./architecture_archaeology/architecture_archaeology/celery.py)
+
+* [API](./architecture_archaeology/api/)
+
+Приложение для получения данных о памятниках из базы данных и выгрузки их на основную ИА РАН [Django Rest Framework](https://www.django-rest-framework.org). Аутентификация - дефолтная с помощью плагина [Django Rest Framework Simple JWT](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/)
+
+* Следующие приложения содержат представления, фильтры, формы, относящиеся к основным сущностям:
+    * [Археологические памятники](./architecture_archaeology/arch_site/)
+    * [Постройки](./architecture_archaeology/building/)
+    * [Находки](./architecture_archaeology/artefact/)
+    * [Фрески/Изображения](./architecture_archaeology/artwork/)
+    * [Измерения](./architecture_archaeology/measurement/)
 
 В коде есть комментарии, которые описывают основные блоки и их функции

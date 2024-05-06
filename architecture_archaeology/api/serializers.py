@@ -10,7 +10,7 @@ class RegionSerializer(serializers.ModelSerializer):
         slug_field='name',
         read_only=True
     )
-    
+
     class Meta:
         model = Region
         fields = ('name', 'country')
@@ -23,5 +23,3 @@ class ArchaeologicalSiteSerializer(serializers.ModelSerializer):
     class Meta:
         model = ArchaeologicalSite
         fields = ('id', 'name', 'long', 'lat', 'region', 'description')
-
-
