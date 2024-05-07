@@ -8,7 +8,7 @@ class Region(BaseModel):
     country = models.ForeignKey('helpers.Country', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.country} - {self.name}'
+        return f'{self.country}, {self.name}'
 
     class Meta:
         verbose_name = verbose_name_plural = 'Административная принадлежность'
