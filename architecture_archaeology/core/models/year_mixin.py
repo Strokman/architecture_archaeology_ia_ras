@@ -4,11 +4,20 @@ from core.models.base_model import BaseModel
 
 class YearMixin(BaseModel):
 
-    year_min = models.IntegerField(null=True, blank=True, verbose_name='Датировка от:')
-    year_max = models.IntegerField(null=True, blank=True, verbose_name='до:', help_text='Даты до н.э. должны быть отрицательными')
+    year_min = models.IntegerField(
+        null=True,
+        blank=True,
+        verbose_name='Датировка от:'
+        )
+    year_max = models.IntegerField(
+        null=True,
+        blank=True,
+        verbose_name='до:',
+        help_text='Даты до н.э. должны быть отрицательными'
+        )
 
     def dating(self):
-        a = ('г. до н.э.', 'г. н.э.')
+        a = ('г. до н.э.', 'г.')
         year_min = ''
         year_max = ''
         date = ''
@@ -22,10 +31,12 @@ class YearMixin(BaseModel):
             date = f'Не ранее {year_min}'
         elif self.year_max:
             date = f'Не позднее {year_max}'
-        for i in a:
-            if date.count(i) > 1:
-                date = date.replace(i, '', 1)
-                date = date.replace(i, f'г{i}')
+        if self.year_min > 0 and self.year_max > 0:
+            date = date.replace('г.', '', 1)
+            date = date.replace('г.', 'гг.')
+        elif self.year_min < 0 and self.year_max < 0:
+            date = date.replace('г. до н.э.', '', 1)
+            date = date.replace('г.', 'гг.')
         return date
 
     class Meta:
