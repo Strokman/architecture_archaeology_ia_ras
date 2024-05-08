@@ -223,6 +223,12 @@ LOGGING = {
             "class": "logging.StreamHandler",
             "formatter": "simple",
         },
+        "simple_prod": {
+            "level": "INFO",
+            "filters": ["require_debug_false"],
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
         'console_on_not_debug': {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
@@ -247,7 +253,7 @@ LOGGING = {
         # },
         PROJECT: {
             "handlers": ["console", 'console_on_not_debug'],
-            "level": "DEBUG"
+            "level": "INFO"
         },
     },
 }
