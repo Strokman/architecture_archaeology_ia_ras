@@ -12,8 +12,6 @@ class ListViewMixin(LoginRequiredMixin, FilterView):
     template_name = 'list.html'
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        print('TEST TEST TEST')
-        None > 1
         context = super().get_context_data(**kwargs)
         context['title'] = self.model._meta.verbose_name_plural
         app = self.model._meta.app_label
