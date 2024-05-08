@@ -224,7 +224,7 @@ LOGGING = {
             "formatter": "simple",
         },
         'console_on_not_debug': {
-            'level': 'DEBUG',
+            'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'logging.StreamHandler',
             'formatter': 'verbose',
