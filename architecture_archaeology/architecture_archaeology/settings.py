@@ -247,7 +247,7 @@ LOGGING = {
         # },
         PROJECT: {
             "handlers": ["console", 'console_on_not_debug'],
-            "level": "INFO"
+            "level": "DEBUG"
         },
     },
 }
