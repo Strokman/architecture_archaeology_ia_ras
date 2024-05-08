@@ -224,7 +224,7 @@ LOGGING = {
             "formatter": "simple",
         },
         "simple_prod": {
-            "level": "INFO",
+            "level": "DEBUG",
             "filters": ["require_debug_false"],
             "class": "logging.StreamHandler",
             "formatter": "simple",
@@ -243,7 +243,7 @@ LOGGING = {
     },
     "loggers": {
         "django": {
-            "handlers": ["simple"],
+            "handlers": ["simple_prod"],
             "propagate": True,
         },
         # "django.server": {
