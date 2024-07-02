@@ -22,4 +22,5 @@ class DetailViewMixin(LoginRequiredMixin, DetailView):
             f'{app}:delete{"-" + model_name if app in ['artwork', 'measurement'] else ""}',
             kwargs={'slug': self.object.slug}
             )
+        context['model_name'] = model_name
         return context

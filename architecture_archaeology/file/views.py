@@ -10,6 +10,12 @@ def check_admin(user):
     return user.is_superuser
 
 
+class DefaultImage:
+
+    def __init__(self, model_name):
+        self.extension = 'jpg'
+        self.object_storage_key = f'defaults/{model_name}.{self.extension}'
+
 @login_required
 def get_file(request, filename):
     file = File.objects.get(filename=filename)
@@ -18,6 +24,13 @@ def get_file(request, filename):
     response = HttpResponse(return_value, content_type=f'application/{file.extension}')
     return response
 
+@login_required
+def get_default_image(request, model_name):
+    img = DefaultImage(model_name)
+    file_from_cloud = S3FileHandler(img)
+    return_value = file_from_cloud.get_file_from_s3()
+    response = HttpResponse(return_value, content_type=f'application/{img.extension}')
+    return response
 
 @login_required
 def get_foto(request, filename):

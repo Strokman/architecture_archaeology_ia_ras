@@ -11,4 +11,5 @@ urlpatterns = [
     path("foto/get/<str:filename>", cache_page(DEFAULT_TIMEOUT)(views.get_foto), name="get-foto"),
     path("file/delete/<str:filename>", cache_page(DEFAULT_TIMEOUT)(views.delete_file), name="delete-file"),
     path("foto/delete/<str:filename>", cache_page(DEFAULT_TIMEOUT)(views.delete_foto), name="delete-foto"),
+    path("default-image/<str:filename>", cache_page(DEFAULT_TIMEOUT)(views.get_default_image), name="get-default-image"),
 ]

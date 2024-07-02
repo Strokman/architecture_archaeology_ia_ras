@@ -47,10 +47,10 @@
 {% else %}
 <div class="container mb-5">
 
-    <img src="{% static 'images/default.png' %}" alt="Pic" width="100%">
+    <img src="{% url 'file:get-default-image' model_name %}" alt="Pic" width="100%">
   
   
-  </div>
+</div>
 {% endif %}
 
 
