@@ -22,6 +22,7 @@ class ListViewMixin(LoginRequiredMixin, FilterView):
         context['base_url'] = reverse_lazy(
             f'{app}:list{"-" + model_name if app in ['artwork', 'measurement'] else ""}'
             )
+        context['model_name'] = model_name
         return context
 
     def get_queryset(self) -> QuerySet[Any]:
