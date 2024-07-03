@@ -4,7 +4,7 @@
       <strong>Описание</strong>
       </div>
       <div class="col" id="description">
-        {{ object.description }}
+        {{ object.description|default:"" }}
       </div>
       <a style='display: none;' id='read_more' href=''>развернуть описание</a>
   </div>
