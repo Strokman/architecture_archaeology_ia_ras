@@ -40,6 +40,12 @@
     </button>
   </div>
 </div>
+{% else %}
+<div class="container mb-5">
+
+  <img src="{% url 'file:get-default-image' model_name %}" alt="Pic" width="100%">
+
+</div>
   {% endif %}
 
 
