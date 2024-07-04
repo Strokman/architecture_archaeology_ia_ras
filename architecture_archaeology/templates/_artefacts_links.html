@@ -4,9 +4,9 @@
       <strong>Предметы</strong>
       </div>
       <div class="col">
-        <a href="{% url 'artwork:list-indoorartwork' %}?site={{id}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Изображения в постройке</a><br>
-        <a href="{% url 'artwork:list-frescoe' %}?site={{id}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Фрески</a><br>
-        <a href="{% url 'artwork:list-lotok' %}?site={{id}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Лотки</a><br>
+        <a href="{% url 'artwork:list-indoorartwork' %}?{{object.artworks_filter}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Изображения в постройке</a><br>
+        <a href="{% url 'artwork:list-frescoe' %}?{{object.artworks_filter}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Фрески</a><br>
+        <a href="{% url 'artwork:list-lotok' %}?{{object.artworks_filter}}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Лотки</a><br>
       </div>
   </div>
   </div>

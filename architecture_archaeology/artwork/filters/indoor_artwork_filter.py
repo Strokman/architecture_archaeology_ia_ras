@@ -10,6 +10,7 @@ class IndoorArtworkFilter(ArtworkBaseFilter):
             'name',
             'code',
             'site',
+            'building',
             'dating',
             'find_date',
             'color',

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.urls import reverse_lazy
 from core.models import SlugMixin
 from core.models import TimestampMixin
 from core.models import DescriptionMixin, YearMixin
@@ -17,7 +18,10 @@ class Building(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
     comment = models.TextField(verbose_name='Примечание', null=True, blank=True)
 
     site = models.ForeignKey('arch_site.ArchaeologicalSite', verbose_name='Памятник', on_delete=models.CASCADE)
-
+    
+    def artworks_filter(self):
+        return f'building={self.pk}'
+    
     def __str__(self):
         return f'{self.name}'
     

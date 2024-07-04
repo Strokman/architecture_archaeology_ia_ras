@@ -36,6 +36,9 @@ class ArchaeologicalSite(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin)
         query_string = ','.join(all_children)
         return query_string
 
+    def artworks_filter(self):
+        return f'site={self.pk}'
+
     def __str__(self):
         return f'{self.name}'
 

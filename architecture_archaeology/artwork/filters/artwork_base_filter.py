@@ -1,6 +1,7 @@
 import django_filters
 from django import forms
 from arch_site.models import ArchaeologicalSite
+from building.models import Building
 from helpers.models import Color, Preservation
 from core.filters import RangeDatesFilterBase
 
@@ -21,6 +22,9 @@ class ArtworkBaseFilter(django_filters.FilterSet, RangeDatesFilterBase):
     comment = django_filters.CharFilter(lookup_expr='icontains')
     site = django_filters.ModelMultipleChoiceFilter(
         queryset=ArchaeologicalSite.objects.all()
+        )
+    building = django_filters.ModelMultipleChoiceFilter(
+        queryset=Building.objects.all()
         )
     color = django_filters.ModelMultipleChoiceFilter(
         queryset=Color.objects.all(),

@@ -67,7 +67,7 @@ class Frescoe(ArtworkBase, DescriptionMixin, TimestampMixin, SlugMixin):
         )
 
     def __str__(self):
-        return self.name if self.name \
+        return f'{self.name}, фреска №{self.code}' if self.name \
             else f'{self.get_kind_display().capitalize()} №{self.code}'
 
     class Meta:
