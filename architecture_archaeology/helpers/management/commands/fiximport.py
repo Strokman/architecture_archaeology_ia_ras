@@ -1,11 +1,7 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from architecture_archaeology.settings import BASE_DIR
-from helpers.models import Storage, Color
-from building.models import Building
-from arch_site.models import ArchaeologicalSite
 from artwork.models import Frescoe
 from csv import DictReader
-from core.services.index_service import sequence_id
 
 
 class Command(BaseCommand):
@@ -20,5 +16,5 @@ class Command(BaseCommand):
                 if row['№']:
                     if not row['Постройка']:
                         frescoe = Frescoe.objects.get(code=row['№'])
-                        print(frescoe)
-                        # frescoe.save()
+                        frescoe.building = None
+                        frescoe.save()
