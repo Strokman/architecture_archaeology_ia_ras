@@ -77,7 +77,7 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://data.archaeolog.ru']
+# CSRF_TRUSTED_ORIGINS = ['https://data.archaeolog.ru']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
