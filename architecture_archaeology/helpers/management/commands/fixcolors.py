@@ -20,9 +20,11 @@ class Command(BaseCommand):
                         frescoe = Frescoe.objects.get(code=row['№'])
                         if color:
                             for i in color:
-
-                                db_color = Color.objects.get(description=i)
-                                frescoe.color.add(db_color)
-                                frescoe.save()
+                                try:
+                                    db_color = Color.objects.get(description=i)
+                                except:
+                                    pass
+                                # frescoe.color.add(db_color)
+                                # frescoe.save()
                     except KeyError:
                         pass
