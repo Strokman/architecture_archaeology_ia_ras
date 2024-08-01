@@ -18,13 +18,15 @@ class Command(BaseCommand):
                     try:
                         color = row['цвет'].split()
                         frescoe = Frescoe.objects.get(code=row['№'])
+                        frescoe.color.clear()
                         if color:
                             for i in color:
                                 try:
                                     db_color = Color.objects.get(description=i.lower())
+                                    frescoe.color.add(db_color)
+                                    frescoe.save()
                                 except:
                                     print(i)
-                                # frescoe.color.add(db_color)
-                                # frescoe.save()
+
                     except KeyError:
                         pass
