@@ -80,8 +80,13 @@
 <div class="pagination mt-3 container text-center">
   <span class="step-links">
       {% if page_obj.has_previous %}
-          <a href="?page=1">&laquo; первая</a>
+        {% if 'csrfmiddlewaretoken' in request.get_full_path %}
+          <a href="{{ request.get_full_path }}&page=1">&laquo; первая</a>
+          <a href="{{ request.get_full_path }}&page={{ page_obj.previous_page_number }}">предыдущая</a>
+        {% else %}
+        <a href="?page=1">&laquo; первая</a>
           <a href="?page={{ page_obj.previous_page_number }}">предыдущая</a>
+          {% endif %}
       {% endif %}
 
       <span class="current">
@@ -89,8 +94,13 @@
       </span>
 
       {% if page_obj.has_next %}
+      {% if 'csrfmiddlewaretoken' in request.get_full_path %}
+          <a href="{{ request.get_full_path }}&page={{ page_obj.next_page_number }}">следующая</a>
+          <a href="{{ request.get_full_path }}&page={{ page_obj.paginator.num_pages }}">последняя &raquo;</a>
+          {% else %}
           <a href="?page={{ page_obj.next_page_number }}">следующая</a>
           <a href="?page={{ page_obj.paginator.num_pages }}">последняя &raquo;</a>
+          {% endif %}
       {% endif %}
   </span>
 </div>
