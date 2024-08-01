@@ -21,9 +21,9 @@ class Command(BaseCommand):
                         if color:
                             for i in color:
                                 try:
-                                    db_color = Color.objects.get(description=i)
+                                    db_color = Color.objects.get(description=i.lower())
                                 except:
-                                    pass
+                                    print(i)
                                 # frescoe.color.add(db_color)
                                 # frescoe.save()
                     except KeyError:
