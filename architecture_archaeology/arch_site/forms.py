@@ -1,10 +1,16 @@
 from django import forms
-# from django.core import validators
 from arch_site.models import ArchaeologicalSite
-from core.custom_forms import FileFormMixin, YearValidationMixin
+from core.custom_forms import (
+                            FileFormMixin,
+                            YearValidationMixin
+                            )
 
 
-class SubmitArchaeologicalSiteForm(YearValidationMixin, forms.ModelForm, FileFormMixin):
+class SubmitArchaeologicalSiteForm(
+                                YearValidationMixin,
+                                forms.ModelForm,
+                                FileFormMixin
+                                ):
     # plan = forms.FileField(required=False,
     #                        validators=[validators.FileExtensionValidator(
     #                            ['pdf', 'tif', 'tiff', 'jpg', 'jpeg']

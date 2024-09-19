@@ -1,0 +1,1 @@
+from .coords_validators import validate_long, validate_lat

@@ -201,10 +201,6 @@ LOGGING = {
         },
     },
     "filters": {
-        # "special": {
-        #     "()": "project.logging.SpecialFilter",
-        #     "foo": "bar",
-        # },
         "require_debug_true": {
             "()": "django.utils.log.RequireDebugTrue",
         },
@@ -245,7 +241,7 @@ LOGGING = {
     },
     "loggers": {
         "django": {
-            "handlers": ["simple_prod"],
+            "handlers": ["simple"],
             "propagate": True,
         },
         # "django.server": {

@@ -4,7 +4,11 @@ from building.models import Building
 from core.custom_forms import FileFormMixin, YearValidationMixin
 
 
-class SubmitBuildingForm(YearValidationMixin, forms.ModelForm, FileFormMixin):
+class SubmitBuildingForm(
+                      YearValidationMixin,
+                      forms.ModelForm,
+                      FileFormMixin
+                      ):
 
     class Meta:
         model = Building

@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from core.models import TimestampMixin
 from core.models import DescriptionMixin
 from core.models import SlugMixin, YearMixin
+from core.validators import validate_lat, validate_long
 
 
 class ArchaeologicalSite(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
@@ -12,8 +13,8 @@ class ArchaeologicalSite(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin)
         DESTROYED = 'D', _('не сохранился')
 
     name = models.CharField(verbose_name='Название', max_length=255, help_text='Название памятника', db_index=True)
-    lat = models.DecimalField(verbose_name='Широта', max_digits=23, decimal_places=20, help_text='Координаты в формате DD.DDDD')
-    long = models.DecimalField(verbose_name='Долгота', max_digits=23, decimal_places=20, help_text='Координаты в формате DD.DDDD')
+    lat = models.DecimalField(verbose_name='Широта', max_digits=23, decimal_places=20, help_text='Координаты в формате DD.DDDD', validators=[validate_lat])
+    long = models.DecimalField(verbose_name='Долгота', max_digits=23, decimal_places=20, help_text='Координаты в формате DD.DDDD', validators=[validate_long])
     preservation = models.CharField(verbose_name='Сохранность', null=False, max_length=100, choices=Preservation)
     comment = models.TextField(verbose_name='Примечание', null=True, blank=True)
 

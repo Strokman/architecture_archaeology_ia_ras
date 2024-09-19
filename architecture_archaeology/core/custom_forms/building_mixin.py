@@ -8,7 +8,8 @@ class BuildingMixin(forms.ModelForm):
         label='Постройка',
         required=False,
         widget=forms.Select,
-        help_text='Сначала выберите памятник, затем - постройку')
+        help_text='Сначала выберите памятник, затем - постройку'
+        )
 
     def clean_building(self):
         building_id = self.cleaned_data.get('building')
