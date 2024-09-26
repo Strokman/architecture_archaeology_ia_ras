@@ -1,6 +1,7 @@
 import django_filters
 from artefact.models import Artefact
 from arch_site.models import ArchaeologicalSite
+from building.models import Building
 from helpers.models import Storage
 from core.filters import RangeDatesFilterBase
 
@@ -12,6 +13,7 @@ class ArtefactFilter(django_filters.FilterSet, RangeDatesFilterBase):
     dating = django_filters.RangeFilter(label='Датировка', method='filter_dating')
     find_date = django_filters.RangeFilter(label='Год находки', method='filter_dating')
     site = django_filters.ModelMultipleChoiceFilter(queryset=ArchaeologicalSite.objects.all())
+    building = django_filters.ModelMultipleChoiceFilter(queryset=Building.objects.all())
     storage = django_filters.ModelMultipleChoiceFilter(queryset=Storage.objects.all())
     comment = django_filters.CharFilter(lookup_expr='contains')
 
@@ -21,6 +23,7 @@ class ArtefactFilter(django_filters.FilterSet, RangeDatesFilterBase):
             'name',
             'code',
             'site',
+            'building',
             'dating',
             'find_date',
             'storage',
