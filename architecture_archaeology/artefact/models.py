@@ -32,12 +32,16 @@ class Artefact(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
     def generate_query_string(self):
         url = f'?code={self.code}'
         return url
-    
+
     def find_date(self):
         if not self.find_date_from and not self.find_date_to:
             return ''
-        return f'{self.find_date_from} - {self.find_date_to} гг.' \
-            if self.find_date_to else f'{self.find_date_from} г.'
+        elif not self.find_date_from:
+            return f'{self.find_date_to} г.'
+        elif not self.find_date_to:
+            return f'{self.find_date_from} г.'
+        else:
+            return f'{self.find_date_from} - {self.find_date_to} гг.'
 
     class Meta:
 
