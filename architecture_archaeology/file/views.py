@@ -16,13 +16,16 @@ class DefaultImage:
         self.extension = 'jpg'
         self.object_storage_key = f'defaults/{model_name}.{self.extension}'
 
+
 @login_required
 def get_file(request, filename):
     file = File.objects.get(filename=filename)
     file_from_cloud = S3FileHandler(file)
     return_value = file_from_cloud.get_file_from_s3()
     response = HttpResponse(return_value, content_type=f'application/{file.extension}')
+    response['Content-Disposition'] = f'attachment; filename={file.original_name}'
     return response
+
 
 @login_required
 def get_default_image(request, model_name):
@@ -32,12 +35,14 @@ def get_default_image(request, model_name):
     response = HttpResponse(return_value, content_type=f'application/{img.extension}')
     return response
 
+
 @login_required
 def get_foto(request, filename):
     file = Foto.objects.get(filename=filename)
     file_from_cloud = S3FileHandler(file)
     return_value = file_from_cloud.get_file_from_s3()
     response = HttpResponse(return_value, content_type=f'application/{file.extension}')
+    response['Content-Disposition'] = f'attachment; filename={file.original_name}'
     return response
 
 

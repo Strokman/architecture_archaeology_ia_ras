@@ -274,7 +274,7 @@ DATETIME_INPUT_FORMATS = [
 
 # Cache settings
 
-REDIS_HOST = environ.get('REDIS_HOST', '158.160.98.190')
+REDIS_HOST = environ.get('REDIS_HOST', 'localhost')
 
 
 CACHES = {
