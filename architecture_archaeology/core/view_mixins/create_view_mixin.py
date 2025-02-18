@@ -17,8 +17,18 @@ class CreateViewMixin(
                     FormValidFilesMixin,
                     CreateView
                     ):
+    
+    """
+    Миксин сделан для кастомизации generic-view Django,
+    чтобы он охватывал большую часть моделей, описанных в приложении
+    """
 
     def form_valid(self, form: BaseForm) -> HttpResponse:
+        """
+        Если в модели, для которой сделан view, есть поле регион - 
+        то делается запрос к API яндекса и создаются записи или 
+        делается привязка к уже существующим записям региона и страны.
+        """
         if hasattr(self.model, 'region'):
             lat = form.cleaned_data['lat']
             long = form.cleaned_data['long']
@@ -37,11 +47,21 @@ class CreateViewMixin(
                 region = Region.objects.create(name=region_data['region'], country=country)
             form.instance.region = region
         form.instance.creator = form.instance.editor = self.request.user
+        """
+        Если у модели есть поле Шифр (code) - 
+        то делается запрос в БД и берется номер из последовательности последний,
+        который и присваивается в поле шифр объекта
+        """
         if hasattr(form.instance, 'code'):
             form.instance.code = sequence_id()
         self.object = form.save()
         return super().form_valid(form)
 
+    """
+    Чтобы название view, которое будет отображаться в темплейте,
+    не писать в контекст каждый раз, то берется множественное число
+    базовой модели
+    """
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = f'Добавление {self.model._meta.verbose_name_plural}'

@@ -1,4 +1,5 @@
 'use strict';
+// обрезка длинного текста в описаниях в списках объектов
 window.addEventListener('load', () => {
     let intro = new ShowMore('description', 'read_more', 300);
 });

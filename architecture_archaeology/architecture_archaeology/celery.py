@@ -3,6 +3,11 @@ import os
 from celery import Celery
 from architecture_archaeology.settings import PROJECT
 
+"""
+Конфигурация Celery стандартная в соотв. с докой. Почти не используется.
+При желании нужно добавлять в код и настраивать дальше.
+"""
+
 # Set the default Django settings module for the 'celery' program.
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', f'{PROJECT}.settings')
 

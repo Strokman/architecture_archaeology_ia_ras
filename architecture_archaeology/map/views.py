@@ -9,6 +9,9 @@ from arch_site.models import ArchaeologicalSite
 # Create your views here.
 
 
+"""
+View для отображения карты и объектов на ней.
+"""
 class MapView(TemplateView):
     template_name = 'map/map.html'
 
@@ -25,6 +28,11 @@ def get_data(request):
 
 
 def get_user_data(request):
+    """
+    Функция, которая отдает данные зарегистрирован ли я юзер в темплейт.
+    В зависимости от этого памятники отображаются или нет в крупном
+    масштабе - см js скрипт
+    """
     is_authenticated = json.dumps(
         {'is_authenticated':
          request.user.is_authenticated}

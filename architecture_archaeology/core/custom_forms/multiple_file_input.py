@@ -4,7 +4,11 @@ from core.exceptions import FilesNumberValidationError
 
 class MultipleFileInput(forms.ClearableFileInput):
     allow_multiple_selected = True
-
+    """
+    Расширение стандартного класса поля из Django.
+    Первым аргументом при инициализации класса передается количество допустимых файлов.
+    В методе clean предусмотрена валидация на количество допустимых файлов
+    """
 
 class MultipleFileField(forms.FileField):
     def __init__(self, value, *args, **kwargs):

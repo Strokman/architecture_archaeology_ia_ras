@@ -6,6 +6,12 @@ from core.filters import RangeDatesFilterBase
 
 
 class ArchSiteFilter(django_filters.FilterSet, RangeDatesFilterBase):
+    """
+    Фильтры написано с помощью библиотеки Django Filters.
+    Внимание нужно обратить в основном на метод filter_dating.
+    Он написан в отдельном миксине, так как такая фильтрация 
+    используется несколько раз.
+    """
     name = django_filters.CharFilter(lookup_expr='icontains')
     description = django_filters.CharFilter(lookup_expr='icontains')
     comment = django_filters.CharFilter(lookup_expr='contains')

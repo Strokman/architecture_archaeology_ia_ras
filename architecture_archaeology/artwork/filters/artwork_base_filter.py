@@ -9,6 +9,10 @@ from core.filters import RangeDatesFilterBase
 
 
 class ArtworkBaseFilter(django_filters.FilterSet, RangeDatesFilterBase):
+    """
+    Используется библиотека django_filters, в полях датировка и год находки
+    спользуется самописный метод filter_dating, см. описание в миксине
+    """
     name = django_filters.CharFilter(lookup_expr='icontains')
     code = django_filters.CharFilter(lookup_expr='icontains')
     description = django_filters.CharFilter(lookup_expr='icontains')

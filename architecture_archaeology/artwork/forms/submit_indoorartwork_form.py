@@ -5,6 +5,9 @@ from helpers.models import Color
 
 
 class SubmitIndoorArtworkForm(YearValidationMixin, BuildingMixin, FileFormMixin):
+    """
+    Для поля цвет кастомизирован класс, чтобы увеличить размер окна
+    """
 
     color = forms.ModelMultipleChoiceField(
         label='Цвета',

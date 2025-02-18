@@ -13,7 +13,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 
 
 # TODO: добавить проверку, что широта и долгота == записи в ДБ
-# и не делать ничего. Сделать проверку для постройки - у нее нет
+# и не делать ничего. Сделать проверку для постройки - у нее
 # нет привязки к региону. Если надо - сделать либо проверять, чтоб
 # регион соответствовал региону памятника
 class UpdateViewMixin(
@@ -26,6 +26,11 @@ class UpdateViewMixin(
     template_name = 'update.html'
 
     def form_valid(self, form: BaseForm) -> HttpResponse:
+        """
+        Происходит проверка по количеству файлов и при превыщении,
+        если кол-во файлов будет превышать допустимое - выдается ошибка.
+        Также перепроверяется на изменение координат и вносятся новые данные о регионе
+        """
         if len(form.cleaned_data.get('foto')) + len(self.object.foto_set.all()) > 3:
             messages.error(self.request, 'Количество фотографий не может превышать 3')
             return HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
@@ -72,6 +77,9 @@ class UpdateViewMixin(
         return template_names
 
     def test_func(self) -> bool | None:
+        """
+        По ТЗ редактировать могут только админы, пока осталвено так
+        """
         obj = self.model.objects.get(slug=self.request.resolver_match.kwargs['slug'])
         if obj.creator != self.request.user and not self.request.user.is_superuser:
             return False

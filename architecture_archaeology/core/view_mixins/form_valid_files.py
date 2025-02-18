@@ -14,6 +14,10 @@ filetypes = {
 
 
 class FormValidFilesMixin(ModelFormMixin):
+    """
+    Если к объекту привязываются файлы - то переданные файлы обрабатываются,
+    создаются записи в баз данных. Сами файлы загружаются в S3
+    """
     
     def form_valid(self, form):
         existing_keys = set(form.cleaned_data) & set(filetypes)

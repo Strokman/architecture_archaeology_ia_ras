@@ -26,12 +26,14 @@ from rest_framework_simplejwt.views import (
 
 from api import api_view as view
 
+# урлы для API - не используется на данный момент
 router = routers.DefaultRouter()
 router.register(r'arch-sites', view.ArchsiteViewSet)
 
 admin.site.site_header = "Архитектурная Археология"
 admin.site.index_title = "Административная панель"
 
+# разбираться по названиям, в целом старался называть понятно
 urlpatterns = [
     path(
         "accounts/password_change/",

@@ -7,6 +7,10 @@ import architecture_archaeology.settings as settings
 
 class BaseModel(models.Model):
 
+    """
+    Базовая модель, попытка ввести логирование. Остальное - стандартно.
+    При желании можно расширить функционал.
+    """
     def __init__(self, *args: reverse_lazy, **kwargs: reverse_lazy) -> None:
         self.logger = getLogger(settings.PROJECT + '.' + self.__class__.__name__)
         super().__init__(*args, **kwargs)
@@ -21,6 +25,13 @@ class BaseModel(models.Model):
         return super().delete(*args, **kwargs)
 
     def get_absolute_url(self):
+        """
+        Переопределен метод для того, чтобы подходил для большей части моделей.
+        Если есть slug - используется он. Если нет - айдишник.
+        Так как в url в основном используется название приложения и модели - то
+        они используются для генерации абсолютных путей.
+        В некоторых моделях по своему прописан этот метод.
+        """
         app = self._meta.app_label
         model_name = self.__class__.__name__.lower()
         if hasattr(self, 'slug'):

@@ -6,6 +6,10 @@ from core.models import SlugMixin, YearMixin
 
 
 class ArtworkBase(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
+    """
+    Базовый класс (миксин) для всех моделей приложения: фреска, изображение.
+    Содержит общие поля
+    """
     name = models.CharField(
         verbose_name='Название',
         null=True,
@@ -83,6 +87,10 @@ class ArtworkBase(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
         return url
 
     def find_date(self):
+        """
+        Метод отдает год находки (она может представлять и интервал)
+        в формате строки. Если ничего не внесено в БД - пустая строка.
+        """
         if not self.find_date_from and not self.find_date_to:
             return ''
         return f'{self.find_date_from} - {self.find_date_to} гг.' \

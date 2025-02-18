@@ -3,21 +3,23 @@ from django.core.files.uploadedfile import (TemporaryUploadedFile,
 from django.apps import apps
 from uuid import uuid4
 import os
-# from dataclasses import dataclass
 from file.services.file_to_s3 import S3FileHandler
 
 from django.db import models
 
 
-# @dataclass
-# class FileDTO:
-#     filename: str
-#     extension: str
-#     original_name: str
-#     file_stream: TemporaryUploadedFile | InMemoryUploadedFile
-
-
 class FileHandler:
+    """
+    Для обработки файлов создан класс.
+    Атрибуты:
+    file - загруженный файл в формате джанго
+    parent_obj - модель, к которой привязывается файл
+    model - модель файла (фото или другое на данный момент)
+    filename - имя файла, формируется из uuid4 и расширения,
+    чтобы избежать повторений
+    original_fileneme - оригинальное название от пользвотеля,
+    под ним файл отдается на скачивание и для отображения в темплейтах
+    """
 
     def __init__(self,
                  file: TemporaryUploadedFile | InMemoryUploadedFile,
@@ -72,25 +74,20 @@ class FileHandler:
 
     @property
     def object_storage_key(self):
+        """
+        Путь, по которому сохраняется в S3 файл. Также служит как
+        ключ, по которому получается доступ к файлу
+        """
         return f'{self.parent_obj._meta.db_table}/{self.parent_obj.id}/{self.model._meta.model_name}/{self.filename}'
 
     def to_orm(self):
+        """
+        Сохраняет данные о файле в БД
+        и одновременно сохраняет в S3.
+        По нормальному конечно нужно изменить, чтобы 
+        методы делали что-то одно.
+        """
         uploader = S3FileHandler(self)
-        # if self.model.name in ('фотография', 'отчет', 'план'):
-        #     try:
-        #         instance: models.Model = self.parent_obj.file_set.get(type=self.model)
-        #         old_file_in_s3 = S3FileHandler(instance)
-        #         old_file_in_s3.delete_file_from_s3()
-        #         instance.filename = self.filename
-        #         instance.extension = self.extension
-        #         instance.original_name = self.original_filename
-        #         instance.type = self.model
-        #         instance.object_storage_key = self.object_storage_key
-        #         uploader.upload_file_to_s3()
-        #         instance.save()  
-        #         return True
-        #     except File.DoesNotExist:
-        #         pass
         instance = self.model(filename=self.filename,
                             extension=self.extension,
                             original_name=self.original_filename,

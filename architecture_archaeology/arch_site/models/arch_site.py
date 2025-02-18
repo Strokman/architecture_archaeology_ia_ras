@@ -8,6 +8,9 @@ from core.validators import validate_lat, validate_long
 
 
 class ArchaeologicalSite(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
+    """
+    Модель описывает таблицу для археологических памятников в соотв. с ТЗ.
+    """
     class Preservation(models.TextChoices):
         PRESERVED = 'P', _('сохранился')
         DESTROYED = 'D', _('не сохранился')
@@ -27,7 +30,10 @@ class ArchaeologicalSite(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin)
 
     @property
     def query_string_for_all_children(self):
-        # TODO: Нужно оптимизировать, чтоб не было много запросов
+        """
+        свойство отдает все шифры связанных с арх. памятником объектов:
+        изображений в постройках, фресок, находок
+        """
         indoorartworks = self.indoorartwork_set.all()
         frescoes = self.frescoe_set.all()
         artefacts = self.artefact_set.all()
@@ -38,6 +44,9 @@ class ArchaeologicalSite(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin)
         return query_string
 
     def artworks_filter(self):
+        """
+        метод используется для генерации query string на фронтенде в темплейте
+        """
         return f'site={self.pk}'
 
     def __str__(self):

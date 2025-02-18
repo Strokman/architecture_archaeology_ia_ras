@@ -11,12 +11,18 @@ def check_admin(user):
 
 
 class DefaultImage:
+    """
+    Здесь данные дефолтных картинок для разных моделей
+    """
 
     def __init__(self, model_name):
         self.extension = 'jpg'
         self.object_storage_key = f'defaults/{model_name}.{self.extension}'
 
-
+"""
+View для получения файлов из S3 из темплейтов (для preview).
+В идеале нужно все переделать на pre-signed links и сжатие файлов
+"""
 @login_required
 def get_file(request, filename):
     file = File.objects.get(filename=filename)
@@ -45,7 +51,10 @@ def get_foto(request, filename):
     response['Content-Disposition'] = f'attachment; filename={file.original_name}'
     return response
 
-
+"""
+View для удаления файлов из S3 из темплейтов.
+Добавлена проверка на то, что пользователь - админ
+"""
 @user_passes_test(check_admin, '/')
 @login_required
 def delete_file(request, filename):

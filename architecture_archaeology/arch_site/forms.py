@@ -11,13 +11,6 @@ class SubmitArchaeologicalSiteForm(
                                 forms.ModelForm,
                                 FileFormMixin
                                 ):
-    # plan = forms.FileField(required=False,
-    #                        validators=[validators.FileExtensionValidator(
-    #                            ['pdf', 'tif', 'tiff', 'jpg', 'jpeg']
-    #                            )],
-    #                        label='План',
-    #                        help_text='Допустимые форматы: .pdf, .tiff, jpg'
-    #                        )
 
     class Meta:
         model = ArchaeologicalSite

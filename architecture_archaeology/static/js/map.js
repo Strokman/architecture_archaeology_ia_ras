@@ -1,3 +1,4 @@
+// создание карты, соответствует документации яндекса
 ymaps.ready(function(){
     var map = new ymaps.Map("map", {
         center: [55.76, 37.64],

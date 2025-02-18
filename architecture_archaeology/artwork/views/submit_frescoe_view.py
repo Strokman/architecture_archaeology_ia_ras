@@ -6,6 +6,12 @@ from core.view_mixins import CreateViewMixin
 
 
 class SubmitFrescoeView(CreateViewMixin):
+    """
+    В соотв. с ТЗ фрекси могут быть индивидуальными или
+    фрагментированными в лотке. Здесь то же самое, чтобы не повторять код - 
+    проверяется, какой пришел запрос. Также в контекст темплейта передается
+    различное название, в зависимости от запроса.
+    """
     model = Frescoe
     form_class = SubmitFrescoeForm
 

@@ -7,6 +7,11 @@ from core.filters import RangeDatesFilterBase
 
 
 class ArtefactFilter(django_filters.FilterSet, RangeDatesFilterBase):
+    """
+    Стандартный фильтр. Для фильтрации интервалов дат - метод filter_dating,
+    описан в миксине.
+    """
+    
     name = django_filters.CharFilter(lookup_expr='icontains')
     description = django_filters.CharFilter(lookup_expr='icontains')
     code = django_filters.CharFilter(lookup_expr='icontains')

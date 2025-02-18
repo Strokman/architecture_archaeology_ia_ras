@@ -16,11 +16,15 @@ from datetime import timedelta
 from dotenv import load_dotenv
 from os import path, environ
 
+"""
+Настройки проекта почти все стандартные, на что нужно обратить внимание - 
+указано в комментах
+"""
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+# загружаем файл с переменными окружения
 load_dotenv(path.join(BASE_DIR.parent.absolute(), '.env'))
 
 PROJECT = 'architecture_archaeology'
@@ -61,6 +65,7 @@ INSTALLED_APPS = [
     'rest_framework',
 ]
 
+# настройки DRF, однако api на данный момент не используется
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
@@ -77,6 +82,7 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
 }
 
+# Важно прописать домен, если вдруг изменится
 CSRF_TRUSTED_ORIGINS = ['https://data.archaeolog.ru']
 
 MIDDLEWARE = [
@@ -169,11 +175,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-GMAPS_API_KEY = environ.get('GMAPS_API_KEY')
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+# Статичные файлы. В основном все же все файлы грузятся в S3
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
@@ -272,7 +277,7 @@ DATETIME_INPUT_FORMATS = [
     '%Y-%m-%d'
 ]
 
-# Cache settings
+# Настройки кэширования. Редис крутится в отдельном контейнере
 
 REDIS_HOST = environ.get('REDIS_HOST', 'localhost')
 
@@ -288,7 +293,7 @@ CACHES = {
 DEFAULT_TIMEOUT = 60 * 60 * 24
 DEFAULT_IMAGE_TIMEOUT = 60 * 60 * 24 * 365
 
-# Celery settings
+# Настройки селери. Селери использует тот же редис, который и для кэширования
 CELERY_BROKER_URL = f'redis://{REDIS_HOST}:6379/0'
 
 # Yandex cloud S3 config params

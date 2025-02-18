@@ -7,6 +7,7 @@ opt.value = 'default';
 opt.innerHTML = '---------';
 buildingSelect.appendChild(opt);
 
+// функция для предзаполнения поля выбора постройки в темплейте
 
     function run(value) {
         var siteId = value;

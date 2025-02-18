@@ -15,8 +15,16 @@ class DeleteViewMixin(
                     LoginRequiredMixin,
                     DeleteView
                     ):
-    
+    """
+    Миксин сделан для кастомизации generic-view Django,
+    чтобы он охватывал большую часть моделей, описанных в приложении
+    """
     def form_valid(self, form: BaseForm) -> HttpResponse:
+        """
+        Если модель предусматривает привязку файла - то
+        при удаления объекта из базы данных также удаляется
+        файл из S3 Яндекса
+        """
         if self.object.file_set:
             for file in self.object.file_set.all():
                 s3file = S3FileHandler(file)
@@ -39,6 +47,10 @@ class DeleteViewMixin(
         return url
 
     def test_func(self) -> bool | None:
+        """
+        Если пользователь является админом (superuser),
+        то он может удалять запись. Если нет - то нет. Пока по ТЗ так было
+        """
         obj = self.model.objects.get(slug=self.request.resolver_match.kwargs['slug'])
         if obj.creator != self.request.user and not self.request.user.is_superuser:
             return False

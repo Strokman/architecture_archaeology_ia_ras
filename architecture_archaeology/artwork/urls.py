@@ -11,6 +11,11 @@ from artwork.views import (SubmitIndoorArtworkView,
                            DeleteIndoorArtworkView,
                            DeleteFrescoeView
                            )
+"""
+В соотв. с ТЗ фрекси могут быть индивидуальными или
+фрагментированными в лотке. Чтобы не повторять код - по разным урл
+отдаются одинаковые вью, а в них происходит 
+"""
 
 app_name = 'artwork'
 urlpatterns = [

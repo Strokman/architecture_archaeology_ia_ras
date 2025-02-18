@@ -1,3 +1,5 @@
+// обновление списка опций в темплейте, если меняется памятник (подгружаются список построек, привязанных к памятнику)
+
 var buildingSelect = document.getElementById("id_building");
 
 function getInitialValue(model, slug) {

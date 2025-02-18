@@ -8,3 +8,10 @@ from .material import Material
 from .mineral import Mineral
 from .filler import Filler
 from .element import Element
+
+
+"""
+В этом приложении собраны модели, которые не добавляются пользователями,
+а являются по факту pre-defined или создаются автоматически (регион и страна например).
+Некоторые можно добавлять в админке
+"""

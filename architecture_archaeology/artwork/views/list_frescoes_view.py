@@ -7,6 +7,14 @@ from artwork.filters.frescoe_filter import FrescoeFilter
 
 
 class ListFrescoeView(ListViewMixin):
+
+    """
+    В соотв. с ТЗ фрекси могут быть индивидуальными или
+    фрагментированными в лотке. Чтобы не повторять код - проверяется,
+    какой пришел запрос и если там есть лоток - то отдается список лотков,
+    если нет - то список фресок. Также в зависимости от этого в контекст
+    темплейта отдаются разные ссылки
+    """
     filterset_class = FrescoeFilter
 
     model = Frescoe

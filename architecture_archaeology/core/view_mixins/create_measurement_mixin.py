@@ -10,6 +10,12 @@ from artefact.models import Artefact
 
 
 class CreateMeasurementMixin(CreateViewMixin):
+    """
+    Так как все изображения и находки имеют сплошную и сквозную
+    нумерацию (шифр/code), то проводится проверка по коду, какая запись
+    существует в БД (через блоки try-catch проходятся три модели) и по
+    результату запись вносится в БД
+    """
 
     def form_valid(self, form: BaseForm) -> HttpResponse:
         code = form.cleaned_data['code']

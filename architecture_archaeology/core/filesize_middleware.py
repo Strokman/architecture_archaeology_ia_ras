@@ -4,6 +4,10 @@ from django.conf import settings
 
 
 class FileSizeMiddleware:
+    """
+    Middleware для проверки на размер файлов.
+    Сейчас по ТЗ не более 40 мб
+    """
     def __init__(self, get_response):
         self.get_response = get_response
 

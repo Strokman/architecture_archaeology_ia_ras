@@ -7,6 +7,10 @@ from core.models import SlugMixin, YearMixin
 
 # Create your models here.
 class Artefact(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
+    """
+    Модель описывает таблицу Находок в БД.
+    В соотв. с ТЗ заказчика.
+    """
     name = models.CharField(verbose_name='Название', null=True, blank=True, max_length=255)
     code = models.IntegerField(null=True, db_index=True, unique=True, verbose_name='Шифр')
     find_date_from = models.IntegerField(null=True, blank=True, verbose_name='Год находки от:')
@@ -34,6 +38,10 @@ class Artefact(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
         return url
 
     def find_date(self):
+        """
+        Метод отдает год находки (она может представлять и интервал)
+        в формате строки. Если ничего не внесено в БД - пустая строка.
+        """
         if not self.find_date_from and not self.find_date_to:
             return ''
         elif not self.find_date_from:

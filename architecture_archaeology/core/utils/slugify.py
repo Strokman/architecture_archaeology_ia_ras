@@ -36,4 +36,8 @@ alphabet = {'а': 'a',
 
 
 def slugify(s, *args, **kwargs):
+    """
+    Так как Django не умеет в кириллицу в случае с slug'ами, то сделал такую функцию
+    для транслитерации.
+    """
     return django_slugify(''.join(alphabet.get(w, w) for w in s.lower()), *args, **kwargs)

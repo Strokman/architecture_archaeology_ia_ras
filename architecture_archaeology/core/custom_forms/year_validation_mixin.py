@@ -2,6 +2,10 @@ from django import forms
 
 
 class YearValidationMixin:
+    """
+    Миксин для валидации ввода пользователя, чтобы нельзя было ввести год начала интервала больше,
+    чем конец интервала или наоборот.
+    """
 
     def clean(self):
         if not self.cleaned_data.get('year_min') and not self.cleaned_data.get('year_max'):

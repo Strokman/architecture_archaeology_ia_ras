@@ -52,7 +52,10 @@ class Building(DescriptionMixin, TimestampMixin, SlugMixin, YearMixin):
 
     @property
     def query_string_for_all_children(self):
-        # TODO: Нужно оптимизировать, чтоб не было много запросов
+        """
+        свойство отдает все шифры связанных с арх. памятником объектов:
+        изображений в постройках, фресок, находок
+        """
         indoorartworks = self.indoorartwork_set.all()
         frescoes = self.frescoe_set.all()
         artefacts = self.artefact_set.all()

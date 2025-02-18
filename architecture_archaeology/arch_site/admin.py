@@ -1,6 +1,9 @@
 # from django.contrib import admin
 # from .models import ArchaeologicalSite
-# Register your models here.
+"""
+Отключено, так как логика создания записи в БД описана в основной вью.
+При необходимости эту логику нужно прописать и для админки
+"""
 
 
 # admin.site.register(ArchaeologicalSite)

@@ -5,3 +5,8 @@ from .year_validation_mixin import YearValidationMixin
 from .codemixin import CodeMixin
 from .building_mixin import BuildingMixin
 from .color_mixin import ColorMixin
+
+"""
+Пакет содержит различные миксины и базовые классы для
+повторяющихся элементов кода в формах.
+"""

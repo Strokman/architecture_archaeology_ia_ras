@@ -9,10 +9,18 @@ from artwork.models.artwork_base import ArtworkBase
 # Create your models here.
 class Frescoe(ArtworkBase, DescriptionMixin, TimestampMixin, SlugMixin):
     class Type(models.TextChoices):
+        """
+        В соотв. с ТЗ фрески могут быть массовыми и индивидуальными
+        """
         MASS = 'M', _('массовый')
         INDIVIDUAL = 'I', _('индивидуальный')
 
     class Kind(models.TextChoices):
+        """
+        Фреска может быть индивидуальной и в виде лотка.
+        Поэтому сделано поле для выбора. Не отдельная модель,
+        так как разницы, кроме этого - никакой нет
+        """
         LOTOK = 'L', _('лоток')
         INDIVIDUAL = 'I', _('индивидуальная фреска')
 

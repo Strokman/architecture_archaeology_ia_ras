@@ -6,6 +6,10 @@ from helpers.models import Region
 
 
 class RegionSerializer(serializers.ModelSerializer):
+    """
+    Сериализация данных по памятникам и постройкам,
+    используется стандартный класс DRF для моделей Django ORM
+    """
 
     country = serializers.SlugRelatedField(
         slug_field='name',
